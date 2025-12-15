@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', $event->title . ' - Evenza')
+@section('title', $event->localized_title . ' - Evenza')
 
 @push('styles')
 <style>
@@ -12,9 +12,9 @@
 @section('content')
 <section class="page-header">
     <div class="container text-center">
-        <h1 class="display-4 fw-bold">{{ $event->title }}</h1>
-        @if($event->short_description)
-        <p class="lead opacity-75">{{ $event->short_description }}</p>
+        <h1 class="display-4 fw-bold">{{ $event->localized_title }}</h1>
+        @if($event->localized_short_description)
+        <p class="lead opacity-75">{{ $event->localized_short_description }}</p>
         @endif
     </div>
 </section>
@@ -24,14 +24,14 @@
         <div class="row g-5">
             <div class="col-lg-8">
                 @if($event->image)
-                <img src="{{ asset('storage/' . $event->image) }}" alt="{{ $event->title }}" class="img-fluid rounded shadow-sm mb-4 w-100">
+                <img src="{{ asset('storage/' . $event->image) }}" alt="{{ $event->localized_title }}" class="img-fluid rounded shadow-sm mb-4 w-100">
                 @endif
 
                 <div class="card border-0 shadow-sm mb-4">
                     <div class="card-body p-4">
-                        <h4 class="fw-bold mb-3">About This Event</h4>
+                        <h4 class="fw-bold mb-3">{{ __('messages.about_this_event') }}</h4>
                         <div class="content">
-                            {!! nl2br(e($event->description)) !!}
+                            {!! nl2br(e($event->localized_description ?? '')) !!}
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                 @if($event->schedules->count() > 0)
                 <div class="card border-0 shadow-sm">
                     <div class="card-body p-4">
-                        <h4 class="fw-bold mb-4">Event Schedule</h4>
+                        <h4 class="fw-bold mb-4">{{ __('messages.event_schedule') }}</h4>
                         <div class="schedule-list">
                             @foreach($event->schedules->sortBy(['date', 'start_time']) as $schedule)
                             <div class="schedule-item d-flex mb-4 pb-4 border-bottom">
@@ -47,15 +47,15 @@
                                     <span class="badge bg-primary-subtle text-primary">{{ \Carbon\Carbon::parse($schedule->start_time)->format('g:i A') }}</span>
                                 </div>
                                 <div class="schedule-content flex-grow-1">
-                                    <h6 class="fw-bold mb-1">{{ $schedule->title }}</h6>
+                                    <h6 class="fw-bold mb-1">{{ $schedule->localized_title }}</h6>
                                     @if($schedule->speaker)
                                     <p class="text-muted small mb-1">
-                                        <i class="bi bi-person me-1"></i>{{ $schedule->speaker->name }}
+                                        <i class="bi bi-person me-1"></i>{{ $schedule->speaker->localized_name }}
                                     </p>
                                     @endif
-                                    @if($schedule->venue)
+                                    @if($schedule->localized_venue)
                                     <p class="text-muted small mb-0">
-                                        <i class="bi bi-geo-alt me-1"></i>{{ $schedule->venue }}
+                                        <i class="bi bi-geo-alt me-1"></i>{{ $schedule->localized_venue }}
                                     </p>
                                     @endif
                                 </div>

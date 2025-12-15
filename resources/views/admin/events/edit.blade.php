@@ -11,6 +11,7 @@
             @method('PUT')
             <div class="row">
                 <div class="col-md-8">
+                    <h6 class="mb-3">English Content</h6>
                     <div class="mb-3">
                         <label for="title" class="form-label">Title *</label>
                         <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $event->title) }}" required>
@@ -34,6 +35,34 @@
                             <div class="mb-3">
                                 <label for="address" class="form-label">Address</label>
                                 <input type="text" class="form-control" id="address" name="address" value="{{ old('address', $event->address) }}">
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <h6 class="mb-3">Arabic Content</h6>
+                    <div class="mb-3">
+                        <label for="title_ar" class="form-label">Title (Arabic)</label>
+                        <input type="text" class="form-control" id="title_ar" name="title_ar" value="{{ old('title_ar', $event->title_ar) }}" dir="rtl">
+                    </div>
+                    <div class="mb-3">
+                        <label for="short_description_ar" class="form-label">Short Description (Arabic)</label>
+                        <textarea class="form-control" id="short_description_ar" name="short_description_ar" rows="2" dir="rtl">{{ old('short_description_ar', $event->short_description_ar) }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description_ar" class="form-label">Description (Arabic)</label>
+                        <textarea class="form-control" id="description_ar" name="description_ar" rows="5" dir="rtl">{{ old('description_ar', $event->description_ar) }}</textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="venue_ar" class="form-label">Venue (Arabic)</label>
+                                <input type="text" class="form-control" id="venue_ar" name="venue_ar" value="{{ old('venue_ar', $event->venue_ar) }}" dir="rtl">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="address_ar" class="form-label">Address (Arabic)</label>
+                                <input type="text" class="form-control" id="address_ar" name="address_ar" value="{{ old('address_ar', $event->address_ar) }}" dir="rtl">
                             </div>
                         </div>
                     </div>

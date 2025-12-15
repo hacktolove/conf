@@ -24,9 +24,13 @@ class SpeakerController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'name_ar' => 'nullable|string|max:255',
             'title' => 'nullable|string|max:255',
+            'title_ar' => 'nullable|string|max:255',
             'company' => 'nullable|string|max:255',
+            'company_ar' => 'nullable|string|max:255',
             'bio' => 'nullable|string',
+            'bio_ar' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'facebook' => 'nullable|url|max:255',
             'twitter' => 'nullable|url|max:255',
@@ -59,9 +63,13 @@ class SpeakerController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'name_ar' => 'nullable|string|max:255',
             'title' => 'nullable|string|max:255',
+            'title_ar' => 'nullable|string|max:255',
             'company' => 'nullable|string|max:255',
+            'company_ar' => 'nullable|string|max:255',
             'bio' => 'nullable|string',
+            'bio_ar' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'facebook' => 'nullable|url|max:255',
             'twitter' => 'nullable|url|max:255',

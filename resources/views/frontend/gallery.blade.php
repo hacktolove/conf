@@ -17,8 +17,8 @@
 @section('content')
 <section class="page-header">
     <div class="container text-center">
-        <h1 class="display-4 fw-bold">Gallery</h1>
-        <p class="lead opacity-75">Capturing moments from our events</p>
+        <h1 class="display-4 fw-bold">{{ __('messages.gallery') }}</h1>
+        <p class="lead opacity-75">{{ __('messages.gallery_subtitle') }}</p>
     </div>
 </section>
 
@@ -32,7 +32,7 @@
         @if($types->count() > 1)
         <div class="text-center mb-5">
             <div class="btn-group" role="group">
-                <button type="button" class="btn btn-outline-primary active" data-filter="all">All</button>
+                <button type="button" class="btn btn-outline-primary active" data-filter="all">{{ __('messages.all') }}</button>
                 @foreach($types as $type)
                 <button type="button" class="btn btn-outline-primary" data-filter="{{ Str::slug($type) }}">{{ ucfirst($type) }}</button>
                 @endforeach
@@ -84,8 +84,8 @@
         @else
         <div class="text-center py-5">
             <i class="bi bi-images text-muted" style="font-size: 4rem;"></i>
-            <h4 class="mt-3">No Gallery Items Found</h4>
-            <p class="text-muted">Check back later for event photos and videos.</p>
+            <h4 class="mt-3">{{ __('messages.no_gallery_items') }}</h4>
+            <p class="text-muted">{{ __('messages.check_back_gallery') }}</p>
         </div>
         @endif
     </div>

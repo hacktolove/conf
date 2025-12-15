@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', $speaker->name . ' - Evenza')
+@section('title', $speaker->localized_name . ' - Evenza')
 
 @push('styles')
 <style>
@@ -134,9 +134,9 @@
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('speakers') }}">Speakers</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ $speaker->name }}</li>
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('messages.breadcrumb_home') }}</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('speakers') }}">{{ __('messages.nav_speakers') }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $speaker->localized_name }}</li>
             </ol>
         </nav>
     </div>
@@ -149,7 +149,7 @@
             <div class="col-lg-4 text-center">
                 <div class="speaker-image-wrapper">
                     @if($speaker->image)
-                    <img src="{{ asset('storage/' . $speaker->image) }}" alt="{{ $speaker->name }}" class="img-fluid">
+                    <img src="{{ asset('storage/' . $speaker->image) }}" alt="{{ $speaker->localized_name }}" class="img-fluid">
                     @else
                     <div class="bg-primary-subtle rounded d-flex align-items-center justify-content-center mx-auto" style="width: 400px; height: 400px;">
                         <i class="bi bi-person text-primary" style="font-size: 8rem;"></i>
@@ -158,12 +158,12 @@
                 </div>
             </div>
             <div class="col-lg-8">
-                <h1 class="display-4 fw-bold mb-3">{{ $speaker->name }}</h1>
-                @if($speaker->title)
-                <p class="lead text-primary mb-4">{{ $speaker->title }}</p>
+                <h1 class="display-4 fw-bold mb-3">{{ $speaker->localized_name }}</h1>
+                @if($speaker->localized_title)
+                <p class="lead text-primary mb-4">{{ $speaker->localized_title }}</p>
                 @endif
-                @if($speaker->company)
-                <p class="text-muted mb-4">{{ $speaker->company }}</p>
+                @if($speaker->localized_company)
+                <p class="text-muted mb-4">{{ $speaker->localized_company }}</p>
                 @endif
                 
                 <!-- Contact Information -->
@@ -233,7 +233,7 @@
             <div class="col-lg-8 mx-auto">
                 <h2 class="section-title mb-4">About</h2>
                 <div class="content text-muted">
-                    {!! nl2br(e($speaker->bio)) !!}
+                    {!! nl2br(e($speaker->localized_bio ?? '')) !!}
                 </div>
             </div>
         </div>
@@ -293,7 +293,7 @@
                                 <i class="bi bi-briefcase-fill"></i>
                                 <div class="info-item-content">
                                     <h6>Position</h6>
-                                    <p>{{ $speaker->title }}</p>
+                                    <p>{{ $speaker->localized_title }}</p>
                                 </div>
                             </div>
                         </div>
@@ -423,12 +423,12 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                <h5 class="mb-2">{{ $schedule->title }}</h5>
-                                @if($schedule->description)
-                                <p class="text-muted mb-2">{{ $schedule->description }}</p>
+                                <h5 class="mb-2">{{ $schedule->localized_title }}</h5>
+                                @if($schedule->localized_description)
+                                <p class="text-muted mb-2">{{ $schedule->localized_description }}</p>
                                 @endif
-                                @if($schedule->venue)
-                                <small class="text-muted"><i class="bi bi-geo-alt me-1"></i>{{ $schedule->venue }}</small>
+                                @if($schedule->localized_venue)
+                                <small class="text-muted"><i class="bi bi-geo-alt me-1"></i>{{ $schedule->localized_venue }}</small>
                                 @endif
                             </div>
                             @if($schedule->event)
@@ -458,7 +458,7 @@
                 <div class="contact-form-card">
                     <form action="{{ route('contact.submit') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="subject" value="Contact regarding {{ $speaker->name }}">
+                        <input type="hidden" name="subject" value="Contact regarding {{ $speaker->localized_name }}">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="name" class="form-label">Name *</label>
@@ -474,7 +474,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="subject" class="form-label">Subject</label>
-                                <input type="text" class="form-control" id="subject" name="subject" value="Contact regarding {{ $speaker->name }}">
+                                <input type="text" class="form-control" id="subject" name="subject" value="Contact regarding {{ $speaker->localized_name }}">
                             </div>
                             <div class="col-12">
                                 <label for="message" class="form-label">Message *</label>

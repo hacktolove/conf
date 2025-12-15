@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', $post->title . ' - Evenza')
+@section('title', $post->localized_title . ' - Evenza')
 
 @push('styles')
 <style>
@@ -15,10 +15,10 @@
 @section('content')
 <section class="page-header">
     <div class="container text-center">
-        @if($post->category)
-        <span class="badge bg-primary mb-3">{{ $post->category }}</span>
+        @if($post->localized_category)
+        <span class="badge bg-primary mb-3">{{ $post->localized_category }}</span>
         @endif
-        <h1 class="display-5 fw-bold">{{ $post->title }}</h1>
+        <h1 class="display-5 fw-bold">{{ $post->localized_title }}</h1>
         <div class="d-flex align-items-center justify-content-center text-white-50 mt-3">
             @if($post->user)
             <span class="me-3"><i class="bi bi-person me-1"></i>{{ $post->user->name }}</span>
@@ -33,11 +33,11 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 @if($post->image)
-                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="img-fluid rounded shadow-sm mb-5 w-100">
+                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->localized_title }}" class="img-fluid rounded shadow-sm mb-5 w-100">
                 @endif
 
                 <article class="blog-content">
-                    {!! $post->content !!}
+                    {!! $post->localized_content !!}
                 </article>
 
                 @if($post->tags && count($post->tags) > 0)
@@ -57,13 +57,13 @@
                         <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->url()) }}" target="_blank" class="btn btn-outline-primary btn-sm">
                             <i class="bi bi-facebook"></i>
                         </a>
-                        <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->url()) }}&text={{ urlencode($post->title) }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                        <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->url()) }}&text={{ urlencode($post->localized_title) }}" target="_blank" class="btn btn-outline-primary btn-sm">
                             <i class="bi bi-twitter-x"></i>
                         </a>
                         <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(request()->url()) }}" target="_blank" class="btn btn-outline-primary btn-sm">
                             <i class="bi bi-linkedin"></i>
                         </a>
-                        <a href="mailto:?subject={{ urlencode($post->title) }}&body={{ urlencode(request()->url()) }}" class="btn btn-outline-primary btn-sm">
+                        <a href="mailto:?subject={{ urlencode($post->localized_title) }}&body={{ urlencode(request()->url()) }}" class="btn btn-outline-primary btn-sm">
                             <i class="bi bi-envelope"></i>
                         </a>
                     </div>
@@ -93,7 +93,7 @@
                             @foreach($recentPosts as $recentPost)
                             <div class="d-flex mb-3 pb-3 border-bottom">
                                 @if($recentPost->image)
-                                <img src="{{ asset('storage/' . $recentPost->image) }}" alt="{{ $recentPost->title }}" class="rounded me-3" style="width: 70px; height: 70px; object-fit: cover;">
+                                <img src="{{ asset('storage/' . $recentPost->image) }}" alt="{{ $recentPost->localized_title }}" class="rounded me-3" style="width: 70px; height: 70px; object-fit: cover;">
                                 @else
                                 <div class="bg-primary-subtle rounded d-flex align-items-center justify-content-center me-3" style="width: 70px; height: 70px;">
                                     <i class="bi bi-newspaper text-primary"></i>
@@ -101,7 +101,7 @@
                                 @endif
                                 <div>
                                     <h6 class="mb-1">
-                                        <a href="{{ route('blog.show', $recentPost->slug) }}" class="text-decoration-none text-dark">{{ Str::limit($recentPost->title, 50) }}</a>
+                                        <a href="{{ route('blog.show', $recentPost->slug) }}" class="text-decoration-none text-dark">{{ Str::limit($recentPost->localized_title, 50) }}</a>
                                     </h6>
                                     <small class="text-muted">{{ $recentPost->published_at ? $recentPost->published_at->format('M d, Y') : $recentPost->created_at->format('M d, Y') }}</small>
                                 </div>

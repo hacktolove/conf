@@ -23,15 +23,21 @@ class PricingPlanController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'name_ar' => 'nullable|string|max:255',
             'price' => 'required|numeric|min:0',
             'currency' => 'required|string|max:10',
             'duration' => 'nullable|string|max:100',
+            'duration_ar' => 'nullable|string|max:100',
             'description' => 'nullable|string',
+            'description_ar' => 'nullable|string',
             'features' => 'nullable|array',
             'features.*' => 'string',
+            'features_ar' => 'nullable|array',
+            'features_ar.*' => 'string',
             'is_featured' => 'boolean',
             'is_active' => 'boolean',
             'button_text' => 'nullable|string|max:100',
+            'button_text_ar' => 'nullable|string|max:100',
             'button_link' => 'nullable|string|max:255',
             'order' => 'integer',
         ]);
@@ -39,6 +45,9 @@ class PricingPlanController extends Controller
         $validated['is_featured'] = $request->boolean('is_featured');
         $validated['is_active'] = $request->boolean('is_active');
         $validated['features'] = array_filter($request->input('features', []));
+        if ($request->has('features_ar')) {
+            $validated['features_ar'] = array_filter($request->input('features_ar', []));
+        }
 
         PricingPlan::create($validated);
 
@@ -54,15 +63,21 @@ class PricingPlanController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'name_ar' => 'nullable|string|max:255',
             'price' => 'required|numeric|min:0',
             'currency' => 'required|string|max:10',
             'duration' => 'nullable|string|max:100',
+            'duration_ar' => 'nullable|string|max:100',
             'description' => 'nullable|string',
+            'description_ar' => 'nullable|string',
             'features' => 'nullable|array',
             'features.*' => 'string',
+            'features_ar' => 'nullable|array',
+            'features_ar.*' => 'string',
             'is_featured' => 'boolean',
             'is_active' => 'boolean',
             'button_text' => 'nullable|string|max:100',
+            'button_text_ar' => 'nullable|string|max:100',
             'button_link' => 'nullable|string|max:255',
             'order' => 'integer',
         ]);
@@ -70,6 +85,9 @@ class PricingPlanController extends Controller
         $validated['is_featured'] = $request->boolean('is_featured');
         $validated['is_active'] = $request->boolean('is_active');
         $validated['features'] = array_filter($request->input('features', []));
+        if ($request->has('features_ar')) {
+            $validated['features_ar'] = array_filter($request->input('features_ar', []));
+        }
 
         $pricingPlan->update($validated);
 

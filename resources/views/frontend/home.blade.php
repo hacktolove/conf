@@ -119,17 +119,17 @@
         @php $slide = $heroSlides->first(); @endphp
         <div class="row align-items-center min-vh-100">
             <div class="col-lg-6 text-white">
-                @if($slide->subtitle)
-                <p class="section-subtitle mb-3">{{ $slide->subtitle }}</p>
+                @if($slide->localized_subtitle)
+                <p class="section-subtitle mb-3">{{ $slide->localized_subtitle }}</p>
                 @endif
-                <h1 class="display-3 fw-bold mb-4">{{ $slide->title }}</h1>
-                <p class="lead mb-4 text-white-50">{{ $slide->description }}</p>
+                <h1 class="display-3 fw-bold mb-4">{{ $slide->localized_title }}</h1>
+                <p class="lead mb-4 text-white-50">{{ $slide->localized_description }}</p>
                 <div class="d-flex gap-3 mb-5">
-                    @if($slide->button_text)
-                    <a href="{{ $slide->button_link ?? '#' }}" class="btn btn-primary btn-lg px-4">{{ $slide->button_text }}</a>
+                    @if($slide->localized_button_text)
+                    <a href="{{ $slide->button_link ?? '#' }}" class="btn btn-primary btn-lg px-4">{{ $slide->localized_button_text }}</a>
                     @endif
-                    @if($slide->button_text_2)
-                    <a href="{{ $slide->button_link_2 ?? '#' }}" class="btn btn-outline-light btn-lg px-4">{{ $slide->button_text_2 }}</a>
+                    @if($slide->localized_button_text_2)
+                    <a href="{{ $slide->button_link_2 ?? '#' }}" class="btn btn-outline-light btn-lg px-4">{{ $slide->localized_button_text_2 }}</a>
                     @endif
                 </div>
 
@@ -137,35 +137,35 @@
                 <div class="countdown-timer">
                     <div class="countdown-item">
                         <span class="number" id="days">00</span>
-                        <span class="label">Days</span>
+                        <span class="label">{{ __('messages.days') }}</span>
                     </div>
                     <div class="countdown-item">
                         <span class="number" id="hours">00</span>
-                        <span class="label">Hours</span>
+                        <span class="label">{{ __('messages.hours') }}</span>
                     </div>
                     <div class="countdown-item">
                         <span class="number" id="minutes">00</span>
-                        <span class="label">Minutes</span>
+                        <span class="label">{{ __('messages.minutes') }}</span>
                     </div>
                     <div class="countdown-item">
                         <span class="number" id="seconds">00</span>
-                        <span class="label">Seconds</span>
+                        <span class="label">{{ __('messages.seconds') }}</span>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 text-center">
                 @if($slide->image)
-                <img src="{{ asset('storage/' . $slide->image) }}" alt="{{ $slide->title }}" class="img-fluid rounded-4 shadow-lg">
+                <img src="{{ asset('storage/' . $slide->image) }}" alt="{{ $slide->localized_title }}" class="img-fluid rounded-4 shadow-lg">
                 @endif
             </div>
         </div>
         @else
         <div class="row align-items-center min-vh-100">
             <div class="col-lg-8 mx-auto text-center text-white">
-                <p class="section-subtitle mb-3">Welcome to Evenza</p>
-                <h1 class="display-3 fw-bold mb-4">The Premier Event Experience</h1>
-                <p class="lead mb-4 text-white-50">Join us for an unforgettable experience with industry leaders and innovators.</p>
-                <a href="{{ route('pricing') }}" class="btn btn-primary btn-lg px-5">Get Your Ticket</a>
+                <p class="section-subtitle mb-3">{{ __('messages.welcome_to_evenza') }}</p>
+                <h1 class="display-3 fw-bold mb-4">{{ __('messages.premier_event_experience') }}</h1>
+                <p class="lead mb-4 text-white-50">{{ __('messages.join_us_description') }}</p>
+                <a href="{{ route('pricing') }}" class="btn btn-primary btn-lg px-5">{{ __('messages.get_your_ticket') }}</a>
             </div>
         </div>
         @endif
@@ -175,7 +175,7 @@
 <!-- Announcements Marquee -->
 <section class="announcements-marquee">
     <div class="marquee-content">
-        Latest Updates New Announcements Workshop Alerts Live Notices Event Countdown Workshop Alerts Quick Updates Latest Updates New Announcements Workshop Alerts Live Notices Event Countdown Workshop Alerts Quick Updates Latest Updates New Announcements Workshop Alerts Live Notices Event Countdown Workshop Alerts Quick Updates Latest Updates New Announcements Workshop Alerts Live Notices Event Countdown Workshop Alerts Quick Updates
+        {{ __('messages.announcements_text') }}
     </div>
 </section>
 
@@ -206,19 +206,19 @@
                 <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600" alt="About" class="img-fluid rounded-4 shadow">
             </div>
             <div class="col-lg-6">
-                <p class="section-subtitle">About Us</p>
-                <h2 class="section-title display-5">Uncover our mission & purpose behind this event</h2>
-                <p class="text-muted mb-4">Discover the vision that drives this event—a commitment to bringing together innovators, leaders, and changemakers to share knowledge, spark inspiration, and create meaningful connections.</p>
+                <p class="section-subtitle">{{ __('messages.about_us') }}</p>
+                <h2 class="section-title display-5">{{ __('messages.uncover_mission') }}</h2>
+                <p class="text-muted mb-4">{{ __('messages.discover_vision') }}</p>
 
                 <ul class="nav nav-tabs about-tabs mb-4" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#mission" type="button">Our Mission</button>
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#mission" type="button">{{ __('messages.our_mission') }}</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#vision" type="button">Our Vision</button>
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#vision" type="button">{{ __('messages.our_vision') }}</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#goal" type="button">Our Goal</button>
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#goal" type="button">{{ __('messages.our_goal') }}</button>
                     </li>
                 </ul>
 
@@ -234,7 +234,7 @@
                     </div>
                 </div>
 
-                <a href="{{ route('about') }}" class="btn btn-primary mt-4">Learn More About</a>
+                <a href="{{ route('about') }}" class="btn btn-primary mt-4">{{ __('messages.learn_more_about') }}</a>
             </div>
         </div>
     </div>
@@ -244,40 +244,40 @@
 <section class="py-5 bg-light">
     <div class="container py-5">
         <div class="text-center mb-5">
-            <p class="section-subtitle">Core Feature</p>
-            <h2 class="section-title display-5">Core features that power our exceptional services</h2>
+            <p class="section-subtitle">{{ __('messages.core_feature') }}</p>
+            <h2 class="section-title display-5">{{ __('messages.core_features_title') }}</h2>
         </div>
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
                 <div class="core-feature-card">
                     <i class="bi bi-calendar-check display-4 text-primary mb-3"></i>
-                    <h5 class="mb-3">Event Planning Manage</h5>
-                    <p class="text-muted mb-3">Deliver seamless virtual experience with high-quality streaming and interactive tools.</p>
-                    <a href="#" class="text-primary text-decoration-none">Read More <i class="bi bi-arrow-right"></i></a>
+                    <h5 class="mb-3">{{ __('messages.event_planning_manage') }}</h5>
+                    <p class="text-muted mb-3">{{ __('messages.event_planning_description') }}</p>
+                    <a href="#" class="text-primary text-decoration-none">{{ __('messages.read_more') }} <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="core-feature-card">
                     <i class="bi bi-people display-4 text-primary mb-3"></i>
-                    <h5 class="mb-3">Conference Coordination</h5>
-                    <p class="text-muted mb-3">Deliver seamless virtual experience with high-quality streaming and interactive tools.</p>
-                    <a href="#" class="text-primary text-decoration-none">Read More <i class="bi bi-arrow-right"></i></a>
+                    <h5 class="mb-3">{{ __('messages.conference_coordination') }}</h5>
+                    <p class="text-muted mb-3">{{ __('messages.event_planning_description') }}</p>
+                    <a href="#" class="text-primary text-decoration-none">{{ __('messages.read_more') }} <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="core-feature-card">
                     <i class="bi bi-building display-4 text-primary mb-3"></i>
-                    <h5 class="mb-3">Venue Booking & Setup</h5>
-                    <p class="text-muted mb-3">Deliver seamless virtual experience with high-quality streaming and interactive tools.</p>
-                    <a href="#" class="text-primary text-decoration-none">Read More <i class="bi bi-arrow-right"></i></a>
+                    <h5 class="mb-3">{{ __('messages.venue_booking_setup') }}</h5>
+                    <p class="text-muted mb-3">{{ __('messages.event_planning_description') }}</p>
+                    <a href="#" class="text-primary text-decoration-none">{{ __('messages.read_more') }} <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="core-feature-card">
                     <i class="bi bi-graph-up display-4 text-primary mb-3"></i>
-                    <h5 class="mb-3">Post-Event Analytics</h5>
-                    <p class="text-muted mb-3">Deliver seamless virtual experience with high-quality streaming and interactive tools.</p>
-                    <a href="#" class="text-primary text-decoration-none">Read More <i class="bi bi-arrow-right"></i></a>
+                    <h5 class="mb-3">{{ __('messages.post_event_analytics') }}</h5>
+                    <p class="text-muted mb-3">{{ __('messages.event_planning_description') }}</p>
+                    <a href="#" class="text-primary text-decoration-none">{{ __('messages.read_more') }} <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -288,27 +288,27 @@
 <section class="py-5">
     <div class="container py-5">
         <div class="text-center mb-5">
-            <p class="section-subtitle">Key Benefits</p>
-            <h2 class="section-title display-5">Key advantages that ensure your events stand out</h2>
+            <p class="section-subtitle">{{ __('messages.key_benefits') }}</p>
+            <h2 class="section-title display-5">{{ __('messages.key_advantages_title') }}</h2>
         </div>
         <div class="row g-4 align-items-center">
             <div class="col-lg-6">
                 <div class="key-benefit-card">
                     <i class="bi bi-mic display-4 text-primary mb-3"></i>
-                    <h4 class="mb-3">Expert-Led Keynote Sessions</h4>
-                    <p class="text-muted">Experience inspiring keynote sessions led by industry experts who share valuable insights, trends, and strategies to help you grow personally and professionally.</p>
+                    <h4 class="mb-3">{{ __('messages.expert_keynote_sessions') }}</h4>
+                    <p class="text-muted">{{ __('messages.expert_keynote_description') }}</p>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="key-benefit-card">
                     <i class="bi bi-laptop display-4 text-primary mb-3"></i>
-                    <h4 class="mb-3">Advanced Event Technology</h4>
-                    <p class="text-muted">Experience inspiring keynote sessions led by industry experts who share valuable insights, trends, and strategies to help you grow personally and professionally.</p>
+                    <h4 class="mb-3">{{ __('messages.advanced_event_technology') }}</h4>
+                    <p class="text-muted">{{ __('messages.expert_keynote_description') }}</p>
                 </div>
             </div>
         </div>
         <div class="text-center mt-5">
-            <a href="{{ route('schedule') }}" class="btn btn-primary btn-lg">View Our Schedule</a>
+            <a href="{{ route('schedule') }}" class="btn btn-primary btn-lg">{{ __('messages.view_our_schedule') }}</a>
         </div>
     </div>
 </section>
@@ -318,8 +318,8 @@
 <section class="py-5 bg-light">
     <div class="container py-5">
         <div class="text-center mb-5">
-            <p class="section-subtitle">Our Event Schedule</p>
-            <h2 class="section-title display-5">Explore the complete schedule for our event</h2>
+            <p class="section-subtitle">{{ __('messages.our_event_schedule') }}</p>
+            <h2 class="section-title display-5">{{ __('messages.explore_complete_schedule') }}</h2>
         </div>
 
         @php
@@ -361,15 +361,15 @@
                                     <small class="text-muted">{{ $schedule->schedule_date ? \Carbon\Carbon::parse($schedule->schedule_date)->format('d M Y') : '' }}</small>
                                 </div>
                                 <div class="col-md-8">
-                                    <h5 class="mb-2">{{ $schedule->title }}</h5>
-                                    <p class="text-muted mb-2">{{ $schedule->description }}</p>
-                                    @if($schedule->venue)
-                                    <small class="text-muted"><i class="bi bi-geo-alt me-1"></i>{{ $schedule->venue }}</small>
+                                    <h5 class="mb-2">{{ $schedule->localized_title }}</h5>
+                                    <p class="text-muted mb-2">{{ $schedule->localized_description }}</p>
+                                    @if($schedule->localized_venue)
+                                    <small class="text-muted"><i class="bi bi-geo-alt me-1"></i>{{ $schedule->localized_venue }}</small>
                                     @endif
                                 </div>
                                 @if($schedule->speaker)
                                 <div class="col-md-2 text-end">
-                                    <small class="text-primary"><i class="bi bi-person me-1"></i>{{ $schedule->speaker->name }}</small>
+                                    <small class="text-primary"><i class="bi bi-person me-1"></i>{{ $schedule->speaker->localized_name }}</small>
                                 </div>
                                 @endif
                             </div>
@@ -389,8 +389,8 @@
 <section class="py-5">
     <div class="container py-5">
         <div class="text-center mb-5">
-            <p class="section-subtitle">Our Speakers</p>
-            <h2 class="section-title display-5">Introducing the expert speakers joining our event</h2>
+            <p class="section-subtitle">{{ __('messages.our_speakers') }}</p>
+            <h2 class="section-title display-5">{{ __('messages.expert_speakers_title') }}</h2>
         </div>
         <div class="row g-4">
             @foreach($speakers->take(3) as $speaker)
@@ -398,15 +398,15 @@
                 <a href="{{ route('speakers.show', $speaker->slug) }}" class="text-decoration-none text-dark">
                     <div class="card card-speaker shadow-sm h-100">
                         @if($speaker->image)
-                        <img src="{{ asset('storage/' . $speaker->image) }}" alt="{{ $speaker->name }}" class="card-img-top">
+                        <img src="{{ asset('storage/' . $speaker->image) }}" alt="{{ $speaker->localized_name }}" class="card-img-top">
                         @else
                         <div class="bg-secondary d-flex align-items-center justify-content-center" style="height:300px">
                             <i class="bi bi-person display-1 text-white"></i>
                         </div>
                         @endif
                         <div class="card-body text-center">
-                            <h5 class="card-title mb-1">{{ $speaker->name }}</h5>
-                            <p class="text-muted small mb-2">{{ $speaker->title }}</p>
+                            <h5 class="card-title mb-1">{{ $speaker->localized_name }}</h5>
+                            <p class="text-muted small mb-2">{{ $speaker->localized_title }}</p>
                             <div class="d-flex justify-content-center gap-2">
                                 @if($speaker->facebook)<a href="{{ $speaker->facebook }}" class="text-muted" onclick="event.stopPropagation();"><i class="bi bi-facebook"></i></a>@endif
                                 @if($speaker->twitter)<a href="{{ $speaker->twitter }}" class="text-muted" onclick="event.stopPropagation();"><i class="bi bi-twitter-x"></i></a>@endif
@@ -419,7 +419,7 @@
             @endforeach
         </div>
         <div class="text-center mt-5">
-            <p class="text-muted">Join our speaker and help weave innovation, quality, and success together worldwide.</p>
+            <p class="text-muted">{{ __('messages.join_speaker_text') }}</p>
         </div>
     </div>
 </section>
@@ -432,33 +432,33 @@
             <div class="col-lg-3 col-md-6">
                 <div class="speaker-benefit-card">
                     <i class="bi bi-chat-dots display-4 text-primary mb-3"></i>
-                    <h5 class="mb-3">Interactive Panel Discussions</h5>
-                    <p class="text-muted">Build meaningful relationships with industry leaders, innovators.</p>
-                    <a href="#" class="text-primary text-decoration-none">read more <i class="bi bi-arrow-right"></i></a>
+                    <h5 class="mb-3">{{ __('messages.interactive_panel_discussions') }}</h5>
+                    <p class="text-muted">{{ __('messages.build_meaningful_relationships') }}</p>
+                    <a href="#" class="text-primary text-decoration-none">{{ __('messages.read_more_btn') }} <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="speaker-benefit-card">
                     <i class="bi bi-people display-4 text-primary mb-3"></i>
-                    <h5 class="mb-3">Connect With Top Professionals</h5>
-                    <p class="text-muted">Build meaningful relationships with industry leaders, innovators.</p>
-                    <a href="#" class="text-primary text-decoration-none">read more <i class="bi bi-arrow-right"></i></a>
+                    <h5 class="mb-3">{{ __('messages.connect_top_professionals') }}</h5>
+                    <p class="text-muted">{{ __('messages.build_meaningful_relationships') }}</p>
+                    <a href="#" class="text-primary text-decoration-none">{{ __('messages.read_more_btn') }} <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="speaker-benefit-card">
                     <i class="bi bi-folder display-4 text-primary mb-3"></i>
-                    <h5 class="mb-3">Exclusive Access Event Material</h5>
-                    <p class="text-muted">Build meaningful relationships with industry leaders, innovators.</p>
-                    <a href="#" class="text-primary text-decoration-none">read more <i class="bi bi-arrow-right"></i></a>
+                    <h5 class="mb-3">{{ __('messages.exclusive_access_event_material') }}</h5>
+                    <p class="text-muted">{{ __('messages.build_meaningful_relationships') }}</p>
+                    <a href="#" class="text-primary text-decoration-none">{{ __('messages.read_more_btn') }} <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="speaker-benefit-card">
                     <i class="bi bi-bell display-4 text-primary mb-3"></i>
-                    <h5 class="mb-3">Real-Time Event Announcement</h5>
-                    <p class="text-muted">Build meaningful relationships with industry leaders, innovators.</p>
-                    <a href="#" class="text-primary text-decoration-none">read more <i class="bi bi-arrow-right"></i></a>
+                    <h5 class="mb-3">{{ __('messages.realtime_event_announcement') }}</h5>
+                    <p class="text-muted">{{ __('messages.build_meaningful_relationships') }}</p>
+                    <a href="#" class="text-primary text-decoration-none">{{ __('messages.read_more_btn') }} <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -470,37 +470,37 @@
 <section class="py-5">
     <div class="container py-5">
         <div class="text-center mb-5">
-            <p class="section-subtitle">Pricing Plan</p>
-            <h2 class="section-title display-5">Discover our flexible pricing plans for attendees</h2>
+            <p class="section-subtitle">{{ __('messages.pricing_plan') }}</p>
+            <h2 class="section-title display-5">{{ __('messages.discover_pricing_plans') }}</h2>
         </div>
         <div class="row g-4 justify-content-center">
             @foreach($pricingPlans as $plan)
             <div class="col-lg-4 col-md-6">
                 <div class="pricing-card {{ $plan->is_featured ? 'featured' : '' }}">
-                    <h4>{{ $plan->name }}</h4>
-                    <p class="text-muted mb-3">{{ $plan->description }}</p>
+                    <h4>{{ $plan->localized_name }}</h4>
+                    <p class="text-muted mb-3">{{ $plan->localized_description }}</p>
                     <div class="my-4">
                         <span class="display-4 fw-bold">{{ $plan->currency }}{{ number_format($plan->price, 0) }}</span>
-                        <span class="text-muted">/{{ $plan->duration ?? 'One-Time' }}</span>
+                        <span class="text-muted">/{{ $plan->localized_duration ?? 'One-Time' }}</span>
                     </div>
-                    <p class="text-muted mb-3"><small>It could relate to a subscription</small></p>
-                    @if($plan->features)
+                    <p class="text-muted mb-3"><small>{{ __('messages.could_relate_subscription') }}</small></p>
+                    @if($plan->localized_features)
                     <ul class="list-unstyled mb-4">
-                        @foreach($plan->features as $feature)
+                        @foreach($plan->localized_features as $feature)
                         <li class="mb-2"><i class="bi bi-check-circle me-2"></i>{{ $feature }}</li>
                         @endforeach
                     </ul>
                     @endif
-                    <a href="{{ $plan->button_link ?? route('contact') }}" class="btn {{ $plan->is_featured ? 'btn-light' : 'btn-primary' }} w-100">{{ $plan->button_text }}</a>
+                    <a href="{{ $plan->button_link ?? route('contact') }}" class="btn {{ $plan->is_featured ? 'btn-light' : 'btn-primary' }} w-100">{{ $plan->localized_button_text }}</a>
                 </div>
             </div>
             @endforeach
         </div>
         <div class="text-center mt-5">
             <ul class="list-inline">
-                <li class="list-inline-item"><i class="bi bi-check-circle text-primary me-2"></i>Get 30 day free trial</li>
-                <li class="list-inline-item"><i class="bi bi-check-circle text-primary me-2"></i>No any hidden fee pay</li>
-                <li class="list-inline-item"><i class="bi bi-check-circle text-primary me-2"></i>You can cancel anytime</li>
+                <li class="list-inline-item"><i class="bi bi-check-circle text-primary me-2"></i>{{ __('messages.get_30_day_trial') }}</li>
+                <li class="list-inline-item"><i class="bi bi-check-circle text-primary me-2"></i>{{ __('messages.no_hidden_fee') }}</li>
+                <li class="list-inline-item"><i class="bi bi-check-circle text-primary me-2"></i>{{ __('messages.cancel_anytime') }}</li>
             </ul>
         </div>
     </div>
@@ -512,8 +512,8 @@
 <section class="py-5 bg-light">
     <div class="container py-5">
         <div class="text-center mb-5">
-            <p class="section-subtitle">FAQ's</p>
-            <h2 class="section-title display-5">Your Questions, Clearly Answer</h2>
+            <p class="section-subtitle">{{ __('messages.faqs') }}</p>
+            <h2 class="section-title display-5">{{ __('messages.questions_clearly_answer') }}</h2>
         </div>
         <div class="row">
             <div class="col-lg-8 mx-auto">
@@ -522,12 +522,12 @@
                     <div class="accordion-item faq-item">
                         <h2 class="accordion-header" id="heading{{ $index }}">
                             <button class="accordion-button {{ $index > 0 ? 'collapsed' : '' }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $index }}">
-                                {{ $index + 1 }}. {{ $faq->question }}
+                                {{ $index + 1 }}. {{ $faq->localized_question }}
                             </button>
                         </h2>
                         <div id="collapse{{ $index }}" class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}" data-bs-parent="#faqAccordion">
                             <div class="accordion-body">
-                                {{ $faq->answer }}
+                                {{ $faq->localized_answer }}
                             </div>
                         </div>
                     </div>
@@ -544,27 +544,27 @@
 <section class="py-5">
     <div class="container py-5">
         <div class="text-center mb-5">
-            <p class="section-subtitle">Testimonials</p>
-            <h2 class="section-title display-5">What our customers say about their experience</h2>
-            <p class="text-muted">Over 15,000+ Attendees Connected Worldwide</p>
-            <p class="text-muted mb-4">Client Experience Speak For Themselves</p>
+            <p class="section-subtitle">{{ __('messages.testimonials') }}</p>
+            <h2 class="section-title display-5">{{ __('messages.customers_say_title') }}</h2>
+            <p class="text-muted">{{ __('messages.attendees_connected') }}</p>
+            <p class="text-muted mb-4">{{ __('messages.client_experience_speak') }}</p>
         </div>
         <div class="row g-4">
             @foreach($testimonials->take(3) as $testimonial)
             <div class="col-lg-4">
                 <div class="testimonial-card h-100">
-                    <p class="text-muted mb-4">"{{ $testimonial->content }}"</p>
+                    <p class="text-muted mb-4">"{{ $testimonial->localized_content }}"</p>
                     <div class="d-flex align-items-center">
                         @if($testimonial->image)
-                        <img src="{{ asset('storage/' . $testimonial->image) }}" alt="{{ $testimonial->name }}" class="rounded-circle me-3" style="width:50px;height:50px;object-fit:cover">
+                        <img src="{{ asset('storage/' . $testimonial->image) }}" alt="{{ $testimonial->localized_name }}" class="rounded-circle me-3" style="width:50px;height:50px;object-fit:cover">
                         @else
                         <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" style="width:50px;height:50px">
-                            <span class="text-white fw-bold">{{ substr($testimonial->name, 0, 1) }}</span>
+                            <span class="text-white fw-bold">{{ substr($testimonial->localized_name, 0, 1) }}</span>
                         </div>
                         @endif
                         <div>
-                            <h6 class="mb-0">{{ $testimonial->name }}</h6>
-                            <small class="text-muted">{{ $testimonial->title }}</small>
+                            <h6 class="mb-0">{{ $testimonial->localized_name }}</h6>
+                            <small class="text-muted">{{ $testimonial->localized_title }}</small>
                         </div>
                     </div>
                 </div>
@@ -572,7 +572,7 @@
             @endforeach
         </div>
         <div class="text-center mt-5">
-            <a href="#" class="btn btn-outline-primary">View All Reviews</a>
+            <a href="#" class="btn btn-outline-primary">{{ __('messages.view_all_reviews') }}</a>
         </div>
     </div>
 </section>
@@ -583,7 +583,7 @@
 <section class="py-5 bg-light">
     <div class="container py-5">
         <div class="text-center mb-5">
-            <p class="section-subtitle">Supported by Brands That Inspire Innovation</p>
+            <p class="section-subtitle">{{ __('messages.supported_by_brands') }}</p>
         </div>
         <div class="row g-4 align-items-center justify-content-center">
             @foreach($sponsors as $sponsor)
@@ -609,15 +609,15 @@
 <section class="py-5">
     <div class="container py-5">
         <div class="text-center mb-5">
-            <p class="section-subtitle">Latest Blog</p>
-            <h2 class="section-title display-5">Explore our latest insights stories and updates</h2>
+            <p class="section-subtitle">{{ __('messages.latest_blog') }}</p>
+            <h2 class="section-title display-5">{{ __('messages.explore_latest_insights') }}</h2>
         </div>
         <div class="row g-4">
             @foreach($blogPosts as $post)
             <div class="col-lg-4">
                 <div class="card card-event h-100">
                     @if($post->image)
-                    <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top" alt="{{ $post->title }}">
+                    <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top" alt="{{ $post->localized_title }}">
                     @else
                     <div class="bg-primary d-flex align-items-center justify-content-center" style="height:200px">
                         <i class="bi bi-newspaper display-1 text-white"></i>
@@ -625,9 +625,9 @@
                     @endif
                     <div class="card-body">
                         <small class="text-muted"><i class="bi bi-person me-1"></i>Esther Howard</small>
-                        <h5 class="card-title mt-2">{{ $post->title }}</h5>
-                        <p class="card-text text-muted">{{ Str::limit($post->excerpt, 100) }}</p>
-                        <a href="{{ route('blog.show', $post->slug) }}" class="btn btn-outline-primary btn-sm">read more</a>
+                        <h5 class="card-title mt-2">{{ $post->localized_title }}</h5>
+                        <p class="card-text text-muted">{{ Str::limit($post->localized_excerpt ?? '', 100) }}</p>
+                        <a href="{{ route('blog.show', $post->slug) }}" class="btn btn-outline-primary btn-sm">{{ __('messages.read_more_btn') }}</a>
                     </div>
                 </div>
             </div>
@@ -642,15 +642,15 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6">
-                <h2 class="display-5 fw-bold mb-3">Join our newsletter for event important announcement</h2>
-                <p class="lead opacity-90">Stay informed with instant updates delivered straight to your inbox.</p>
-                <p class="opacity-75">Experience a world-class conference designed to inspire innovation, empower professionals, and connect leaders from around the globe.</p>
+                <h2 class="display-5 fw-bold mb-3">{{ __('messages.join_newsletter_title') }}</h2>
+                <p class="lead opacity-90">{{ __('messages.stay_informed') }}</p>
+                <p class="opacity-75">{{ __('messages.experience_world_class') }}</p>
             </div>
             <div class="col-lg-6">
                 <form action="{{ route('subscribe') }}" method="POST" class="d-flex gap-2">
                     @csrf
-                    <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter your email address" required>
-                    <button type="submit" class="btn btn-light btn-lg px-4">Subscribe</button>
+                    <input type="email" name="email" class="form-control form-control-lg" placeholder="{{ __('messages.enter_email_placeholder') }}" required>
+                    <button type="submit" class="btn btn-light btn-lg px-4">{{ __('messages.subscribe') }}</button>
                 </form>
                 @if(session('success'))
                 <div class="alert alert-success mt-3">{{ session('success') }}</div>
@@ -663,9 +663,9 @@
 <!-- CTA Section -->
 <section class="bg-gradient-primary py-5 text-white">
     <div class="container py-5 text-center">
-        <h2 class="display-5 fw-bold mb-4">Ready to Join the Event?</h2>
-        <p class="lead mb-4 opacity-75">Don't miss out on this incredible opportunity to learn, connect, and grow.</p>
-        <a href="{{ route('pricing') }}" class="btn btn-light btn-lg px-5">Get Your Ticket Now</a>
+        <h2 class="display-5 fw-bold mb-4">{{ __('messages.ready_to_join') }}</h2>
+        <p class="lead mb-4 opacity-75">{{ __('messages.dont_miss_out') }}</p>
+        <a href="{{ route('pricing') }}" class="btn btn-light btn-lg px-5">{{ __('messages.get_ticket_now') }}</a>
     </div>
 </section>
 @endsection

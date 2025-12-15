@@ -14,8 +14,8 @@
 @section('content')
 <section class="page-header">
     <div class="container text-center">
-        <h1 class="display-4 fw-bold">Pricing Plans</h1>
-        <p class="lead opacity-75">Choose the perfect ticket for your experience</p>
+        <h1 class="display-4 fw-bold">{{ __('messages.pricing_plans') }}</h1>
+        <p class="lead opacity-75">{{ __('messages.choose_perfect_ticket') }}</p>
     </div>
 </section>
 
@@ -28,26 +28,26 @@
                 <div class="card h-100 border-0 shadow pricing-card {{ $plan->is_featured ? 'featured' : '' }}">
                     <div class="card-header text-center py-4 {{ $plan->is_featured ? '' : 'bg-light' }}">
                         @if($plan->is_featured)
-                        <span class="badge bg-warning mb-2">Most Popular</span>
+                        <span class="badge bg-warning mb-2">{{ __('messages.most_popular') }}</span>
                         @endif
-                        <h4 class="fw-bold mb-0">{{ $plan->name }}</h4>
+                        <h4 class="fw-bold mb-0">{{ $plan->localized_name }}</h4>
                     </div>
                     <div class="card-body p-4 text-center">
                         <div class="pricing-value mb-4">
                             <span class="currency text-muted">{{ $plan->currency ?? '$' }}</span>
                             <span class="amount display-4 fw-bold">{{ number_format($plan->price, 0) }}</span>
-                            @if($plan->period)
-                            <span class="period text-muted">/ {{ $plan->period }}</span>
+                            @if($plan->localized_duration)
+                            <span class="period text-muted">/ {{ $plan->localized_duration }}</span>
                             @endif
                         </div>
 
-                        @if($plan->description)
-                        <p class="text-muted mb-4">{{ $plan->description }}</p>
+                        @if($plan->localized_description)
+                        <p class="text-muted mb-4">{{ $plan->localized_description }}</p>
                         @endif
 
-                        @if($plan->features)
+                        @if($plan->localized_features)
                         <ul class="list-unstyled text-start mb-4">
-                            @foreach($plan->features as $feature)
+                            @foreach($plan->localized_features as $feature)
                             <li class="mb-2">
                                 <i class="bi bi-check-circle-fill text-success me-2"></i>
                                 {{ $feature }}
@@ -58,11 +58,11 @@
 
                         @if($plan->button_link)
                         <a href="{{ $plan->button_link }}" class="btn {{ $plan->is_featured ? 'btn-primary' : 'btn-outline-primary' }} w-100">
-                            {{ $plan->button_text ?? 'Get Ticket' }}
+                            {{ $plan->localized_button_text }}
                         </a>
                         @else
                         <button class="btn {{ $plan->is_featured ? 'btn-primary' : 'btn-outline-primary' }} w-100">
-                            {{ $plan->button_text ?? 'Get Ticket' }}
+                            {{ $plan->localized_button_text }}
                         </button>
                         @endif
                     </div>
@@ -73,8 +73,8 @@
         @else
         <div class="text-center py-5">
             <i class="bi bi-tag text-muted" style="font-size: 4rem;"></i>
-            <h4 class="mt-3">No Pricing Plans Available</h4>
-            <p class="text-muted">Pricing information will be announced soon.</p>
+            <h4 class="mt-3">{{ __('messages.no_pricing_available') }}</h4>
+            <p class="text-muted">{{ __('messages.pricing_announced_soon') }}</p>
         </div>
         @endif
     </div>
@@ -84,11 +84,11 @@
     <div class="container py-5">
         <div class="row align-items-center">
             <div class="col-lg-6 mb-4 mb-lg-0">
-                <h3 class="fw-bold mb-3">Need a Custom Package?</h3>
-                <p class="text-muted mb-0">Contact us for group discounts, corporate packages, or sponsorship opportunities. We'll create a tailored solution for your needs.</p>
+                <h3 class="fw-bold mb-3">{{ __('messages.need_custom_package') }}</h3>
+                <p class="text-muted mb-0">{{ __('messages.custom_package_description') }}</p>
             </div>
             <div class="col-lg-6 text-lg-end">
-                <a href="{{ route('contact') }}" class="btn btn-primary btn-lg">Contact Us</a>
+                <a href="{{ route('contact') }}" class="btn btn-primary btn-lg">{{ __('messages.contact_us_btn') }}</a>
             </div>
         </div>
     </div>

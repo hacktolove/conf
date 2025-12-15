@@ -23,8 +23,11 @@ class FaqController extends Controller
     {
         $validated = $request->validate([
             'question' => 'required|string|max:500',
+            'question_ar' => 'nullable|string|max:500',
             'answer' => 'required|string',
+            'answer_ar' => 'nullable|string',
             'category' => 'nullable|string|max:100',
+            'category_ar' => 'nullable|string|max:100',
             'is_active' => 'boolean',
             'order' => 'integer',
         ]);
@@ -45,8 +48,11 @@ class FaqController extends Controller
     {
         $validated = $request->validate([
             'question' => 'required|string|max:500',
+            'question_ar' => 'nullable|string|max:500',
             'answer' => 'required|string',
+            'answer_ar' => 'nullable|string',
             'category' => 'nullable|string|max:100',
+            'category_ar' => 'nullable|string|max:100',
             'is_active' => 'boolean',
             'order' => 'integer',
         ]);

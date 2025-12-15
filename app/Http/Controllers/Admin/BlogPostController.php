@@ -24,10 +24,14 @@ class BlogPostController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
+            'title_ar' => 'nullable|string|max:255',
             'excerpt' => 'nullable|string|max:500',
+            'excerpt_ar' => 'nullable|string|max:500',
             'content' => 'required|string',
+            'content_ar' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'category' => 'nullable|string|max:100',
+            'category_ar' => 'nullable|string|max:100',
             'tags' => 'nullable|string',
             'is_published' => 'boolean',
         ]);
@@ -59,10 +63,14 @@ class BlogPostController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
+            'title_ar' => 'nullable|string|max:255',
             'excerpt' => 'nullable|string|max:500',
+            'excerpt_ar' => 'nullable|string|max:500',
             'content' => 'required|string',
+            'content_ar' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'category' => 'nullable|string|max:100',
+            'category_ar' => 'nullable|string|max:100',
             'tags' => 'nullable|string',
             'is_published' => 'boolean',
         ]);

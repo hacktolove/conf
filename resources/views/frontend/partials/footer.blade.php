@@ -20,31 +20,31 @@
                 </div>
             </div>
             <div class="col-lg-2 col-md-4">
-                <h6 class="text-uppercase mb-4">Quick Links</h6>
+                <h6 class="text-uppercase mb-4">{{ __('messages.footer_quick_links') }}</h6>
                 <ul class="list-unstyled">
-                    <li class="mb-2"><a href="{{ route('about') }}">About Us</a></li>
-                    <li class="mb-2"><a href="{{ route('events') }}">Events</a></li>
-                    <li class="mb-2"><a href="{{ route('speakers') }}">Speakers</a></li>
-                    <li class="mb-2"><a href="{{ route('schedule') }}">Schedule</a></li>
+                    <li class="mb-2"><a href="{{ route('about') }}">{{ __('messages.footer_about_us') }}</a></li>
+                    <li class="mb-2"><a href="{{ route('events') }}">{{ __('messages.nav_events') }}</a></li>
+                    <li class="mb-2"><a href="{{ route('speakers') }}">{{ __('messages.nav_speakers') }}</a></li>
+                    <li class="mb-2"><a href="{{ route('schedule') }}">{{ __('messages.nav_schedule') }}</a></li>
                 </ul>
             </div>
             <div class="col-lg-2 col-md-4">
-                <h6 class="text-uppercase mb-4">Support</h6>
+                <h6 class="text-uppercase mb-4">{{ __('messages.footer_support') }}</h6>
                 <ul class="list-unstyled">
-                    <li class="mb-2"><a href="{{ route('pricing') }}">Pricing</a></li>
-                    <li class="mb-2"><a href="{{ route('blog') }}">Blog</a></li>
-                    <li class="mb-2"><a href="{{ route('gallery') }}">Gallery</a></li>
-                    <li class="mb-2"><a href="{{ route('contact') }}">Contact</a></li>
+                    <li class="mb-2"><a href="{{ route('pricing') }}">{{ __('messages.nav_pricing') }}</a></li>
+                    <li class="mb-2"><a href="{{ route('blog') }}">{{ __('messages.nav_blog') }}</a></li>
+                    <li class="mb-2"><a href="{{ route('gallery') }}">{{ __('messages.footer_gallery') }}</a></li>
+                    <li class="mb-2"><a href="{{ route('contact') }}">{{ __('messages.nav_contact') }}</a></li>
                 </ul>
             </div>
             <div class="col-lg-4 col-md-4">
-                <h6 class="text-uppercase mb-4">Newsletter</h6>
-                <p class="text-white-50">Subscribe to get the latest updates and news.</p>
+                <h6 class="text-uppercase mb-4">{{ __('messages.footer_newsletter') }}</h6>
+                <p class="text-white-50">{{ __('messages.footer_subscribe_description') }}</p>
                 <form action="{{ route('subscribe') }}" method="POST" class="mt-3">
                     @csrf
                     <div class="input-group">
-                        <input type="email" name="email" class="form-control" placeholder="Your email" required>
-                        <button class="btn btn-primary" type="submit">Subscribe</button>
+                        <input type="email" name="email" class="form-control" placeholder="{{ __('messages.footer_email_placeholder') }}" required>
+                        <button class="btn btn-primary" type="submit">{{ __('messages.footer_subscribe') }}</button>
                     </div>
                 </form>
                 @if(session('success'))
@@ -55,7 +55,7 @@
         <hr class="my-4 border-secondary">
         <div class="row">
             <div class="col-md-6">
-                <p class="text-white-50 mb-0">&copy; {{ date('Y') }} Evenza. All rights reserved.</p>
+                <p class="text-white-50 mb-0">&copy; {{ date('Y') }} Evenza. {{ __('messages.footer_all_rights_reserved') }}</p>
             </div>
             <div class="col-md-6 text-md-end">
                 <p class="text-white-50 mb-0">

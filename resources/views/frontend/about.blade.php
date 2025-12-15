@@ -12,8 +12,8 @@
 @section('content')
 <section class="page-header">
     <div class="container text-center">
-        <h1 class="display-4 fw-bold">About Us</h1>
-        <p class="lead opacity-75">Learn more about our mission and vision</p>
+        <h1 class="display-4 fw-bold">{{ __('messages.about_us_title') }}</h1>
+        <p class="lead opacity-75">{{ __('messages.about_us_subtitle') }}</p>
     </div>
 </section>
 
@@ -24,7 +24,7 @@
                 <img src="{{ asset('images/about.jpg') }}" alt="About Us" class="img-fluid rounded shadow">
             </div>
             <div class="col-lg-6">
-                <span class="badge bg-primary-subtle text-primary mb-3">Who We Are</span>
+                <span class="badge bg-primary-subtle text-primary mb-3">{{ __('messages.who_we_are') }}</span>
                 <h2 class="display-5 fw-bold mb-4">{{ App\Models\SiteSetting::get('site_name', 'Evenza') }}</h2>
                 <p class="lead text-muted">{{ App\Models\SiteSetting::get('site_tagline', 'Your Premier Event Management Platform') }}</p>
                 <p class="text-muted">{{ App\Models\SiteSetting::get('site_description', 'We are dedicated to creating unforgettable event experiences that bring people together and inspire innovation.') }}</p>
@@ -52,8 +52,8 @@
 <section class="py-5 bg-light">
     <div class="container py-5">
         <div class="text-center mb-5">
-            <span class="badge bg-primary-subtle text-primary mb-3">Our Values</span>
-            <h2 class="display-5 fw-bold">What Drives Us</h2>
+            <span class="badge bg-primary-subtle text-primary mb-3">{{ __('messages.our_values') }}</span>
+            <h2 class="display-5 fw-bold">{{ __('messages.what_drives_us') }}</h2>
         </div>
         <div class="row g-4">
             <div class="col-md-4">
@@ -62,8 +62,8 @@
                         <div class="icon-box bg-primary-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
                             <i class="bi bi-lightbulb text-primary fs-2"></i>
                         </div>
-                        <h5 class="fw-bold">Innovation</h5>
-                        <p class="text-muted mb-0">We constantly push boundaries to deliver cutting-edge event experiences.</p>
+                        <h5 class="fw-bold">{{ __('messages.innovation') }}</h5>
+                        <p class="text-muted mb-0">{{ __('messages.innovation_description') }}</p>
                     </div>
                 </div>
             </div>
@@ -73,8 +73,8 @@
                         <div class="icon-box bg-primary-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
                             <i class="bi bi-people text-primary fs-2"></i>
                         </div>
-                        <h5 class="fw-bold">Community</h5>
-                        <p class="text-muted mb-0">Building meaningful connections is at the heart of everything we do.</p>
+                        <h5 class="fw-bold">{{ __('messages.community') }}</h5>
+                        <p class="text-muted mb-0">{{ __('messages.community_description') }}</p>
                     </div>
                 </div>
             </div>
@@ -84,8 +84,8 @@
                         <div class="icon-box bg-primary-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
                             <i class="bi bi-award text-primary fs-2"></i>
                         </div>
-                        <h5 class="fw-bold">Excellence</h5>
-                        <p class="text-muted mb-0">We strive for perfection in every detail of our events.</p>
+                        <h5 class="fw-bold">{{ __('messages.excellence') }}</h5>
+                        <p class="text-muted mb-0">{{ __('messages.excellence_description') }}</p>
                     </div>
                 </div>
             </div>
@@ -97,8 +97,8 @@
 <section class="py-5">
     <div class="container py-5">
         <div class="text-center mb-5">
-            <span class="badge bg-primary-subtle text-primary mb-3">Testimonials</span>
-            <h2 class="display-5 fw-bold">What People Say</h2>
+            <span class="badge bg-primary-subtle text-primary mb-3">{{ __('messages.testimonials') }}</span>
+            <h2 class="display-5 fw-bold">{{ __('messages.what_people_say') }}</h2>
         </div>
         <div class="row g-4">
             @foreach($testimonials as $testimonial)
@@ -110,18 +110,18 @@
                             <i class="bi bi-star{{ $i <= $testimonial->rating ? '-fill' : '' }} text-warning"></i>
                             @endfor
                         </div>
-                        <p class="text-muted mb-4">"{{ $testimonial->content }}"</p>
+                        <p class="text-muted mb-4">"{{ $testimonial->localized_content }}"</p>
                         <div class="d-flex align-items-center">
                             @if($testimonial->image)
-                            <img src="{{ asset('storage/' . $testimonial->image) }}" alt="{{ $testimonial->name }}" class="rounded-circle me-3" width="50" height="50" style="object-fit: cover;">
+                            <img src="{{ asset('storage/' . $testimonial->image) }}" alt="{{ $testimonial->localized_name }}" class="rounded-circle me-3" width="50" height="50" style="object-fit: cover;">
                             @else
                             <div class="bg-primary-subtle rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
                                 <i class="bi bi-person text-primary"></i>
                             </div>
                             @endif
                             <div>
-                                <h6 class="mb-0">{{ $testimonial->name }}</h6>
-                                <small class="text-muted">{{ $testimonial->title }}</small>
+                                <h6 class="mb-0">{{ $testimonial->localized_name }}</h6>
+                                <small class="text-muted">{{ $testimonial->localized_title }}</small>
                             </div>
                         </div>
                     </div>

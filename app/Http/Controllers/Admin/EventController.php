@@ -24,11 +24,16 @@ class EventController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
+            'title_ar' => 'nullable|string|max:255',
             'description' => 'nullable|string',
+            'description_ar' => 'nullable|string',
             'short_description' => 'nullable|string|max:500',
+            'short_description_ar' => 'nullable|string|max:500',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'venue' => 'nullable|string|max:255',
+            'venue_ar' => 'nullable|string|max:255',
             'address' => 'nullable|string|max:500',
+            'address_ar' => 'nullable|string|max:500',
             'event_date' => 'required|date',
             'start_time' => 'nullable',
             'end_time' => 'nullable',
@@ -59,11 +64,16 @@ class EventController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
+            'title_ar' => 'nullable|string|max:255',
             'description' => 'nullable|string',
+            'description_ar' => 'nullable|string',
             'short_description' => 'nullable|string|max:500',
+            'short_description_ar' => 'nullable|string|max:500',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'venue' => 'nullable|string|max:255',
+            'venue_ar' => 'nullable|string|max:255',
             'address' => 'nullable|string|max:500',
+            'address_ar' => 'nullable|string|max:500',
             'event_date' => 'required|date',
             'start_time' => 'nullable',
             'end_time' => 'nullable',

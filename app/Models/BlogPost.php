@@ -8,8 +8,8 @@ use Illuminate\Support\Str;
 class BlogPost extends Model
 {
     protected $fillable = [
-        'user_id', 'title', 'slug', 'excerpt', 'content', 'image',
-        'category', 'tags', 'is_published', 'published_at', 'views'
+        'user_id', 'title', 'title_ar', 'slug', 'excerpt', 'excerpt_ar', 'content', 'content_ar', 'image',
+        'category', 'category_ar', 'tags', 'is_published', 'published_at', 'views'
     ];
 
     protected $casts = [
@@ -46,8 +46,41 @@ class BlogPost extends Model
 
     public function getReadTimeAttribute()
     {
-        $words = str_word_count(strip_tags($this->content));
+        $content = \App\Helpers\LocaleHelper::getLocalizedWithFallback($this, 'content', '');
+        $words = str_word_count(strip_tags($content));
         $minutes = ceil($words / 200);
         return $minutes . ' min read';
+    }
+
+    /**
+     * Get localized title
+     */
+    public function getLocalizedTitleAttribute(): string
+    {
+        return \App\Helpers\LocaleHelper::getLocalizedWithFallback($this, 'title', '');
+    }
+
+    /**
+     * Get localized excerpt
+     */
+    public function getLocalizedExcerptAttribute(): ?string
+    {
+        return \App\Helpers\LocaleHelper::getLocalizedWithFallback($this, 'excerpt');
+    }
+
+    /**
+     * Get localized content
+     */
+    public function getLocalizedContentAttribute(): string
+    {
+        return \App\Helpers\LocaleHelper::getLocalizedWithFallback($this, 'content', '');
+    }
+
+    /**
+     * Get localized category
+     */
+    public function getLocalizedCategoryAttribute(): ?string
+    {
+        return \App\Helpers\LocaleHelper::getLocalizedWithFallback($this, 'category');
     }
 }

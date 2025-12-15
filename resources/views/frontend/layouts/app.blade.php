@@ -1,13 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+@php
+    $currentLocale = app()->getLocale() ?: 'ar';
+    $isRTL = $currentLocale === 'ar';
+@endphp
+<html lang="{{ $currentLocale }}" dir="{{ $isRTL ? 'rtl' : 'ltr' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Evenza - Event Management')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    @if($isRTL)
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    @endif
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    @if($isRTL)
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    @endif
     <style>
         :root {
             --primary: {{ config('theme.colors.primary', '#1e40af') }};
@@ -20,7 +30,61 @@
             --gradient-hero-from: {{ config('theme.gradients.hero.from', '#0f172a') }};
             --gradient-hero-to: {{ config('theme.gradients.hero.to', '#1e293b') }};
         }
-        body { font-family: 'Inter', sans-serif; }
+        body {
+            font-family: {{ $isRTL ? "'Cairo', sans-serif" : "'Inter', sans-serif" }};
+        }
+        [dir="rtl"] {
+            direction: rtl;
+            text-align: right;
+        }
+        [dir="rtl"] .navbar-nav {
+            margin-right: auto;
+            margin-left: 0;
+        }
+        [dir="rtl"] .ms-auto {
+            margin-right: auto !important;
+            margin-left: 0 !important;
+        }
+        [dir="rtl"] .me-1, [dir="rtl"] .me-2, [dir="rtl"] .me-3 {
+            margin-right: 0 !important;
+            margin-left: 0.25rem !important;
+        }
+        [dir="rtl"] .me-2 {
+            margin-left: 0.5rem !important;
+        }
+        [dir="rtl"] .me-3 {
+            margin-left: 1rem !important;
+        }
+        [dir="rtl"] .ms-1, [dir="rtl"] .ms-2, [dir="rtl"] .ms-3 {
+            margin-left: 0 !important;
+            margin-right: 0.25rem !important;
+        }
+        [dir="rtl"] .ms-2 {
+            margin-right: 0.5rem !important;
+        }
+        [dir="rtl"] .ms-3 {
+            margin-right: 1rem !important;
+        }
+        [dir="rtl"] .text-end {
+            text-align: left !important;
+        }
+        [dir="rtl"] .text-start {
+            text-align: right !important;
+        }
+        [dir="rtl"] .end-0 {
+            left: 0 !important;
+            right: auto !important;
+        }
+        [dir="rtl"] .start-0 {
+            right: 0 !important;
+            left: auto !important;
+        }
+        [dir="rtl"] .schedule-item {
+            border-left: none;
+            border-right: 3px solid var(--primary);
+            padding-left: 0;
+            padding-right: 1.5rem;
+        }
         .navbar { background: transparent; transition: all 0.3s; }
         .navbar.scrolled { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         .navbar-brand { font-weight: 700; font-size: 1.5rem; }

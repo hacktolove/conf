@@ -23,9 +23,13 @@ class TestimonialController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'name_ar' => 'nullable|string|max:255',
             'title' => 'nullable|string|max:255',
+            'title_ar' => 'nullable|string|max:255',
             'company' => 'nullable|string|max:255',
+            'company_ar' => 'nullable|string|max:255',
             'content' => 'required|string',
+            'content_ar' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'rating' => 'required|integer|min:1|max:5',
             'is_active' => 'boolean',
@@ -52,9 +56,13 @@ class TestimonialController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'name_ar' => 'nullable|string|max:255',
             'title' => 'nullable|string|max:255',
+            'title_ar' => 'nullable|string|max:255',
             'company' => 'nullable|string|max:255',
+            'company_ar' => 'nullable|string|max:255',
             'content' => 'required|string',
+            'content_ar' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'rating' => 'required|integer|min:1|max:5',
             'is_active' => 'boolean',

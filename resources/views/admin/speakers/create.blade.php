@@ -10,6 +10,7 @@
             @csrf
             <div class="row">
                 <div class="col-md-8">
+                    <h6 class="mb-3">English Content</h6>
                     <div class="mb-3">
                         <label for="name" class="form-label">Name *</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
@@ -31,6 +32,30 @@
                     <div class="mb-3">
                         <label for="bio" class="form-label">Biography</label>
                         <textarea class="form-control" id="bio" name="bio" rows="5">{{ old('bio') }}</textarea>
+                    </div>
+                    <hr class="my-4">
+                    <h6 class="mb-3">Arabic Content</h6>
+                    <div class="mb-3">
+                        <label for="name_ar" class="form-label">Name (Arabic)</label>
+                        <input type="text" class="form-control" id="name_ar" name="name_ar" value="{{ old('name_ar') }}" dir="rtl">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="title_ar" class="form-label">Title/Position (Arabic)</label>
+                                <input type="text" class="form-control" id="title_ar" name="title_ar" value="{{ old('title_ar') }}" dir="rtl">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="company_ar" class="form-label">Company (Arabic)</label>
+                                <input type="text" class="form-control" id="company_ar" name="company_ar" value="{{ old('company_ar') }}" dir="rtl">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="bio_ar" class="form-label">Biography (Arabic)</label>
+                        <textarea class="form-control" id="bio_ar" name="bio_ar" rows="5" dir="rtl">{{ old('bio_ar') }}</textarea>
                     </div>
                     <h6 class="mb-3">Social Links</h6>
                     <div class="row">

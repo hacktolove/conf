@@ -14,8 +14,8 @@
 @section('content')
 <section class="page-header">
     <div class="container text-center">
-        <h1 class="display-4 fw-bold">Event Schedule</h1>
-        <p class="lead opacity-75">Plan your conference experience</p>
+        <h1 class="display-4 fw-bold">{{ __('messages.event_schedule_title') }}</h1>
+        <p class="lead opacity-75">{{ __('messages.plan_conference') }}</p>
     </div>
 </section>
 
@@ -34,10 +34,10 @@
             <li class="nav-item" role="presentation">
                 <button class="nav-link {{ $loop->first ? 'active' : '' }}" id="tab-{{ $loop->index }}" data-bs-toggle="pill" data-bs-target="#day-{{ $loop->index }}" type="button" role="tab">
                     @if($date !== 'No Date')
-                    <span class="d-block fw-bold">Day {{ $loop->iteration }}</span>
+                    <span class="d-block fw-bold">{{ __('messages.day') }} {{ $loop->iteration }}</span>
                     <small class="text-muted">{{ \Carbon\Carbon::parse($date)->format('M d, Y') }}</small>
                     @else
-                    <span class="d-block fw-bold">Sessions</span>
+                    <span class="d-block fw-bold">{{ __('messages.sessions') }}</span>
                     @endif
                 </button>
             </li>
@@ -63,16 +63,16 @@
                                     @endif
                                 </div>
                                 <div class="col-md-7">
-                                    <h5 class="fw-bold mb-2">{{ $schedule->title }}</h5>
-                                    @if($schedule->description)
-                                    <p class="text-muted mb-2">{{ Str::limit($schedule->description, 150) }}</p>
+                                    <h5 class="fw-bold mb-2">{{ $schedule->localized_title }}</h5>
+                                    @if($schedule->localized_description)
+                                    <p class="text-muted mb-2">{{ Str::limit($schedule->localized_description, 150) }}</p>
                                     @endif
                                     <div class="d-flex flex-wrap gap-2">
-                                        @if($schedule->venue)
-                                        <span class="badge bg-light text-dark"><i class="bi bi-geo-alt me-1"></i>{{ $schedule->venue }}</span>
+                                        @if($schedule->localized_venue)
+                                        <span class="badge bg-light text-dark"><i class="bi bi-geo-alt me-1"></i>{{ $schedule->localized_venue }}</span>
                                         @endif
                                         @if($schedule->event)
-                                        <span class="badge bg-light text-dark"><i class="bi bi-calendar-event me-1"></i>{{ $schedule->event->title }}</span>
+                                        <span class="badge bg-light text-dark"><i class="bi bi-calendar-event me-1"></i>{{ $schedule->event->localized_title }}</span>
                                         @endif
                                     </div>
                                 </div>
@@ -80,14 +80,14 @@
                                     @if($schedule->speaker)
                                     <a href="{{ route('speakers.show', $schedule->speaker->slug) }}" class="text-decoration-none">
                                         @if($schedule->speaker->image)
-                                        <img src="{{ asset('storage/' . $schedule->speaker->image) }}" alt="{{ $schedule->speaker->name }}" class="rounded-circle mb-2" style="width: 60px; height: 60px; object-fit: cover;">
+                                        <img src="{{ asset('storage/' . $schedule->speaker->image) }}" alt="{{ $schedule->speaker->localized_name }}" class="rounded-circle mb-2" style="width: 60px; height: 60px; object-fit: cover;">
                                         @else
                                         <div class="bg-primary-subtle rounded-circle d-flex align-items-center justify-content-center mx-auto mb-2" style="width: 60px; height: 60px;">
                                             <i class="bi bi-person text-primary"></i>
                                         </div>
                                         @endif
-                                        <p class="mb-0 fw-semibold text-dark">{{ $schedule->speaker->name }}</p>
-                                        <small class="text-muted">{{ $schedule->speaker->title }}</small>
+                                        <p class="mb-0 fw-semibold text-dark">{{ $schedule->speaker->localized_name }}</p>
+                                        <small class="text-muted">{{ $schedule->speaker->localized_title }}</small>
                                     </a>
                                     @endif
                                 </div>
@@ -102,8 +102,8 @@
         @else
         <div class="text-center py-5">
             <i class="bi bi-calendar3 text-muted" style="font-size: 4rem;"></i>
-            <h4 class="mt-3">No Schedule Available</h4>
-            <p class="text-muted">The event schedule will be announced soon.</p>
+            <h4 class="mt-3">{{ __('messages.no_schedule_available') }}</h4>
+            <p class="text-muted">{{ __('messages.schedule_announced_soon') }}</p>
         </div>
         @endif
     </div>

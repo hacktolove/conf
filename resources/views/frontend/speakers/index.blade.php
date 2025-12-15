@@ -12,8 +12,8 @@
 @section('content')
 <section class="page-header">
     <div class="container text-center">
-        <h1 class="display-4 fw-bold">Our Speakers</h1>
-        <p class="lead opacity-75">Meet our industry experts and thought leaders</p>
+        <h1 class="display-4 fw-bold">{{ __('messages.our_speakers_title') }}</h1>
+        <p class="lead opacity-75">{{ __('messages.meet_experts') }}</p>
     </div>
 </section>
 
@@ -27,7 +27,7 @@
                     <div class="card-body p-4">
                         <div class="speaker-image mb-3 mx-auto">
                             @if($speaker->image)
-                            <img src="{{ asset('storage/' . $speaker->image) }}" alt="{{ $speaker->name }}" class="rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
+                            <img src="{{ asset('storage/' . $speaker->image) }}" alt="{{ $speaker->localized_name }}" class="rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
                             @else
                             <div class="bg-primary-subtle rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 150px; height: 150px;">
                                 <i class="bi bi-person text-primary" style="font-size: 4rem;"></i>
@@ -35,11 +35,11 @@
                             @endif
                         </div>
                         <h5 class="fw-bold mb-1">
-                            <a href="{{ route('speakers.show', $speaker->slug) }}" class="text-decoration-none text-dark">{{ $speaker->name }}</a>
+                            <a href="{{ route('speakers.show', $speaker->slug) }}" class="text-decoration-none text-dark">{{ $speaker->localized_name }}</a>
                         </h5>
-                        <p class="text-primary mb-1">{{ $speaker->title }}</p>
-                        @if($speaker->company)
-                        <p class="text-muted small mb-3">{{ $speaker->company }}</p>
+                        <p class="text-primary mb-1">{{ $speaker->localized_title }}</p>
+                        @if($speaker->localized_company)
+                        <p class="text-muted small mb-3">{{ $speaker->localized_company }}</p>
                         @endif
                         <div class="social-links">
                             @if($speaker->twitter)
@@ -63,8 +63,8 @@
         @else
         <div class="text-center py-5">
             <i class="bi bi-people text-muted" style="font-size: 4rem;"></i>
-            <h4 class="mt-3">No Speakers Found</h4>
-            <p class="text-muted">Check back later for speaker announcements.</p>
+            <h4 class="mt-3">{{ __('messages.no_speakers_found') }}</h4>
+            <p class="text-muted">{{ __('messages.check_back_speakers') }}</p>
         </div>
         @endif
     </div>

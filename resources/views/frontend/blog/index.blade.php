@@ -12,8 +12,8 @@
 @section('content')
 <section class="page-header">
     <div class="container text-center">
-        <h1 class="display-4 fw-bold">Our Blog</h1>
-        <p class="lead opacity-75">Latest news, insights, and updates</p>
+        <h1 class="display-4 fw-bold">{{ __('messages.our_blog') }}</h1>
+        <p class="lead opacity-75">{{ __('messages.latest_news_insights') }}</p>
     </div>
 </section>
 
@@ -26,14 +26,14 @@
                 <div class="card h-100 border-0 shadow-sm blog-card">
                     <div class="position-relative">
                         @if($post->image)
-                        <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top" alt="{{ $post->title }}" style="height: 220px; object-fit: cover;">
+                        <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top" alt="{{ $post->localized_title }}" style="height: 220px; object-fit: cover;">
                         @else
                         <div class="bg-primary-subtle d-flex align-items-center justify-content-center" style="height: 220px;">
                             <i class="bi bi-newspaper text-primary" style="font-size: 4rem;"></i>
                         </div>
                         @endif
-                        @if($post->category)
-                        <span class="badge bg-primary position-absolute top-0 start-0 m-3">{{ $post->category }}</span>
+                        @if($post->localized_category)
+                        <span class="badge bg-primary position-absolute top-0 start-0 m-3">{{ $post->localized_category }}</span>
                         @endif
                     </div>
                     <div class="card-body p-4">
@@ -47,11 +47,11 @@
                             @endif
                         </div>
                         <h5 class="card-title fw-bold">
-                            <a href="{{ route('blog.show', $post->slug) }}" class="text-decoration-none text-dark">{{ $post->title }}</a>
+                            <a href="{{ route('blog.show', $post->slug) }}" class="text-decoration-none text-dark">{{ $post->localized_title }}</a>
                         </h5>
-                        <p class="card-text text-muted">{{ Str::limit($post->excerpt ?? strip_tags($post->content), 120) }}</p>
+                        <p class="card-text text-muted">{{ Str::limit($post->localized_excerpt ?? strip_tags($post->localized_content ?? ''), 120) }}</p>
                         <a href="{{ route('blog.show', $post->slug) }}" class="btn btn-link text-primary p-0">
-                            Read More <i class="bi bi-arrow-right ms-1"></i>
+                            {{ __('messages.read_more_link') }} <i class="bi bi-arrow-right ms-1"></i>
                         </a>
                     </div>
                 </div>
@@ -64,8 +64,8 @@
         @else
         <div class="text-center py-5">
             <i class="bi bi-journal-x text-muted" style="font-size: 4rem;"></i>
-            <h4 class="mt-3">No Blog Posts Found</h4>
-            <p class="text-muted">Check back later for new articles.</p>
+            <h4 class="mt-3">{{ __('messages.no_blog_posts') }}</h4>
+            <p class="text-muted">{{ __('messages.check_back_blog') }}</p>
         </div>
         @endif
     </div>
