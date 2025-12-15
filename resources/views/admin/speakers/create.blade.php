@@ -1,0 +1,94 @@
+@extends('admin.layouts.app')
+
+@section('title', 'Add Speaker')
+@section('page-title', 'Add Speaker')
+
+@section('content')
+<div class="card">
+    <div class="card-body">
+        <form action="{{ route('admin.speakers.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name *</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Title/Position</label>
+                                <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="company" class="form-label">Company</label>
+                                <input type="text" class="form-control" id="company" name="company" value="{{ old('company') }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="bio" class="form-label">Biography</label>
+                        <textarea class="form-control" id="bio" name="bio" rows="5">{{ old('bio') }}</textarea>
+                    </div>
+                    <h6 class="mb-3">Social Links</h6>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="facebook" class="form-label">Facebook</label>
+                                <input type="url" class="form-control" id="facebook" name="facebook" value="{{ old('facebook') }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="twitter" class="form-label">Twitter</label>
+                                <input type="url" class="form-control" id="twitter" name="twitter" value="{{ old('twitter') }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="linkedin" class="form-label">LinkedIn</label>
+                                <input type="url" class="form-control" id="linkedin" name="linkedin" value="{{ old('linkedin') }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="instagram" class="form-label">Instagram</label>
+                                <input type="url" class="form-control" id="instagram" name="instagram" value="{{ old('instagram') }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Photo</label>
+                        <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                    </div>
+                    <div class="mb-3">
+                        <label for="order" class="form-label">Order</label>
+                        <input type="number" class="form-control" id="order" name="order" value="{{ old('order', 0) }}">
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="is_featured" name="is_featured" value="1" {{ old('is_featured') ? 'checked' : '' }}>
+                            <label class="form-check-label" for="is_featured">Featured</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="is_active" name="is_active" value="1" {{ old('is_active', true) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="is_active">Active</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+                <a href="{{ route('admin.speakers.index') }}" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Create Speaker</button>
+            </div>
+        </form>
+    </div>
+</div>
+@endsection
