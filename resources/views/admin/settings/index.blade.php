@@ -22,6 +22,23 @@
                 </div>
                 <div class="col-md-12">
                     <div class="mb-3">
+                        <label class="form-label">Site Logo</label>
+                        <input type="file" class="form-control" name="settings[site_logo]" accept="image/*">
+                        @if($logo = App\Models\SiteSetting::get('site_logo'))
+                        <div class="mt-2">
+                            @php
+                                $logoUrl = url('/storage/' . $logo);
+                            @endphp
+                            <img src="{{ $logoUrl }}" alt="Current Logo" style="max-height: 60px; max-width: 200px;" class="img-thumbnail">
+                            <p class="text-muted small mt-1">Current logo path: {{ $logo }}</p>
+                            <p class="text-muted small">Full URL: {{ $logoUrl }}</p>
+                        </div>
+                        @endif
+                        <small class="text-muted">Recommended size: 200x60px or similar aspect ratio. Supported formats: JPG, PNG, GIF, SVG</small>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="mb-3">
                         <label class="form-label">Site Description</label>
                         <textarea class="form-control" name="settings[site_description]" rows="2">{{ App\Models\SiteSetting::get('site_description') }}</textarea>
                     </div>

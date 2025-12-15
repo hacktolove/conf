@@ -88,6 +88,22 @@
         .navbar { background: transparent; transition: all 0.3s; }
         .navbar.scrolled { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         .navbar-brand { font-weight: 700; font-size: 1.5rem; }
+        .navbar-brand img,
+        .navbar-brand-logo {
+            max-height: 40px;
+            max-width: 150px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+        .footer-logo {
+            max-height: 50px;
+            max-width: 180px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
         .nav-link { font-weight: 500; }
         .btn-primary { background: var(--primary); border-color: var(--primary); }
         .btn-primary:hover { background: var(--primary-dark); border-color: var(--primary-dark); }

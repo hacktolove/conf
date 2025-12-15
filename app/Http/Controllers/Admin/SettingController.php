@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\SiteSetting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class SettingController extends Controller
 {
@@ -18,10 +19,16 @@ class SettingController extends Controller
     {
         foreach ($request->settings as $key => $value) {
             if ($request->hasFile("settings.$key")) {
-                $value = $request->file("settings.$key")->store('settings', 'public');
+                $file = $request->file("settings.$key");
+                $value = $file->store('settings', 'public');
+                SiteSetting::set($key, $value, 'image', 'general');
+                Cache::forget('setting_' . $key);
+            } elseif ($value !== null && $value !== '') {
+                // Only update text settings, skip file inputs that weren't uploaded
+                if (!in_array($key, ['site_logo'])) {
+                    SiteSetting::set($key, $value);
+                }
             }
-
-            SiteSetting::set($key, $value);
         }
 
         return redirect()->route('admin.settings.index')->with('success', 'Settings updated successfully.');

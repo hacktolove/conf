@@ -2,7 +2,18 @@
     <div class="container">
         <div class="row g-4">
             <div class="col-lg-4">
-                <h4 class="mb-4"><i class="bi bi-calendar-event"></i> Evenza</h4>
+                <div class="mb-4">
+                    @php
+                        $logo = App\Models\SiteSetting::get('site_logo');
+                        $logoUrl = $logo ? url('/storage/' . $logo) : null;
+                    @endphp
+                    @if($logo && $logoUrl)
+                        <img src="{{ $logoUrl }}" alt="{{ App\Models\SiteSetting::get('site_name', 'Evenza') }}" class="footer-logo mb-3" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    @endif
+                    @if(!$logo)
+                        <h4 class="mb-4"><i class="bi bi-calendar-event"></i> {{ App\Models\SiteSetting::get('site_name', 'Evenza') }}</h4>
+                    @endif
+                </div>
                 <p class="text-white-50">{{ App\Models\SiteSetting::get('site_description', 'The premier event management platform for conferences, seminars, and corporate events.') }}</p>
                 <div class="d-flex gap-3 mt-4">
                     @if($fb = App\Models\SiteSetting::get('social_facebook'))

@@ -29,6 +29,15 @@ class SiteSetting extends Model
 
         return $setting;
     }
+    
+    public static function clearCache()
+    {
+        // Clear all setting caches
+        $settings = self::pluck('key');
+        foreach ($settings as $key) {
+            Cache::forget('setting_' . $key);
+        }
+    }
 
     public static function getGroup($group)
     {

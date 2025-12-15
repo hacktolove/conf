@@ -1,7 +1,17 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('home') }}">
-            <i class="bi bi-calendar-event"></i> Evenza
+        <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
+            @php
+                $logo = App\Models\SiteSetting::get('site_logo');
+                $logoUrl = $logo ? url('/storage/' . $logo) : null;
+            @endphp
+            @if($logo && $logoUrl)
+                <img src="{{ $logoUrl }}" alt="{{ App\Models\SiteSetting::get('site_name', 'Evenza') }}" class="navbar-brand-logo {{ app()->getLocale() === 'ar' ? 'ms-2' : 'me-2' }}" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+            @endif
+            @if(!$logo)
+                <i class="bi bi-calendar-event {{ app()->getLocale() === 'ar' ? 'ms-2' : 'me-2' }}"></i>
+            @endif
+            <span>{{ App\Models\SiteSetting::get('site_name', 'Evenza') }}</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
