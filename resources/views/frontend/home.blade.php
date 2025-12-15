@@ -395,7 +395,7 @@
         <div class="row g-4">
             @foreach($speakers->take(3) as $speaker)
             <div class="col-lg-4 col-md-6">
-                <a href="{{ route('speakers.detail', $speaker->slug) }}" class="text-decoration-none text-dark">
+                <a href="{{ route('speakers.show', $speaker->slug) }}" class="text-decoration-none text-dark">
                     <div class="card card-speaker shadow-sm h-100">
                         @if($speaker->image)
                         <img src="{{ asset('storage/' . $speaker->image) }}" alt="{{ $speaker->name }}" class="card-img-top">
@@ -627,7 +627,7 @@
                         <small class="text-muted"><i class="bi bi-person me-1"></i>Esther Howard</small>
                         <h5 class="card-title mt-2">{{ $post->title }}</h5>
                         <p class="card-text text-muted">{{ Str::limit($post->excerpt, 100) }}</p>
-                        <a href="{{ route('blog.detail', $post->slug) }}" class="btn btn-outline-primary btn-sm">read more</a>
+                        <a href="{{ route('blog.show', $post->slug) }}" class="btn btn-outline-primary btn-sm">read more</a>
                     </div>
                 </div>
             </div>

@@ -433,7 +433,7 @@
                             </div>
                             @if($schedule->event)
                             <div class="col-md-2 text-end">
-                                <a href="{{ route('events.detail', $schedule->event->slug) }}" class="btn btn-outline-primary btn-sm">View Event</a>
+                                <a href="{{ route('events.show', $schedule->event->slug) }}" class="btn btn-outline-primary btn-sm">View Event</a>
                             </div>
                             @endif
                         </div>
