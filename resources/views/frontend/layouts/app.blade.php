@@ -20,13 +20,13 @@
     @endif
     <style>
         :root {
-            --primary: {{ config('theme.colors.primary', '#1e40af') }};
-            --primary-dark: {{ config('theme.colors.primary_dark', '#1e3a8a') }};
+            --primary: {{ config('theme.colors.primary', '#6366f1') }};
+            --primary-dark: {{ config('theme.colors.primary_dark', '#4f46e5') }};
             --secondary: {{ config('theme.colors.secondary', '#059669') }};
             --dark: {{ config('theme.colors.dark', '#0f172a') }};
             --dark-light: {{ config('theme.colors.dark_light', '#1e293b') }};
-            --gradient-primary-from: {{ config('theme.gradients.primary.from', '#1e40af') }};
-            --gradient-primary-to: {{ config('theme.gradients.primary.to', '#3b82f6') }};
+            --gradient-primary-from: {{ config('theme.gradients.primary.from', '#6366f1') }};
+            --gradient-primary-to: {{ config('theme.gradients.primary.to', '#8b5cf6') }};
             --gradient-hero-from: {{ config('theme.gradients.hero.from', '#0f172a') }};
             --gradient-hero-to: {{ config('theme.gradients.hero.to', '#1e293b') }};
         }

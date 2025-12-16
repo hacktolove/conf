@@ -12,6 +12,10 @@ return [
     'premier_event_experience' => 'The Premier Event Experience',
     'join_us_description' => 'Join us for an unforgettable experience with industry leaders and innovators.',
     'get_your_ticket' => 'Get Your Ticket',
+    'watch_video' => 'Watch Video',
+    'upcoming_speaker_reveal' => 'Upcoming Speaker Reveal',
+    'speaker_announcement_coming_soon' => 'Speaker Announcement Coming Soon',
+    'stay_tuned_speaker_reveal' => 'Stay tuned for the exciting announcement of our featured speakers.',
     
     // Announcements
     'announcements_text' => 'Latest Updates New Announcements Workshop Alerts Live Notices Event Countdown Workshop Alerts Quick Updates Latest Updates New Announcements Workshop Alerts Live Notices Event Countdown Workshop Alerts Quick Updates Latest Updates New Announcements Workshop Alerts Live Notices Event Countdown Workshop Alerts Quick Updates Latest Updates New Announcements Workshop Alerts Live Notices Event Countdown Workshop Alerts Quick Updates',

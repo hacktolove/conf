@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Cache;
 
 class SiteSetting extends Model
 {
-    protected $fillable = ['key', 'value', 'type', 'group'];
+    protected $fillable = ['key', 'value', 'value_ar', 'type', 'group'];
 
     public static function get($key, $default = null)
     {
@@ -17,12 +17,35 @@ class SiteSetting extends Model
 
         return $setting ? $setting->value : $default;
     }
-
-    public static function set($key, $value, $type = 'text', $group = 'general')
+    
+    public static function getLocalized($key, $default = null)
     {
+        $setting = Cache::rememberForever('setting_' . $key, function () use ($key) {
+            return self::where('key', $key)->first();
+        });
+
+        if (!$setting) {
+            return $default;
+        }
+
+        $locale = app()->getLocale();
+        if ($locale === 'ar' && $setting->value_ar) {
+            return $setting->value_ar;
+        }
+
+        return $setting->value ?: $default;
+    }
+
+    public static function set($key, $value, $type = 'text', $group = 'general', $valueAr = null)
+    {
+        $data = ['value' => $value, 'type' => $type, 'group' => $group];
+        if ($valueAr !== null) {
+            $data['value_ar'] = $valueAr;
+        }
+        
         $setting = self::updateOrCreate(
             ['key' => $key],
-            ['value' => $value, 'type' => $type, 'group' => $group]
+            $data
         );
 
         Cache::forget('setting_' . $key);

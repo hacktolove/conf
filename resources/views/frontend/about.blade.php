@@ -25,9 +25,9 @@
             </div>
             <div class="col-lg-6">
                 <span class="badge bg-primary-subtle text-primary mb-3">{{ __('messages.who_we_are') }}</span>
-                <h2 class="display-5 fw-bold mb-4">{{ App\Models\SiteSetting::get('site_name', 'Evenza') }}</h2>
-                <p class="lead text-muted">{{ App\Models\SiteSetting::get('site_tagline', 'Your Premier Event Management Platform') }}</p>
-                <p class="text-muted">{{ App\Models\SiteSetting::get('site_description', 'We are dedicated to creating unforgettable event experiences that bring people together and inspire innovation.') }}</p>
+                <h2 class="display-5 fw-bold mb-4">{{ App\Models\SiteSetting::getLocalized('site_name', 'Evenza') }}</h2>
+                <p class="lead text-muted">{{ App\Models\SiteSetting::getLocalized('site_tagline', 'Your Premier Event Management Platform') }}</p>
+                <p class="text-muted">{{ App\Models\SiteSetting::getLocalized('site_description', 'We are dedicated to creating unforgettable event experiences that bring people together and inspire innovation.') }}</p>
 
                 <div class="row g-4 mt-4">
                     @foreach($statistics ?? [] as $stat)

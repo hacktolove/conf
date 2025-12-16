@@ -26,7 +26,7 @@
 
                 <div class="mb-4">
                     <h6><i class="bi bi-geo-alt text-primary me-2"></i> {{ __('messages.address') }}</h6>
-                    <p class="text-muted">{{ App\Models\SiteSetting::get('contact_address', '123 Event Street, Conference City, CC 12345') }}</p>
+                    <p class="text-muted">{{ App\Models\SiteSetting::getLocalized('contact_address', '123 Event Street, Conference City, CC 12345') }}</p>
                 </div>
 
                 <div class="mb-4">

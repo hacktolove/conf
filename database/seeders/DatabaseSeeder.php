@@ -35,25 +35,44 @@ class DatabaseSeeder extends Seeder
 
         // Site Settings
         $settings = [
-            'site_name' => 'Evenza',
-            'site_tagline' => 'Ideas that spark change.',
-            'site_description' => 'Experience a powerful gathering of visionaries, creators, and industry experts united by one goal—exchanging ideas that spark growth, innovation, and meaningful change.',
+            'site_name' => ['en' => 'Evenza', 'ar' => 'إيفنزا'],
+            'site_tagline' => ['en' => 'Ideas that spark change.', 'ar' => 'أفكار تشعل التغيير.'],
+            'site_description' => [
+                'en' => 'Experience a powerful gathering of visionaries, creators, and industry experts united by one goal—exchanging ideas that spark growth, innovation, and meaningful change.',
+                'ar' => 'اختبر تجمعًا قويًا من الرؤساء والمبدعين وخبراء الصناعة متحدين بهدف واحد - تبادل الأفكار التي تشعل النمو والابتكار والتغيير الهادف.'
+            ],
             'contact_email' => 'support@domainname.com',
             'contact_phone' => '+00 123 456 789',
-            'contact_address' => '45/2 Central Business Innovation Near International Trade Tower',
+            'contact_address' => [
+                'en' => '45/2 Central Business Innovation Near International Trade Tower',
+                'ar' => '45/2 الابتكار التجاري المركزي بالقرب من برج التجارة الدولية'
+            ],
             'social_facebook' => 'https://facebook.com/evenza',
             'social_twitter' => 'https://twitter.com/evenza',
             'social_instagram' => 'https://instagram.com/evenza',
             'social_linkedin' => 'https://linkedin.com/company/evenza',
             'social_youtube' => 'https://youtube.com/evenza',
             'countdown_date' => now()->addMonths(3)->format('Y-m-d H:i:s'),
-            'mission' => 'Our mission is to build a global community where collaboration fuels innovation we aim encourage fresh thinking, spark inspiring dialogues, and create a space.',
-            'vision' => 'Our vision is to build a global community where collaboration fuels innovation we aim encourage fresh thinking, spark inspiring dialogues, and create a space.',
-            'goal' => 'Our goal is to build a global community where collaboration fuels innovation we aim encourage fresh thinking, spark inspiring dialogues, and create a space.',
+            'mission' => [
+                'en' => 'Our mission is to build a global community where collaboration fuels innovation we aim encourage fresh thinking, spark inspiring dialogues, and create a space.',
+                'ar' => 'مهمتنا هي بناء مجتمع عالمي حيث يغذي التعاون الابتكار، نهدف إلى تشجيع التفكير الجديد، وإثارة الحوارات الملهمة، وخلق مساحة.'
+            ],
+            'vision' => [
+                'en' => 'Our vision is to build a global community where collaboration fuels innovation we aim encourage fresh thinking, spark inspiring dialogues, and create a space.',
+                'ar' => 'رؤيتنا هي بناء مجتمع عالمي حيث يغذي التعاون الابتكار، نهدف إلى تشجيع التفكير الجديد، وإثارة الحوارات الملهمة، وخلق مساحة.'
+            ],
+            'goal' => [
+                'en' => 'Our goal is to build a global community where collaboration fuels innovation we aim encourage fresh thinking, spark inspiring dialogues, and create a space.',
+                'ar' => 'هدفنا هو بناء مجتمع عالمي حيث يغذي التعاون الابتكار، نهدف إلى تشجيع التفكير الجديد، وإثارة الحوارات الملهمة، وخلق مساحة.'
+            ],
         ];
 
         foreach ($settings as $key => $value) {
-            SiteSetting::set($key, $value);
+            if (is_array($value) && isset($value['en']) && isset($value['ar'])) {
+                SiteSetting::set($key, $value['en'], 'text', 'general', $value['ar']);
+            } else {
+                SiteSetting::set($key, $value);
+            }
         }
 
         // Hero Slides
