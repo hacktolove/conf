@@ -17,6 +17,7 @@ use App\Models\Subscriber;
 use App\Models\ContactMessage;
 use App\Models\SiteSetting;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -33,17 +34,38 @@ class HomeController extends Controller
         $galleries = Gallery::active()->orderBy('order')->take(8)->get();
         $faqs = Faq::active()->orderBy('order')->get();
         $statistics = Statistic::active()->orderBy('order')->get();
-        
+
         // Get countdown date from site settings
         $countdownDate = SiteSetting::get('countdown_date', now()->addMonths(3)->format('Y-m-d H:i:s'));
         $mission = SiteSetting::get('mission', 'Our mission is to build a global community where collaboration fuels innovation we aim encourage fresh thinking, spark inspiring dialogues, and create a space.');
         $vision = SiteSetting::get('vision', 'Our vision is to build a global community where collaboration fuels innovation we aim encourage fresh thinking, spark inspiring dialogues, and create a space.');
         $goal = SiteSetting::get('goal', 'Our goal is to build a global community where collaboration fuels innovation we aim encourage fresh thinking, spark inspiring dialogues, and create a space.');
 
+        // Get speaker reveal data from site settings
+        $speakerRevealDate = SiteSetting::get('speaker_reveal_date', now()->addDays(7)->format('Y-m-d H:i:s'));
+        $speakerRevealId = SiteSetting::get('speaker_reveal_speaker_id');
+        $upcomingSpeaker = null;
+        $showSpeaker = false;
+
+        if ($speakerRevealDate && $speakerRevealId) {
+            // Calculate time remaining until reveal date
+            $revealDateTime = Carbon::parse($speakerRevealDate);
+            $now = Carbon::now();
+            $hoursRemaining = $now->diffInHours($revealDateTime, false);
+
+            // Show speaker only if less than 1 hour remaining until reveal date
+            // (negative value means reveal date has passed, which we also show)
+            if ($hoursRemaining <= 1) {
+                $upcomingSpeaker = Speaker::active()->find($speakerRevealId);
+                $showSpeaker = $upcomingSpeaker !== null;
+            }
+        }
+
         return view('frontend.home', compact(
             'heroSlides', 'events', 'speakers', 'schedules',
             'pricingPlans', 'testimonials', 'blogPosts', 'sponsors',
-            'galleries', 'faqs', 'statistics', 'countdownDate', 'mission', 'vision', 'goal'
+            'galleries', 'faqs', 'statistics', 'countdownDate', 'mission', 'vision', 'goal',
+            'speakerRevealDate', 'upcomingSpeaker', 'showSpeaker'
         ));
     }
 

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('key')->unique();
             $table->text('value')->nullable();
-            $table->string('type')->default('text'); // text, textarea, image, boolean
+            $table->string('type')->default('text'); // text, textarea, image, boolean, datetime
             $table->string('group')->default('general');
             $table->timestamps();
         });

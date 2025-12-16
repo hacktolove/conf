@@ -403,13 +403,27 @@
 </section>
 
 <!-- Upcoming Speaker Reveal Section -->
+@if($speakerRevealDate)
 <section class="py-5 bg-light">
     <div class="container py-5">
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <p class="section-subtitle mb-3">{{ __('messages.upcoming_speaker_reveal') }}</p>
-                <h2 class="display-5 fw-bold mb-4">{{ __('messages.speaker_announcement_coming_soon') }}</h2>
-                <p class="text-muted mb-4">{{ __('messages.stay_tuned_speaker_reveal') }}</p>
+                @if($showSpeaker && $upcomingSpeaker)
+                    <h2 class="display-5 fw-bold mb-4">{{ $upcomingSpeaker->localized_name }}</h2>
+                    @if($upcomingSpeaker->localized_title)
+                        <p class="text-primary mb-2 fw-semibold">{{ $upcomingSpeaker->localized_title }}</p>
+                    @endif
+                    @if($upcomingSpeaker->localized_company)
+                        <p class="text-muted mb-3">{{ $upcomingSpeaker->localized_company }}</p>
+                    @endif
+                    @if($upcomingSpeaker->localized_bio)
+                        <p class="text-muted mb-4">{{ \Illuminate\Support\Str::limit($upcomingSpeaker->localized_bio, 150) }}</p>
+                    @endif
+                @else
+                    <h2 class="display-5 fw-bold mb-4">{{ __('messages.speaker_announcement_coming_soon') }}</h2>
+                    <p class="text-muted mb-4">{{ __('messages.stay_tuned_speaker_reveal') }}</p>
+                @endif
                 <div class="countdown-timer" id="speakerCountdown">
                     <div class="countdown-item">
                         <span class="number" id="speaker-days">00</span>
@@ -431,14 +445,19 @@
             </div>
             <div class="col-lg-6 text-center">
                 <div class="speaker-reveal-image">
-                    <div class="bg-primary-subtle rounded-4 p-5" style="min-height: 400px; display: flex; align-items: center; justify-content: center;">
-                        <i class="bi bi-person-check display-1 text-primary opacity-50"></i>
-                    </div>
+                    @if($showSpeaker && $upcomingSpeaker && $upcomingSpeaker->image)
+                        <img src="{{ asset('storage/' . $upcomingSpeaker->image) }}" alt="{{ $upcomingSpeaker->localized_name }}" class="img-fluid rounded-4 shadow-lg" style="max-height: 500px; width: auto; object-fit: cover;">
+                    @else
+                        <div class="bg-primary-subtle rounded-4 p-5" style="min-height: 400px; display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-person-check display-1 text-primary opacity-50"></i>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 </section>
+@endif
 
 <!-- Statistics -->
 <section class="stats-section">
@@ -1023,9 +1042,9 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // Speaker Reveal Countdown (using same date or 7 days from now)
+    // Speaker Reveal Countdown (using reveal date from site settings)
     function updateSpeakerCountdown() {
-        const speakerDate = new Date('{{ $countdownDate }}').getTime() - (7 * 24 * 60 * 60 * 1000); // 7 days before main event
+        const speakerDate = new Date('{{ $speakerRevealDate }}').getTime();
         const now = new Date().getTime();
         const distance = speakerDate - now;
 
