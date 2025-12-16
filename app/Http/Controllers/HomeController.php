@@ -1,0 +1,152 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Event;
+use App\Models\Speaker;
+use App\Models\Schedule;
+use App\Models\PricingPlan;
+use App\Models\Testimonial;
+use App\Models\BlogPost;
+use App\Models\Sponsor;
+use App\Models\Gallery;
+use App\Models\Faq;
+use App\Models\HeroSlide;
+use App\Models\Statistic;
+use App\Models\Subscriber;
+use App\Models\ContactMessage;
+use App\Models\SiteSetting;
+use Illuminate\Http\Request;
+
+class HomeController extends Controller
+{
+    public function index()
+    {
+        $heroSlides = HeroSlide::active()->orderBy('order')->get();
+        $events = Event::active()->upcoming()->orderBy('event_date')->take(6)->get();
+        $speakers = Speaker::active()->featured()->orderBy('order')->take(8)->get();
+        $schedules = Schedule::with(['event', 'speaker'])->active()->orderBy('schedule_date')->orderBy('start_time')->get();
+        $pricingPlans = PricingPlan::active()->orderBy('order')->get();
+        $testimonials = Testimonial::active()->orderBy('order')->get();
+        $blogPosts = BlogPost::published()->recent()->take(3)->get();
+        $sponsors = Sponsor::active()->orderBy('order')->get();
+        $galleries = Gallery::active()->orderBy('order')->take(8)->get();
+        $faqs = Faq::active()->orderBy('order')->get();
+        $statistics = Statistic::active()->orderBy('order')->get();
+        
+        // Get countdown date from site settings
+        $countdownDate = SiteSetting::get('countdown_date', now()->addMonths(3)->format('Y-m-d H:i:s'));
+        $mission = SiteSetting::get('mission', 'Our mission is to build a global community where collaboration fuels innovation we aim encourage fresh thinking, spark inspiring dialogues, and create a space.');
+        $vision = SiteSetting::get('vision', 'Our vision is to build a global community where collaboration fuels innovation we aim encourage fresh thinking, spark inspiring dialogues, and create a space.');
+        $goal = SiteSetting::get('goal', 'Our goal is to build a global community where collaboration fuels innovation we aim encourage fresh thinking, spark inspiring dialogues, and create a space.');
+
+        return view('frontend.home', compact(
+            'heroSlides', 'events', 'speakers', 'schedules',
+            'pricingPlans', 'testimonials', 'blogPosts', 'sponsors',
+            'galleries', 'faqs', 'statistics', 'countdownDate', 'mission', 'vision', 'goal'
+        ));
+    }
+
+    public function about()
+    {
+        $speakers = Speaker::active()->orderBy('order')->get();
+        $statistics = Statistic::active()->orderBy('order')->get();
+        $testimonials = Testimonial::active()->orderBy('order')->get();
+
+        return view('frontend.about', compact('speakers', 'statistics', 'testimonials'));
+    }
+
+    public function events()
+    {
+        $events = Event::active()->orderBy('event_date', 'desc')->paginate(9);
+        return view('frontend.events.index', compact('events'));
+    }
+
+    public function eventDetail($slug)
+    {
+        $event = Event::where('slug', $slug)->with(['schedules.speaker'])->firstOrFail();
+        return view('frontend.events.show', compact('event'));
+    }
+
+    public function speakers()
+    {
+        $speakers = Speaker::active()->orderBy('order')->paginate(12);
+        return view('frontend.speakers.index', compact('speakers'));
+    }
+
+    public function speakerDetail($slug)
+    {
+        $speaker = Speaker::where('slug', $slug)->with(['schedules.event'])->firstOrFail();
+        return view('frontend.speakers.show', compact('speaker'));
+    }
+
+    public function schedule()
+    {
+        $schedules = Schedule::with(['event', 'speaker'])->active()
+            ->orderBy('schedule_date')->orderBy('start_time')->get();
+
+        return view('frontend.schedule', compact('schedules'));
+    }
+
+    public function pricing()
+    {
+        $pricingPlans = PricingPlan::active()->orderBy('order')->get();
+        $faqs = Faq::active()->orderBy('order')->get();
+        return view('frontend.pricing', compact('pricingPlans', 'faqs'));
+    }
+
+    public function blog()
+    {
+        $posts = BlogPost::published()->recent()->paginate(9);
+        return view('frontend.blog.index', compact('posts'));
+    }
+
+    public function blogDetail($slug)
+    {
+        $post = BlogPost::where('slug', $slug)->published()->firstOrFail();
+        $post->increment('views');
+        $recentPosts = BlogPost::published()->where('id', '!=', $post->id)->recent()->take(3)->get();
+
+        return view('frontend.blog.show', compact('post', 'recentPosts'));
+    }
+
+    public function gallery()
+    {
+        $galleries = Gallery::active()->orderBy('order')->paginate(12);
+        return view('frontend.gallery', compact('galleries'));
+    }
+
+    public function contact()
+    {
+        return view('frontend.contact');
+    }
+
+    public function contactSubmit(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'nullable|string|max:50',
+            'subject' => 'nullable|string|max:255',
+            'message' => 'required|string|max:2000',
+        ]);
+
+        ContactMessage::create($validated);
+
+        return back()->with('success', 'Thank you for your message! We will get back to you soon.');
+    }
+
+    public function subscribe(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|unique:subscribers,email'
+        ]);
+
+        Subscriber::create([
+            'email' => $request->email,
+            'subscribed_at' => now()
+        ]);
+
+        return back()->with('success', 'Thank you for subscribing!');
+    }
+}
