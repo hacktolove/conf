@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Models\Event;
 use App\Models\Speaker;
 use App\Models\Schedule;
-use App\Models\PricingPlan;
 use App\Models\Testimonial;
 use App\Models\BlogPost;
 use App\Models\Sponsor;
@@ -454,71 +453,6 @@ class DatabaseSeeder extends Seeder
                     'start_time' => $scheduleData['start_time'],
                 ],
                 $scheduleData
-            );
-        }
-
-        // Pricing Plans
-        $pricingPlans = [
-            [
-                'name' => 'Basic Package',
-                'name_ar' => 'الباقة الأساسية',
-                'price' => 49,
-                'currency' => '$',
-                'duration' => 'One-Time',
-                'duration_ar' => 'مرة واحدة',
-                'description' => 'Perfect for first-time attend',
-                'description_ar' => 'مثالي للحضور لأول مرة',
-                'features' => ['Entry to all standard sessions', 'Reserved seating in select session', 'Meet & greet with speakers', 'Premium networking lounge'],
-                'features_ar' => ['الدخول لجميع الجلسات القياسية', 'مقاعد محجوزة في جلسات مختارة', 'لقاء مع المتحدثين', 'صالة شبكات مميزة'],
-                'button_text' => 'Get Standard Pass',
-                'button_text_ar' => 'احصل على التذكرة القياسية',
-                'button_link' => '#',
-                'is_featured' => false,
-                'is_active' => true,
-                'order' => 1,
-            ],
-            [
-                'name' => 'Standard Pass',
-                'name_ar' => 'التذكرة القياسية',
-                'price' => 59,
-                'currency' => '$',
-                'duration' => 'One-Time',
-                'duration_ar' => 'مرة واحدة',
-                'description' => 'Perfect for first-time attend',
-                'description_ar' => 'مثالي للحضور لأول مرة',
-                'features' => ['Entry to all standard sessions', 'Reserved seating in select session', 'Meet & greet with speakers', 'Premium networking lounge'],
-                'features_ar' => ['الدخول لجميع الجلسات القياسية', 'مقاعد محجوزة في جلسات مختارة', 'لقاء مع المتحدثين', 'صالة شبكات مميزة'],
-                'button_text' => 'Get Standard Pass',
-                'button_text_ar' => 'احصل على التذكرة القياسية',
-                'button_link' => '#',
-                'is_featured' => true,
-                'is_active' => true,
-                'order' => 2,
-            ],
-            [
-                'name' => 'Premium Pass',
-                'name_ar' => 'التذكرة المميزة',
-                'price' => 69,
-                'currency' => '$',
-                'duration' => 'One-Time',
-                'duration_ar' => 'مرة واحدة',
-                'description' => 'Perfect for first-time attend',
-                'description_ar' => 'مثالي للحضور لأول مرة',
-                'features' => ['Entry to all standard sessions', 'Reserved seating in select session', 'Meet & greet with speakers', 'Premium networking lounge'],
-                'features_ar' => ['الدخول لجميع الجلسات القياسية', 'مقاعد محجوزة في جلسات مختارة', 'لقاء مع المتحدثين', 'صالة شبكات مميزة'],
-                'button_text' => 'Get Standard Pass',
-                'button_text_ar' => 'احصل على التذكرة القياسية',
-                'button_link' => '#',
-                'is_featured' => false,
-                'is_active' => true,
-                'order' => 3,
-            ],
-        ];
-
-        foreach ($pricingPlans as $plan) {
-            PricingPlan::updateOrCreate(
-                ['name' => $plan['name']],
-                $plan
             );
         }
 

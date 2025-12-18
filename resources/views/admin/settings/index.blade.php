@@ -161,6 +161,20 @@
                 </div>
             </div>
 
+            <h5 class="mb-4 mt-4">Countdown Timer Settings</h5>
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle"></i> <strong>Note:</strong> Set the target date and time for the main countdown timer displayed on the home page hero section.
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Countdown Target Date & Time</label>
+                        <input type="datetime-local" class="form-control" name="settings[countdown_date]" value="{{ App\Models\SiteSetting::get('countdown_date') ? date('Y-m-d\TH:i', strtotime(App\Models\SiteSetting::get('countdown_date'))) : '' }}">
+                        <small class="text-muted">The date and time the countdown timer will count down to. Leave empty to use default (3 months from now).</small>
+                    </div>
+                </div>
+            </div>
+
             <h5 class="mb-4 mt-4">Speaker Reveal Settings</h5>
             <div class="alert alert-info">
                 <i class="bi bi-info-circle"></i> <strong>Note:</strong> The speaker will be automatically revealed on the home page when there is less than 1 hour remaining until the reveal date. Before that time, only a countdown timer will be displayed.

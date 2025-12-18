@@ -127,7 +127,7 @@
 
                         @if($event->registration_link)
                         <a href="{{ $event->registration_link }}" target="_blank" class="btn btn-primary w-100">
-                            <i class="bi bi-ticket-perforated me-2"></i>Register Now
+                            <i class="bi bi-person-plus me-2"></i>Register Now
                         </a>
                         @endif
                     </div>

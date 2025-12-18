@@ -33,18 +33,18 @@ class SettingController extends Controller
                 // Handle text settings
                 $value = $request->input("settings.$key");
                 $valueAr = $request->input("settings_ar.$key", null);
-                
+
                 // Convert datetime-local format (Y-m-d\TH:i) to datetime format (Y-m-d H:i:s) for storage
-                if ($key === 'speaker_reveal_date' && $value) {
+                if (in_array($key, ['speaker_reveal_date', 'countdown_date']) && $value) {
                     $value = date('Y-m-d H:i:s', strtotime($value));
                 }
-                
-                // Allow empty values for speaker_reveal_speaker_id and speaker_reveal_date to allow clearing
-                $allowEmpty = in_array($key, ['speaker_reveal_speaker_id', 'speaker_reveal_date']);
-                
+
+                // Allow empty values for speaker_reveal_speaker_id, speaker_reveal_date, and countdown_date to allow clearing
+                $allowEmpty = in_array($key, ['speaker_reveal_speaker_id', 'speaker_reveal_date', 'countdown_date']);
+
                 // Determine the type based on the key
-                $settingType = ($key === 'speaker_reveal_date') ? 'datetime' : 'text';
-                
+                $settingType = in_array($key, ['speaker_reveal_date', 'countdown_date']) ? 'datetime' : 'text';
+
                 // Only update if at least one value is provided, or if empty values are allowed
                 if ($allowEmpty || ($value !== null && $value !== '')) {
                     SiteSetting::set($key, $value ?? '', $settingType, 'general', $valueAr);

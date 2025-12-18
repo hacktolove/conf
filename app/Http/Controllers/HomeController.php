@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Speaker;
 use App\Models\Schedule;
-use App\Models\PricingPlan;
 use App\Models\Testimonial;
 use App\Models\BlogPost;
 use App\Models\Sponsor;
@@ -27,16 +26,23 @@ class HomeController extends Controller
         $events = Event::active()->upcoming()->orderBy('event_date')->take(6)->get();
         $speakers = Speaker::active()->featured()->orderBy('order')->take(8)->get();
         $schedules = Schedule::with(['event', 'speaker'])->active()->orderBy('schedule_date')->orderBy('start_time')->get();
-        $pricingPlans = PricingPlan::active()->orderBy('order')->get();
         $testimonials = Testimonial::active()->orderBy('order')->get();
         $blogPosts = BlogPost::published()->recent()->take(3)->get();
         $sponsors = Sponsor::active()->orderBy('order')->get();
         $galleries = Gallery::active()->orderBy('order')->take(8)->get();
         $faqs = Faq::active()->orderBy('order')->get();
-        $statistics = Statistic::active()->orderBy('order')->get();
 
-        // Get countdown date from site settings
-        $countdownDate = SiteSetting::get('countdown_date', now()->addMonths(3)->format('Y-m-d H:i:s'));
+        // Get countdown date from site settings (dynamic from database)
+        $countdownDateRaw = SiteSetting::get('countdown_date');
+        if ($countdownDateRaw) {
+            // Use database value if set
+            $countdownDate = Carbon::parse($countdownDateRaw)->format('Y-m-d H:i:s');
+            $hasCountdown = true;
+        } else {
+            // Fallback to default if not set in database
+            $countdownDate = now()->addMonths(3)->format('Y-m-d H:i:s');
+            $hasCountdown = true;
+        }
         $mission = SiteSetting::get('mission', 'Our mission is to build a global community where collaboration fuels innovation we aim encourage fresh thinking, spark inspiring dialogues, and create a space.');
         $vision = SiteSetting::get('vision', 'Our vision is to build a global community where collaboration fuels innovation we aim encourage fresh thinking, spark inspiring dialogues, and create a space.');
         $goal = SiteSetting::get('goal', 'Our goal is to build a global community where collaboration fuels innovation we aim encourage fresh thinking, spark inspiring dialogues, and create a space.');
@@ -63,8 +69,8 @@ class HomeController extends Controller
 
         return view('frontend.home', compact(
             'heroSlides', 'events', 'speakers', 'schedules',
-            'pricingPlans', 'testimonials', 'blogPosts', 'sponsors',
-            'galleries', 'faqs', 'statistics', 'countdownDate', 'mission', 'vision', 'goal',
+            'testimonials', 'blogPosts', 'sponsors',
+            'galleries', 'faqs', 'countdownDate', 'hasCountdown', 'mission', 'vision', 'goal',
             'speakerRevealDate', 'upcomingSpeaker', 'showSpeaker'
         ));
     }
@@ -108,13 +114,6 @@ class HomeController extends Controller
             ->orderBy('schedule_date')->orderBy('start_time')->get();
 
         return view('frontend.schedule', compact('schedules'));
-    }
-
-    public function pricing()
-    {
-        $pricingPlans = PricingPlan::active()->orderBy('order')->get();
-        $faqs = Faq::active()->orderBy('order')->get();
-        return view('frontend.pricing', compact('pricingPlans', 'faqs'));
     }
 
     public function blog()

@@ -34,9 +34,6 @@
                     <a class="nav-link {{ request()->routeIs('schedule') ? 'active' : '' }}" href="{{ route('schedule') }}">{{ __('messages.nav_schedule') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('pricing') ? 'active' : '' }}" href="{{ route('pricing') }}">{{ __('messages.nav_pricing') }}</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('blog*') ? 'active' : '' }}" href="{{ route('blog') }}">{{ __('messages.nav_blog') }}</a>
                 </li>
                 <li class="nav-item">
@@ -57,7 +54,6 @@
                         <li><a class="dropdown-item {{ !$isArabic ? 'active' : '' }}" href="{{ request()->fullUrlWithQuery(['lang' => 'en']) }}">{{ __('messages.nav_english') }}</a></li>
                     </ul>
                 </div>
-                <a href="{{ route('pricing') }}" class="btn btn-primary ms-3">{{ __('messages.nav_buy_ticket') }}</a>
             </div>
         </div>
     </div>

@@ -86,6 +86,34 @@
                     </div>
                 </div>
             </div>
+            <hr class="my-4">
+            <h6 class="mb-3">Arabic Content</h6>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label for="title_ar" class="form-label">Title (Arabic)</label>
+                        <input type="text" class="form-control" id="title_ar" name="title_ar" value="{{ old('title_ar', $schedule->title_ar) }}" dir="rtl">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label for="description_ar" class="form-label">Description (Arabic)</label>
+                        <textarea class="form-control" id="description_ar" name="description_ar" rows="3" dir="rtl">{{ old('description_ar', $schedule->description_ar) }}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="venue_ar" class="form-label">Venue (Arabic)</label>
+                        <input type="text" class="form-control" id="venue_ar" name="venue_ar" value="{{ old('venue_ar', $schedule->venue_ar) }}" dir="rtl">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="day_label_ar" class="form-label">Day Label (Arabic)</label>
+                        <input type="text" class="form-control" id="day_label_ar" name="day_label_ar" value="{{ old('day_label_ar', $schedule->day_label_ar) }}" dir="rtl">
+                    </div>
+                </div>
+            </div>
             <hr>
             <div class="d-flex justify-content-between">
                 <a href="{{ route('admin.schedules.index') }}" class="btn btn-secondary">Cancel</a>
