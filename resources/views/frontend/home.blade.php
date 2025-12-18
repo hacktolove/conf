@@ -515,9 +515,16 @@
                                     <h5 class="mb-2 fw-bold">{{ $schedule->localized_title }}</h5>
                                     <p class="text-muted mb-2">{{ Str::limit($schedule->localized_description, 120) }}</p>
                                     @if($schedule->localized_venue)
-                                    <small class="text-muted d-flex align-items-center gap-1">
+                                    <small class="text-muted d-flex align-items-center gap-1 mb-2">
                                         <i class="bi bi-geo-alt"></i>{{ $schedule->localized_venue }}
                                     </small>
+                                    @endif
+                                    @if($schedule->pdf_file && $schedule->allow_download)
+                                    <div class="mt-2">
+                                        <a href="{{ asset('storage/' . $schedule->pdf_file) }}" target="_blank" class="btn btn-sm btn-outline-primary" download>
+                                            <i class="bi bi-file-earmark-pdf me-1"></i>Download PDF
+                                        </a>
+                                    </div>
                                     @endif
                                 </div>
                                 @if($schedule->speaker)

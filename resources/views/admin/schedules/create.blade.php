@@ -5,7 +5,7 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('admin.schedules.store') }}" method="POST">
+        <form action="{{ route('admin.schedules.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-6">
@@ -76,6 +76,20 @@
                     <div class="mb-3">
                         <label for="order" class="form-label">Order</label>
                         <input type="number" class="form-control" id="order" name="order" value="{{ old('order', 0) }}">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label for="pdf_file" class="form-label">PDF File (Optional)</label>
+                        <input type="file" class="form-control" id="pdf_file" name="pdf_file" accept="application/pdf">
+                        <small class="text-muted">Maximum file size: 10MB. Only PDF files are allowed.</small>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="allow_download" name="allow_download" value="1" {{ old('allow_download') ? 'checked' : '' }}>
+                        <label class="form-check-label" for="allow_download">Allow Download on Frontend</label>
+                        <small class="text-muted d-block">Check this to make the PDF visible and downloadable on the frontend</small>
                     </div>
                 </div>
                 <div class="col-md-12">
