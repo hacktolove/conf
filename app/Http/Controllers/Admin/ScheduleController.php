@@ -7,6 +7,7 @@ use App\Models\Schedule;
 use App\Models\Event;
 use App\Models\Speaker;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ScheduleController extends Controller
 {
@@ -39,11 +40,18 @@ class ScheduleController extends Controller
             'venue_ar' => 'nullable|string|max:255',
             'day_label' => 'nullable|string|max:100',
             'day_label_ar' => 'nullable|string|max:100',
+            'pdf_file' => 'nullable|file|mimes:pdf|max:10240',
+            'allow_download' => 'boolean',
             'order' => 'integer',
             'is_active' => 'boolean',
         ]);
 
         $validated['is_active'] = $request->boolean('is_active');
+        $validated['allow_download'] = $request->boolean('allow_download');
+
+        if ($request->hasFile('pdf_file')) {
+            $validated['pdf_file'] = $request->file('pdf_file')->store('schedules/pdfs', 'public');
+        }
 
         Schedule::create($validated);
 
@@ -73,11 +81,30 @@ class ScheduleController extends Controller
             'venue_ar' => 'nullable|string|max:255',
             'day_label' => 'nullable|string|max:100',
             'day_label_ar' => 'nullable|string|max:100',
+            'pdf_file' => 'nullable|file|mimes:pdf|max:10240',
+            'allow_download' => 'boolean',
+            'remove_pdf' => 'boolean',
             'order' => 'integer',
             'is_active' => 'boolean',
         ]);
 
         $validated['is_active'] = $request->boolean('is_active');
+        $validated['allow_download'] = $request->boolean('allow_download');
+
+        // Handle PDF file upload
+        if ($request->hasFile('pdf_file')) {
+            // Delete old PDF if exists
+            if ($schedule->pdf_file && Storage::disk('public')->exists($schedule->pdf_file)) {
+                Storage::disk('public')->delete($schedule->pdf_file);
+            }
+            $validated['pdf_file'] = $request->file('pdf_file')->store('schedules/pdfs', 'public');
+        } elseif ($request->boolean('remove_pdf')) {
+            // Remove PDF if checkbox is checked
+            if ($schedule->pdf_file && Storage::disk('public')->exists($schedule->pdf_file)) {
+                Storage::disk('public')->delete($schedule->pdf_file);
+            }
+            $validated['pdf_file'] = null;
+        }
 
         $schedule->update($validated);
 

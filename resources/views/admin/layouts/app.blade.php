@@ -143,11 +143,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.pricing-plans.*') ? 'active' : '' }}" href="{{ route('admin.pricing-plans.index') }}">
-                        <i class="bi bi-credit-card"></i> Pricing Plans
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.testimonials.*') ? 'active' : '' }}" href="{{ route('admin.testimonials.index') }}">
                         <i class="bi bi-chat-quote"></i> Testimonials
                     </a>

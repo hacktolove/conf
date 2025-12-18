@@ -5,7 +5,7 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('admin.schedules.store') }}" method="POST">
+        <form action="{{ route('admin.schedules.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-6">
@@ -79,9 +79,51 @@
                     </div>
                 </div>
                 <div class="col-md-12">
+                    <div class="mb-3">
+                        <label for="pdf_file" class="form-label">PDF File (Optional)</label>
+                        <input type="file" class="form-control" id="pdf_file" name="pdf_file" accept="application/pdf">
+                        <small class="text-muted">Maximum file size: 10MB. Only PDF files are allowed.</small>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="allow_download" name="allow_download" value="1" {{ old('allow_download') ? 'checked' : '' }}>
+                        <label class="form-check-label" for="allow_download">Allow Download on Frontend</label>
+                        <small class="text-muted d-block">Check this to make the PDF visible and downloadable on the frontend</small>
+                    </div>
+                </div>
+                <div class="col-md-12">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="is_active" name="is_active" value="1" {{ old('is_active', true) ? 'checked' : '' }}>
                         <label class="form-check-label" for="is_active">Active</label>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <h6 class="mb-3">Arabic Content</h6>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label for="title_ar" class="form-label">Title (Arabic)</label>
+                        <input type="text" class="form-control" id="title_ar" name="title_ar" value="{{ old('title_ar') }}" dir="rtl">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label for="description_ar" class="form-label">Description (Arabic)</label>
+                        <textarea class="form-control" id="description_ar" name="description_ar" rows="3" dir="rtl">{{ old('description_ar') }}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="venue_ar" class="form-label">Venue (Arabic)</label>
+                        <input type="text" class="form-control" id="venue_ar" name="venue_ar" value="{{ old('venue_ar') }}" dir="rtl">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="day_label_ar" class="form-label">Day Label (Arabic)</label>
+                        <input type="text" class="form-control" id="day_label_ar" name="day_label_ar" value="{{ old('day_label_ar') }}" dir="rtl">
                     </div>
                 </div>
             </div>

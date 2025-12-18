@@ -86,7 +86,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <h5 class="mb-4 mt-4">Mission, Vision & Goal</h5>
             <div class="row">
                 <div class="col-md-6">
@@ -157,6 +157,48 @@
                     <div class="mb-3">
                         <label class="form-label">YouTube</label>
                         <input type="url" class="form-control" name="settings[social_youtube]" value="{{ App\Models\SiteSetting::get('social_youtube') }}">
+                    </div>
+                </div>
+            </div>
+
+            <h5 class="mb-4 mt-4">Countdown Timer Settings</h5>
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle"></i> <strong>Note:</strong> Set the target date and time for the main countdown timer displayed on the home page hero section.
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Countdown Target Date & Time</label>
+                        <input type="datetime-local" class="form-control" name="settings[countdown_date]" value="{{ App\Models\SiteSetting::get('countdown_date') ? date('Y-m-d\TH:i', strtotime(App\Models\SiteSetting::get('countdown_date'))) : '' }}">
+                        <small class="text-muted">The date and time the countdown timer will count down to. Leave empty to use default (3 months from now).</small>
+                    </div>
+                </div>
+            </div>
+
+            <h5 class="mb-4 mt-4">Speaker Reveal Settings</h5>
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle"></i> <strong>Note:</strong> The speaker will be automatically revealed on the home page when there is less than 1 hour remaining until the reveal date. Before that time, only a countdown timer will be displayed.
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Speaker Reveal Date & Time</label>
+                        <input type="datetime-local" class="form-control" name="settings[speaker_reveal_date]" value="{{ App\Models\SiteSetting::get('speaker_reveal_date') ? date('Y-m-d\TH:i', strtotime(App\Models\SiteSetting::get('speaker_reveal_date'))) : '' }}">
+                        <small class="text-muted">When the speaker will be revealed on the home page. The speaker details will automatically appear when less than 1 hour remains.</small>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Upcoming Speaker</label>
+                        <select class="form-control" name="settings[speaker_reveal_speaker_id]">
+                            <option value="">-- Select Speaker --</option>
+                            @foreach(\App\Models\Speaker::active()->orderBy('name')->get() as $speaker)
+                                <option value="{{ $speaker->id }}" {{ App\Models\SiteSetting::get('speaker_reveal_speaker_id') == $speaker->id ? 'selected' : '' }}>
+                                    {{ $speaker->name }} @if($speaker->title) - {{ $speaker->title }} @endif
+                                </option>
+                            @endforeach
+                        </select>
+                        <small class="text-muted">Select the speaker to be revealed (will show automatically when less than 1 hour remains)</small>
                     </div>
                 </div>
             </div>

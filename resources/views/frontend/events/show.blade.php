@@ -54,9 +54,16 @@
                                     </p>
                                     @endif
                                     @if($schedule->localized_venue)
-                                    <p class="text-muted small mb-0">
+                                    <p class="text-muted small mb-1">
                                         <i class="bi bi-geo-alt me-1"></i>{{ $schedule->localized_venue }}
                                     </p>
+                                    @endif
+                                    @if($schedule->pdf_file && $schedule->allow_download)
+                                    <div class="mt-2">
+                                        <a href="{{ asset('storage/' . $schedule->pdf_file) }}" target="_blank" class="btn btn-sm btn-outline-primary" download>
+                                            <i class="bi bi-file-earmark-pdf me-1"></i>Download PDF
+                                        </a>
+                                    </div>
                                     @endif
                                 </div>
                             </div>
@@ -127,7 +134,7 @@
 
                         @if($event->registration_link)
                         <a href="{{ $event->registration_link }}" target="_blank" class="btn btn-primary w-100">
-                            <i class="bi bi-ticket-perforated me-2"></i>Register Now
+                            <i class="bi bi-person-plus me-2"></i>Register Now
                         </a>
                         @endif
                     </div>

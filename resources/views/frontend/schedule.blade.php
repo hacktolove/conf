@@ -67,7 +67,7 @@
                                     @if($schedule->localized_description)
                                     <p class="text-muted mb-2">{{ Str::limit($schedule->localized_description, 150) }}</p>
                                     @endif
-                                    <div class="d-flex flex-wrap gap-2">
+                                    <div class="d-flex flex-wrap gap-2 mb-2">
                                         @if($schedule->localized_venue)
                                         <span class="badge bg-light text-dark"><i class="bi bi-geo-alt me-1"></i>{{ $schedule->localized_venue }}</span>
                                         @endif
@@ -75,6 +75,13 @@
                                         <span class="badge bg-light text-dark"><i class="bi bi-calendar-event me-1"></i>{{ $schedule->event->localized_title }}</span>
                                         @endif
                                     </div>
+                                    @if($schedule->pdf_file && $schedule->allow_download)
+                                    <div class="mt-2">
+                                        <a href="{{ asset('storage/' . $schedule->pdf_file) }}" target="_blank" class="btn btn-sm btn-outline-primary" download>
+                                            <i class="bi bi-file-earmark-pdf me-1"></i>Download PDF
+                                        </a>
+                                    </div>
+                                    @endif
                                 </div>
                                 <div class="col-md-3 text-center">
                                     @if($schedule->speaker)

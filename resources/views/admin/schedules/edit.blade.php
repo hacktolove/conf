@@ -5,7 +5,7 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('admin.schedules.update', $schedule) }}" method="POST">
+        <form action="{{ route('admin.schedules.update', $schedule) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="row">
@@ -80,9 +80,68 @@
                     </div>
                 </div>
                 <div class="col-md-12">
+                    <div class="mb-3">
+                        <label for="pdf_file" class="form-label">PDF File</label>
+                        @if($schedule->pdf_file)
+                            <div class="mb-2">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <i class="bi bi-file-earmark-pdf text-danger fs-4"></i>
+                                    <div>
+                                        <a href="{{ asset('storage/' . $schedule->pdf_file) }}" target="_blank" class="text-decoration-none">
+                                            {{ basename($schedule->pdf_file) }}
+                                        </a>
+                                        <small class="text-muted d-block">Current PDF file</small>
+                                    </div>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="remove_pdf" name="remove_pdf" value="1">
+                                    <label class="form-check-label text-danger" for="remove_pdf">Remove current PDF</label>
+                                </div>
+                            </div>
+                        @endif
+                        <input type="file" class="form-control" id="pdf_file" name="pdf_file" accept="application/pdf">
+                        <small class="text-muted">Maximum file size: 10MB. Only PDF files are allowed. Leave empty to keep current file.</small>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="allow_download" name="allow_download" value="1" {{ old('allow_download', $schedule->allow_download) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="allow_download">Allow Download on Frontend</label>
+                        <small class="text-muted d-block">Check this to make the PDF visible and downloadable on the frontend</small>
+                    </div>
+                </div>
+                <div class="col-md-12">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="is_active" name="is_active" value="1" {{ old('is_active', $schedule->is_active) ? 'checked' : '' }}>
                         <label class="form-check-label" for="is_active">Active</label>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <h6 class="mb-3">Arabic Content</h6>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label for="title_ar" class="form-label">Title (Arabic)</label>
+                        <input type="text" class="form-control" id="title_ar" name="title_ar" value="{{ old('title_ar', $schedule->title_ar) }}" dir="rtl">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label for="description_ar" class="form-label">Description (Arabic)</label>
+                        <textarea class="form-control" id="description_ar" name="description_ar" rows="3" dir="rtl">{{ old('description_ar', $schedule->description_ar) }}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="venue_ar" class="form-label">Venue (Arabic)</label>
+                        <input type="text" class="form-control" id="venue_ar" name="venue_ar" value="{{ old('venue_ar', $schedule->venue_ar) }}" dir="rtl">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="day_label_ar" class="form-label">Day Label (Arabic)</label>
+                        <input type="text" class="form-control" id="day_label_ar" name="day_label_ar" value="{{ old('day_label_ar', $schedule->day_label_ar) }}" dir="rtl">
                     </div>
                 </div>
             </div>

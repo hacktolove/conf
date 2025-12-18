@@ -49,6 +49,34 @@
                             </div>
                         </div>
                     </div>
+                    <hr class="my-4">
+                    <h6 class="mb-3">Arabic Content</h6>
+                    <div class="mb-3">
+                        <label for="title_ar" class="form-label">Title (Arabic)</label>
+                        <input type="text" class="form-control" id="title_ar" name="title_ar" value="{{ old('title_ar', $heroSlide->title_ar) }}" dir="rtl">
+                    </div>
+                    <div class="mb-3">
+                        <label for="subtitle_ar" class="form-label">Subtitle (Arabic)</label>
+                        <input type="text" class="form-control" id="subtitle_ar" name="subtitle_ar" value="{{ old('subtitle_ar', $heroSlide->subtitle_ar) }}" dir="rtl">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description_ar" class="form-label">Description (Arabic)</label>
+                        <textarea class="form-control" id="description_ar" name="description_ar" rows="3" dir="rtl">{{ old('description_ar', $heroSlide->description_ar) }}</textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="button_text_ar" class="form-label">Button 1 Text (Arabic)</label>
+                                <input type="text" class="form-control" id="button_text_ar" name="button_text_ar" value="{{ old('button_text_ar', $heroSlide->button_text_ar) }}" dir="rtl">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="button_text_2_ar" class="form-label">Button 2 Text (Arabic)</label>
+                                <input type="text" class="form-control" id="button_text_2_ar" name="button_text_2_ar" value="{{ old('button_text_2_ar', $heroSlide->button_text_2_ar) }}" dir="rtl">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="mb-3">

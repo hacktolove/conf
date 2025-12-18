@@ -23,6 +23,7 @@
             --primary: {{ config('theme.colors.primary', '#6366f1') }};
             --primary-dark: {{ config('theme.colors.primary_dark', '#4f46e5') }};
             --secondary: {{ config('theme.colors.secondary', '#059669') }};
+            --accent: {{ config('theme.colors.accent', '#F79222') }};
             --dark: {{ config('theme.colors.dark', '#0f172a') }};
             --dark-light: {{ config('theme.colors.dark_light', '#1e293b') }};
             --gradient-primary-from: {{ config('theme.gradients.primary.from', '#6366f1') }};
@@ -32,6 +33,16 @@
         }
         body {
             font-family: {{ $isRTL ? "'Cairo', sans-serif" : "'Inter', sans-serif" }};
+        }
+        /* Make all Bootstrap icons orange (secondary color) */
+        i.bi, i[class*="bi-"] {
+            color: var(--secondary) !important;
+        }
+        /* Exceptions for specific cases that should keep their original color */
+        i.bi.text-muted,
+        i.bi.text-warning,
+        i.bi.text-danger {
+            color: inherit !important;
         }
         [dir="rtl"] {
             direction: rtl;
@@ -133,18 +144,12 @@
         .card-speaker img { height: 300px; object-fit: cover; }
         .card-event { border: none; border-radius: 1rem; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
         .card-event img { height: 200px; object-fit: cover; }
-        .pricing-card { border: none; border-radius: 1rem; padding: 2rem; text-align: center; transition: all 0.3s; }
-        .pricing-card.featured { background: var(--primary); color: #fff; transform: scale(1.05); }
-        .pricing-card:not(.featured) { background: #fff; box-shadow: 0 5px 30px rgba(0,0,0,0.1); }
         .testimonial-card { background: #fff; border-radius: 1rem; padding: 2rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
         .schedule-item { border-left: 3px solid var(--primary); padding-left: 1.5rem; margin-bottom: 1.5rem; }
         .footer { background: var(--dark); color: #fff; padding: 4rem 0 2rem; }
         .footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
         .footer a:hover { color: #fff; }
         .bg-gradient-primary { background: linear-gradient(135deg, var(--gradient-primary-from) 0%, var(--gradient-primary-to) 100%); }
-        .stats-section { background: linear-gradient(135deg, var(--gradient-primary-from) 0%, var(--gradient-primary-to) 100%); padding: 4rem 0; }
-        .stat-item { text-align: center; color: #fff; }
-        .stat-item h2 { font-size: 3rem; font-weight: 800; }
         .gallery-item { position: relative; overflow: hidden; border-radius: 0.75rem; }
         .gallery-item img { transition: transform 0.3s; }
         .gallery-item:hover img { transform: scale(1.1); }

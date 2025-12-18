@@ -7,7 +7,6 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\SpeakerController;
 use App\Http\Controllers\Admin\ScheduleController;
-use App\Http\Controllers\Admin\PricingPlanController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\SponsorController;
@@ -27,7 +26,6 @@ Route::get('/events/{slug}', [HomeController::class, 'eventDetail'])->name('even
 Route::get('/speakers', [HomeController::class, 'speakers'])->name('speakers');
 Route::get('/speakers/{slug}', [HomeController::class, 'speakerDetail'])->name('speakers.show');
 Route::get('/schedule', [HomeController::class, 'schedule'])->name('schedule');
-Route::get('/pricing', [HomeController::class, 'pricing'])->name('pricing');
 Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
 Route::get('/blog/{slug}', [HomeController::class, 'blogDetail'])->name('blog.show');
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
@@ -48,7 +46,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('events', EventController::class)->except(['show']);
         Route::resource('speakers', SpeakerController::class)->except(['show']);
         Route::resource('schedules', ScheduleController::class)->except(['show']);
-        Route::resource('pricing-plans', PricingPlanController::class)->except(['show']);
         Route::resource('testimonials', TestimonialController::class)->except(['show']);
         Route::resource('blog-posts', BlogPostController::class)->except(['show']);
         Route::resource('sponsors', SponsorController::class)->except(['show']);

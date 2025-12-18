@@ -165,7 +165,7 @@
                 @if($speaker->localized_company)
                 <p class="text-muted mb-4">{{ $speaker->localized_company }}</p>
                 @endif
-                
+
                 <!-- Contact Information -->
                 <div class="row g-3 mb-4">
                     @if($speaker->phone)
@@ -428,7 +428,14 @@
                                 <p class="text-muted mb-2">{{ $schedule->localized_description }}</p>
                                 @endif
                                 @if($schedule->localized_venue)
-                                <small class="text-muted"><i class="bi bi-geo-alt me-1"></i>{{ $schedule->localized_venue }}</small>
+                                <small class="text-muted d-block mb-2"><i class="bi bi-geo-alt me-1"></i>{{ $schedule->localized_venue }}</small>
+                                @endif
+                                @if($schedule->pdf_file && $schedule->allow_download)
+                                <div class="mt-2">
+                                    <a href="{{ asset('storage/' . $schedule->pdf_file) }}" target="_blank" class="btn btn-sm btn-outline-primary" download>
+                                        <i class="bi bi-file-earmark-pdf me-1"></i>Download PDF
+                                    </a>
+                                </div>
                                 @endif
                             </div>
                             @if($schedule->event)

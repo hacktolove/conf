@@ -42,7 +42,6 @@
             <div class="col-lg-2 col-md-4">
                 <h6 class="text-uppercase mb-4">{{ __('messages.footer_support') }}</h6>
                 <ul class="list-unstyled">
-                    <li class="mb-2"><a href="{{ route('pricing') }}">{{ __('messages.nav_pricing') }}</a></li>
                     <li class="mb-2"><a href="{{ route('blog') }}">{{ __('messages.nav_blog') }}</a></li>
                     <li class="mb-2"><a href="{{ route('gallery') }}">{{ __('messages.footer_gallery') }}</a></li>
                     <li class="mb-2"><a href="{{ route('contact') }}">{{ __('messages.nav_contact') }}</a></li>
