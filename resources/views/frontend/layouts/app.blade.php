@@ -23,6 +23,7 @@
             --primary: {{ config('theme.colors.primary', '#6366f1') }};
             --primary-dark: {{ config('theme.colors.primary_dark', '#4f46e5') }};
             --secondary: {{ config('theme.colors.secondary', '#059669') }};
+            --accent: {{ config('theme.colors.accent', '#F79222') }};
             --dark: {{ config('theme.colors.dark', '#0f172a') }};
             --dark-light: {{ config('theme.colors.dark_light', '#1e293b') }};
             --gradient-primary-from: {{ config('theme.gradients.primary.from', '#6366f1') }};
@@ -32,6 +33,16 @@
         }
         body {
             font-family: {{ $isRTL ? "'Cairo', sans-serif" : "'Inter', sans-serif" }};
+        }
+        /* Make all Bootstrap icons orange (secondary color) */
+        i.bi, i[class*="bi-"] {
+            color: var(--secondary) !important;
+        }
+        /* Exceptions for specific cases that should keep their original color */
+        i.bi.text-muted,
+        i.bi.text-warning,
+        i.bi.text-danger {
+            color: inherit !important;
         }
         [dir="rtl"] {
             direction: rtl;
