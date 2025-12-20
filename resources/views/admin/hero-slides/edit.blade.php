@@ -89,10 +89,6 @@
                         <input type="file" class="form-control" id="image" name="image" accept="image/*">
                     </div>
                     <div class="mb-3">
-                        <label for="video_url" class="form-label">Video URL (Optional)</label>
-                        <input type="url" class="form-control" id="video_url" name="video_url" value="{{ old('video_url', $heroSlide->video_url) }}">
-                    </div>
-                    <div class="mb-3">
                         <label for="order" class="form-label">Order</label>
                         <input type="number" class="form-control" id="order" name="order" value="{{ old('order', $heroSlide->order) }}">
                     </div>

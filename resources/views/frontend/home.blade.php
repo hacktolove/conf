@@ -270,9 +270,7 @@
                                 @if($slide->localized_button_text)
                                 <a href="{{ $slide->button_link ?? '#' }}" class="btn btn-primary btn-lg px-5">{{ $slide->localized_button_text }}</a>
                                 @endif
-                                @if($slide->localized_button_text_2 && $slide->button_link_2)
-                                <a href="{{ $slide->button_link_2 }}" class="btn btn-outline-light btn-lg px-5">{{ $slide->localized_button_text_2 }}</a>
-                                @endif
+
                             </div>
 
                             <!-- Countdown Timer (Dynamic from Database) - Only show on first slide -->
