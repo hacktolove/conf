@@ -52,6 +52,36 @@
         background: #fff;
         border-color: #fff;
     }
+    /* RTL Support for Hero Carousel */
+    [dir="rtl"] .hero-section .carousel-control-prev {
+        left: auto;
+        right: 20px;
+    }
+    [dir="rtl"] .hero-section .carousel-control-next {
+        right: auto;
+        left: 20px;
+    }
+    [dir="rtl"] .hero-section .carousel-item .row {
+        direction: rtl;
+    }
+    [dir="rtl"] .hero-section .carousel-item .col-lg-6:first-child {
+        text-align: right;
+    }
+    [dir="rtl"] .hero-section .carousel-item .col-lg-6:last-child {
+        text-align: left;
+    }
+    /* Ensure carousel content is always visible */
+    .hero-section .carousel-item {
+        opacity: 1 !important;
+    }
+    .hero-section .carousel-item.active {
+        display: block !important;
+    }
+    .hero-section .carousel-item .row {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+    }
     /* Enhanced Countdown Timer */
     .countdown-timer {
         display: flex;
@@ -245,7 +275,7 @@
 <section class="hero-section">
     <div class="container position-relative">
         @if($heroSlides->count() > 0)
-        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000" data-bs-pause="hover">
             <!-- Carousel Indicators -->
             @if($heroSlides->count() > 1)
             <div class="carousel-indicators">
@@ -843,5 +873,17 @@
 
     updateSpeakerCountdown();
     setInterval(updateSpeakerCountdown, 1000);
+
+    // Ensure carousel stays longer and pauses on hover
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousel = document.getElementById('heroCarousel');
+        if (carousel) {
+            const bsCarousel = new bootstrap.Carousel(carousel, {
+                interval: 10000, // 10 seconds
+                pause: 'hover',  // Pause on hover
+                wrap: true        // Loop through slides
+            });
+        }
+    });
 </script>
 @endpush
