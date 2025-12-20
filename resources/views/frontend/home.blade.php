@@ -429,39 +429,6 @@
     </div>
 </section>
 
-<!-- Key Benefits Section -->
-<section class="py-5">
-    <div class="container py-5">
-        <div class="text-center mb-5">
-            <p class="section-subtitle mb-3">{{ __('messages.key_benefits') }}</p>
-            <h2 class="section-title display-5 fw-bold">{{ __('messages.key_advantages_title') }}</h2>
-        </div>
-        <div class="row g-4 align-items-stretch">
-            <div class="col-lg-6">
-                <div class="key-benefit-card">
-                    <div class="mb-4">
-                        <i class="bi bi-mic display-3 text-primary"></i>
-                    </div>
-                    <h4 class="mb-3 fw-bold">{{ __('messages.expert_keynote_sessions') }}</h4>
-                    <p class="text-muted fs-6">{{ __('messages.expert_keynote_description') }}</p>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="key-benefit-card">
-                    <div class="mb-4">
-                        <i class="bi bi-laptop display-3 text-primary"></i>
-                    </div>
-                    <h4 class="mb-3 fw-bold">{{ __('messages.advanced_event_technology') }}</h4>
-                    <p class="text-muted fs-6">{{ __('messages.expert_keynote_description') }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="text-center mt-5">
-            <a href="{{ route('schedule') }}" class="btn btn-primary btn-lg px-5">{{ __('messages.view_our_schedule') }}</a>
-        </div>
-    </div>
-</section>
-
 <!-- Event Schedule with Day Tabs -->
 @if($schedules->count() > 0)
 <section class="py-5 bg-light">
@@ -549,6 +516,39 @@
     </div>
 </section>
 @endif
+
+<!-- Key Benefits Section -->
+<section class="py-5">
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <p class="section-subtitle mb-3">{{ __('messages.key_benefits') }}</p>
+            <h2 class="section-title display-5 fw-bold">{{ __('messages.key_advantages_title') }}</h2>
+        </div>
+        <div class="row g-4 align-items-stretch">
+            <div class="col-lg-6">
+                <div class="key-benefit-card">
+                    <div class="mb-4">
+                        <i class="bi bi-mic display-3 text-primary"></i>
+                    </div>
+                    <h4 class="mb-3 fw-bold">{{ __('messages.expert_keynote_sessions') }}</h4>
+                    <p class="text-muted fs-6">{{ __('messages.expert_keynote_description') }}</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="key-benefit-card">
+                    <div class="mb-4">
+                        <i class="bi bi-laptop display-3 text-primary"></i>
+                    </div>
+                    <h4 class="mb-3 fw-bold">{{ __('messages.advanced_event_technology') }}</h4>
+                    <p class="text-muted fs-6">{{ __('messages.expert_keynote_description') }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5">
+            <a href="{{ route('schedule') }}" class="btn btn-primary btn-lg px-5">{{ __('messages.view_our_schedule') }}</a>
+        </div>
+    </div>
+</section>
 
 <!-- Speakers -->
 @if($speakers->count() > 0)
