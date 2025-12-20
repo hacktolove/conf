@@ -174,6 +174,7 @@ return [
     'sessions' => 'Sessions',
     'no_schedule_available' => 'No Schedule Available',
     'schedule_announced_soon' => 'The event schedule will be announced soon.',
+    'download_pdf' => 'Download PDF',
 
     // Pricing Page
     'pricing_plans' => 'Pricing Plans',

@@ -487,7 +487,7 @@
                                     @if($schedule->pdf_file && $schedule->allow_download)
                                     <div class="mt-2">
                                         <a href="{{ asset('storage/' . $schedule->pdf_file) }}" target="_blank" class="btn btn-sm btn-outline-primary" download>
-                                            <i class="bi bi-file-earmark-pdf me-1"></i>Download PDF
+                                            <i class="bi bi-file-earmark-pdf me-1"></i>{{ __('messages.download_pdf') }}
                                         </a>
                                     </div>
                                     @endif

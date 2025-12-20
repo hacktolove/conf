@@ -174,6 +174,7 @@ return [
     'sessions' => 'الجلسات',
     'no_schedule_available' => 'لا يوجد جدول متاح',
     'schedule_announced_soon' => 'سيتم الإعلان عن جدول الحدث قريباً.',
+    'download_pdf' => 'تحميل PDF',
 
     // Pricing Page
     'pricing_plans' => 'خطط التسعير',
