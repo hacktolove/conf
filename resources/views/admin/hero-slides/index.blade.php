@@ -21,12 +21,13 @@
                         <th>Subtitle</th>
                         <th>Order</th>
                         <th>Status</th>
-                        <th width="150">Actions</th>
+                        <th>Selected</th>
+                        <th width="200">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse($slides as $slide)
-                    <tr>
+                    <tr class="{{ $slide->is_selected ? 'table-success' : '' }}">
                         <td>
                             @if($slide->image)
                                 <img src="{{ asset('storage/' . $slide->image) }}" alt="" class="rounded" style="width: 70px; height: 50px; object-fit: cover;">
@@ -45,6 +46,23 @@
                             </span>
                         </td>
                         <td>
+                            @if($slide->is_selected)
+                                <span class="badge bg-success">
+                                    <i class="bi bi-check-circle"></i> Selected
+                                </span>
+                            @else
+                                <span class="badge bg-secondary">Not Selected</span>
+                            @endif
+                        </td>
+                        <td>
+                            @if(!$slide->is_selected)
+                            <form action="{{ route('admin.hero-slides.select', $slide) }}" method="POST" class="d-inline">
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-success" title="Select this slide">
+                                    <i class="bi bi-check-circle"></i> Select
+                                </button>
+                            </form>
+                            @endif
                             <a href="{{ route('admin.hero-slides.edit', $slide) }}" class="btn btn-sm btn-outline-primary">
                                 <i class="bi bi-pencil"></i>
                             </a>
@@ -59,7 +77,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="text-center py-4 text-muted">No slides found</td>
+                        <td colspan="7" class="text-center py-4 text-muted">No slides found</td>
                     </tr>
                     @endforelse
                 </tbody>

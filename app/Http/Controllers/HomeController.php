@@ -22,7 +22,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $heroSlides = HeroSlide::active()->orderBy('order')->get();
+        // Get the selected slide, or fallback to first active slide if none selected
+        $selectedSlide = HeroSlide::active()->selected()->first();
+        if (!$selectedSlide) {
+            $selectedSlide = HeroSlide::active()->orderBy('order')->first();
+        }
+        $heroSlides = $selectedSlide ? collect([$selectedSlide]) : collect();
         $events = Event::active()->upcoming()->orderBy('event_date')->take(6)->get();
         $speakers = Speaker::active()->featured()->orderBy('order')->take(8)->get();
         $schedules = Schedule::with(['event', 'speaker'])->active()->orderBy('schedule_date')->orderBy('start_time')->get();

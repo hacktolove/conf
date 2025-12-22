@@ -36,13 +36,20 @@ class HeroSlideController extends Controller
             'button_text_2_ar' => 'nullable|string|max:100',
             'button_link_2' => 'nullable|string|max:255',
             'is_active' => 'boolean',
+            'is_selected' => 'boolean',
             'order' => 'integer',
         ]);
 
         $validated['is_active'] = $request->boolean('is_active');
+        $validated['is_selected'] = $request->boolean('is_selected');
 
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('hero', 'public');
+        }
+
+        // If this slide is being selected, deselect all others
+        if ($validated['is_selected']) {
+            HeroSlide::query()->update(['is_selected' => false]);
         }
 
         HeroSlide::create($validated);
@@ -72,13 +79,20 @@ class HeroSlideController extends Controller
             'button_text_2_ar' => 'nullable|string|max:100',
             'button_link_2' => 'nullable|string|max:255',
             'is_active' => 'boolean',
+            'is_selected' => 'boolean',
             'order' => 'integer',
         ]);
 
         $validated['is_active'] = $request->boolean('is_active');
+        $validated['is_selected'] = $request->boolean('is_selected');
 
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('hero', 'public');
+        }
+
+        // If this slide is being selected, deselect all others
+        if ($validated['is_selected']) {
+            HeroSlide::where('id', '!=', $heroSlide->id)->update(['is_selected' => false]);
         }
 
         $heroSlide->update($validated);
@@ -90,5 +104,16 @@ class HeroSlideController extends Controller
     {
         $heroSlide->delete();
         return redirect()->route('admin.hero-slides.index')->with('success', 'Hero slide deleted successfully.');
+    }
+
+    public function select(HeroSlide $heroSlide)
+    {
+        // Deselect all other slides
+        HeroSlide::where('id', '!=', $heroSlide->id)->update(['is_selected' => false]);
+        
+        // Select this slide
+        $heroSlide->update(['is_selected' => true]);
+
+        return redirect()->route('admin.hero-slides.index')->with('success', 'Hero slide selected successfully.');
     }
 }

@@ -92,6 +92,13 @@
                             <label class="form-check-label" for="is_active">Active</label>
                         </div>
                     </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="is_selected" name="is_selected" value="1" {{ old('is_selected', false) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="is_selected">Display on Home Page</label>
+                            <small class="form-text text-muted d-block">Selecting this will automatically deselect all other slides.</small>
+                        </div>
+                    </div>
                 </div>
             </div>
             <hr>

@@ -52,6 +52,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('galleries', GalleryController::class)->except(['show']);
         Route::resource('faqs', FaqController::class)->except(['show']);
         Route::resource('hero-slides', HeroSlideController::class)->except(['show']);
+        Route::post('hero-slides/{heroSlide}/select', [HeroSlideController::class, 'select'])->name('hero-slides.select');
         Route::resource('statistics', StatisticController::class)->except(['show']);
 
         Route::get('subscribers', [SubscriberController::class, 'index'])->name('subscribers.index');

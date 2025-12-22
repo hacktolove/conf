@@ -9,16 +9,22 @@ class HeroSlide extends Model
     protected $fillable = [
         'title', 'title_ar', 'subtitle', 'subtitle_ar', 'description', 'description_ar', 'image',
         'button_text', 'button_text_ar', 'button_link', 'button_text_2', 'button_text_2_ar', 'button_link_2',
-        'is_active', 'order'
+        'is_active', 'is_selected', 'order'
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
+        'is_selected' => 'boolean',
     ];
 
     public function scopeActive($query)
     {
         return $query->where('is_active', true);
+    }
+
+    public function scopeSelected($query)
+    {
+        return $query->where('is_selected', true);
     }
 
     /**

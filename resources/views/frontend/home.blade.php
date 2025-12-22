@@ -275,77 +275,49 @@
 <section class="hero-section">
     <div class="container position-relative">
         @if($heroSlides->count() > 0)
-        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000" data-bs-pause="hover">
-            <!-- Carousel Indicators -->
-            @if($heroSlides->count() > 1)
-            <div class="carousel-indicators">
-                @foreach($heroSlides as $index => $slide)
-                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
-                @endforeach
-            </div>
-            @endif
+        @php $slide = $heroSlides->first(); @endphp
+        <div class="hero-slide-single">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6 text-white">
+                    @if($slide->localized_subtitle)
+                    <p class="section-subtitle mb-3">{{ $slide->localized_subtitle }}</p>
+                    @endif
+                    <h1 class="display-3 fw-bold mb-4">{{ $slide->localized_title }}</h1>
+                    <p class="lead mb-4 text-white-50">{{ $slide->localized_description }}</p>
+                    <div class="d-flex gap-3 mb-5 flex-wrap align-items-center">
+                        @if($slide->localized_button_text)
+                        <a href="{{ $slide->button_link ?? '#' }}" class="btn btn-primary btn-lg px-5">{{ $slide->localized_button_text }}</a>
+                        @endif
+                    </div>
 
-            <!-- Carousel Items -->
-            <div class="carousel-inner">
-                @foreach($heroSlides as $index => $slide)
-                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                    <div class="row align-items-center min-vh-100">
-                        <div class="col-lg-6 text-white">
-                            @if($slide->localized_subtitle)
-                            <p class="section-subtitle mb-3">{{ $slide->localized_subtitle }}</p>
-                            @endif
-                            <h1 class="display-3 fw-bold mb-4">{{ $slide->localized_title }}</h1>
-                            <p class="lead mb-4 text-white-50">{{ $slide->localized_description }}</p>
-                            <div class="d-flex gap-3 mb-5 flex-wrap align-items-center">
-                                @if($slide->localized_button_text)
-                                <a href="{{ $slide->button_link ?? '#' }}" class="btn btn-primary btn-lg px-5">{{ $slide->localized_button_text }}</a>
-                                @endif
-
-                            </div>
-
-                            <!-- Countdown Timer (Dynamic from Database) - Only show on first slide -->
-                            @if($hasCountdown && $index === 0)
-                            <div class="countdown-timer">
-                                <div class="countdown-item">
-                                    <span class="number" id="days">00</span>
-                                    <span class="label">{{ __('messages.days') }}</span>
-                                </div>
-                                <div class="countdown-item">
-                                    <span class="number" id="hours">00</span>
-                                    <span class="label">{{ __('messages.hours') }}</span>
-                                </div>
-                                <div class="countdown-item">
-                                    <span class="number" id="minutes">00</span>
-                                    <span class="label">{{ __('messages.minutes') }}</span>
-                                </div>
-                                <div class="countdown-item">
-                                    <span class="number" id="seconds">00</span>
-                                    <span class="label">{{ __('messages.seconds') }}</span>
-                                </div>
-                            </div>
-                            @endif
+                    <!-- Countdown Timer (Dynamic from Database) -->
+                    @if($hasCountdown)
+                    <div class="countdown-timer">
+                        <div class="countdown-item">
+                            <span class="number" id="days">00</span>
+                            <span class="label">{{ __('messages.days') }}</span>
                         </div>
-                        <div class="col-lg-6 text-center">
-                            @if($slide->image)
-                            <img src="{{ asset('storage/' . $slide->image) }}" alt="{{ $slide->localized_title }}" class="img-fluid rounded-4 shadow-lg">
-                            @endif
+                        <div class="countdown-item">
+                            <span class="number" id="hours">00</span>
+                            <span class="label">{{ __('messages.hours') }}</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="number" id="minutes">00</span>
+                            <span class="label">{{ __('messages.minutes') }}</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="number" id="seconds">00</span>
+                            <span class="label">{{ __('messages.seconds') }}</span>
                         </div>
                     </div>
+                    @endif
                 </div>
-                @endforeach
+                <div class="col-lg-6 text-center">
+                    @if($slide->image)
+                    <img src="{{ asset('storage/' . $slide->image) }}" alt="{{ $slide->localized_title }}" class="img-fluid rounded-4 shadow-lg">
+                    @endif
+                </div>
             </div>
-
-            <!-- Carousel Controls -->
-            @if($heroSlides->count() > 1)
-            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-            @endif
         </div>
         @else
         <div class="row align-items-center min-vh-100">
@@ -873,17 +845,5 @@
 
     updateSpeakerCountdown();
     setInterval(updateSpeakerCountdown, 1000);
-
-    // Ensure carousel stays longer and pauses on hover
-    document.addEventListener('DOMContentLoaded', function() {
-        const carousel = document.getElementById('heroCarousel');
-        if (carousel) {
-            const bsCarousel = new bootstrap.Carousel(carousel, {
-                interval: 10000, // 10 seconds
-                pause: 'hover',  // Pause on hover
-                wrap: true        // Loop through slides
-            });
-        }
-    });
 </script>
 @endpush
