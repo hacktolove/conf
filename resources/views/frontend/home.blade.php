@@ -253,6 +253,18 @@
         background: #fff;
         padding: 1.5rem;
     }
+    /* RTL Support for FAQ Accordion */
+    [dir="rtl"] .faq-item .accordion-button {
+        padding-right: 1.5rem;
+        padding-left: 3rem;
+        text-align: right;
+    }
+    [dir="rtl"] .faq-item .accordion-button::after {
+        right: auto;
+        left: 1.25rem;
+        margin-left: 0;
+        margin-right: auto;
+    }
     /* Testimonial Cards */
     .testimonial-card {
         background: #fff;
