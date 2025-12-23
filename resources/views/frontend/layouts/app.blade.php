@@ -9,6 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Evenza - Event Management')</title>
+    <!-- Preconnect to Google Fonts for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     @if($isRTL)
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
@@ -16,7 +19,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     @if($isRTL)
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     @endif
     <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
     <style>
@@ -33,7 +36,7 @@
             --gradient-hero-to: {{ config('theme.gradients.hero.to', '#1e293b') }};
         }
         body {
-            font-family: {{ $isRTL ? "'Cairo', sans-serif" : "'Inter', sans-serif" }};
+            font-family: {{ $isRTL ? "'Noto Kufi Arabic', 'Arial', sans-serif" : "'Inter', sans-serif" }};
         }
         /* Make all Bootstrap icons orange (secondary color) */
         i.bi, i[class*="bi-"] {
@@ -97,13 +100,13 @@
             padding-left: 0;
             padding-right: 1.5rem;
         }
-        .navbar { 
+        .navbar {
             background: linear-gradient(135deg, var(--gradient-hero-from) 0%, var(--gradient-hero-to) 100%);
             transition: all 0.3s;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
-        .navbar.scrolled { 
+        .navbar.scrolled {
             background: rgba(15, 23, 42, 0.95);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
