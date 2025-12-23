@@ -20,10 +20,10 @@
 <section class="py-5">
     <div class="container py-5">
         <div class="row align-items-center g-5">
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
                 <img src="{{ asset('images/about.jpg') }}" alt="About Us" class="img-fluid rounded shadow">
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-12">
                 <span class="badge bg-primary-subtle text-primary mb-3">{{ __('messages.who_we_are') }}</span>
                 <h2 class="display-5 fw-bold mb-4">{{ App\Models\SiteSetting::getLocalized('site_name', 'Evenza') }}</h2>
                 <p class="lead text-muted">{{ App\Models\SiteSetting::getLocalized('site_tagline', 'Your Premier Event Management Platform') }}</p>
@@ -31,7 +31,7 @@
 
                 <div class="row g-4 mt-4">
                     @foreach($statistics ?? [] as $stat)
-                    <div class="col-6">
+                    <div class="col-sm-6 col-6">
                         <div class="d-flex align-items-center">
                             <div class="stat-icon me-3">
                                 <i class="bi {{ $stat->icon ?? 'bi-star' }} text-primary fs-2"></i>
@@ -102,7 +102,7 @@
         </div>
         <div class="row g-4">
             @foreach($testimonials as $testimonial)
-            <div class="col-md-4">
+            <div class="col-lg-4 col-md-6">
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="card-body p-4">
                         <div class="d-flex mb-3">

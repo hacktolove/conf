@@ -100,6 +100,7 @@
         padding: 1.5rem 1rem;
         min-width: 90px;
         transition: transform 0.3s;
+        flex: 0 0 auto;
     }
     .countdown-item:hover {
         transform: translateY(-5px);
@@ -279,6 +280,200 @@
         transform: translateY(-5px);
         box-shadow: 0 10px 30px rgba(0,0,0,0.12);
     }
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        /* Hero Section Mobile */
+        .hero-section {
+            min-height: auto;
+            padding: 2rem 0;
+        }
+        .hero-section .row {
+            min-height: auto !important;
+        }
+        .hero-section h1.display-3 {
+            font-size: 2rem !important;
+            line-height: 1.2;
+        }
+        .hero-section .lead {
+            font-size: 1rem;
+        }
+        .hero-section .btn-lg {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+        }
+        .hero-section .section-subtitle {
+            font-size: 0.75rem;
+        }
+
+        /* Countdown Timer Mobile */
+        .countdown-timer {
+            gap: 0.75rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+            width: 100%;
+        }
+        .countdown-item {
+            min-width: 70px;
+            padding: 1rem 0.75rem;
+            flex: 0 0 calc(50% - 0.375rem);
+            max-width: calc(50% - 0.375rem);
+            box-sizing: border-box;
+        }
+        .countdown-item .number {
+            font-size: 1.75rem;
+        }
+        .countdown-item .label {
+            font-size: 0.65rem;
+        }
+
+        /* Section Padding Mobile */
+        section.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+        .container.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+
+        /* Typography Mobile */
+        .display-5 {
+            font-size: 2rem !important;
+        }
+        .section-title {
+            font-size: 1.75rem !important;
+        }
+
+        /* Key Benefit Cards Mobile */
+        .key-benefit-card {
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .key-benefit-card .display-3 {
+            font-size: 2.5rem !important;
+        }
+
+        /* Testimonial Cards Mobile */
+        .testimonial-card {
+            padding: 1.5rem;
+        }
+
+        /* Schedule Tabs Mobile */
+        .schedule-day-tabs {
+            overflow-x: auto;
+            flex-wrap: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+        .schedule-day-tabs .nav-link {
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        /* About Tabs Mobile */
+        .about-tabs {
+            overflow-x: auto;
+            flex-wrap: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+        .about-tabs .nav-link {
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        /* Schedule Items Mobile */
+        .schedule-item {
+            padding: 1rem !important;
+        }
+        .schedule-item .row {
+            margin: 0;
+        }
+        .schedule-item .col-md-2,
+        .schedule-item .col-md-7,
+        .schedule-item .col-md-3 {
+            margin-bottom: 1rem;
+        }
+        .schedule-item .text-md-end {
+            text-align: left !important;
+        }
+        .schedule-item .justify-content-md-end {
+            justify-content: flex-start !important;
+        }
+
+        /* Buttons Mobile */
+        .btn-lg {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+        }
+        .btn-lg.px-5 {
+            padding-left: 1.5rem !important;
+            padding-right: 1.5rem !important;
+        }
+
+        /* Speaker Reveal Section Mobile */
+        .speaker-reveal-image img {
+            max-height: 300px !important;
+        }
+
+        /* Blog Cards Mobile */
+        .card-event img {
+            height: 200px !important;
+        }
+
+        /* Sponsors Mobile */
+        .sponsor-logo {
+            max-height: 50px !important;
+        }
+
+        /* FAQ Mobile */
+        .faq-item .accordion-button {
+            padding: 1rem;
+            font-size: 0.95rem;
+        }
+        .faq-item .accordion-body {
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* RTL FAQ Mobile */
+        [dir="rtl"] .faq-item .accordion-button {
+            padding-right: 1rem;
+            padding-left: 2.5rem;
+        }
+        [dir="rtl"] .faq-item .accordion-button::after {
+            left: 0.75rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        /* Extra Small Mobile */
+        .hero-section h1.display-3 {
+            font-size: 1.5rem !important;
+        }
+        .display-5 {
+            font-size: 1.5rem !important;
+        }
+        .section-title {
+            font-size: 1.5rem !important;
+        }
+        .countdown-item {
+            min-width: 60px;
+            padding: 0.75rem 0.5rem;
+        }
+        .countdown-item .number {
+            font-size: 1.5rem;
+        }
+        .countdown-item .label {
+            font-size: 0.6rem;
+        }
+        .key-benefit-card {
+            padding: 1.25rem;
+        }
+        .testimonial-card {
+            padding: 1.25rem;
+        }
+    }
 </style>
 @endpush
 
@@ -290,15 +485,15 @@
         @php $slide = $heroSlides->first(); @endphp
         <div class="hero-slide-single">
             <div class="row align-items-center min-vh-100">
-                <div class="col-lg-6 text-white">
+                <div class="col-lg-6 col-md-12 text-white order-2 order-lg-1">
                     @if($slide->localized_subtitle)
                     <p class="section-subtitle mb-3">{{ $slide->localized_subtitle }}</p>
                     @endif
                     <h1 class="display-3 fw-bold mb-4">{{ $slide->localized_title }}</h1>
                     <p class="lead mb-4 text-white-50">{{ $slide->localized_description }}</p>
-                    <div class="d-flex gap-3 mb-5 flex-wrap align-items-center">
+                    <div class="d-flex gap-3 mb-4 mb-lg-5 flex-wrap align-items-center">
                         @if($slide->localized_button_text)
-                        <a href="{{ $slide->button_link ?? '#' }}" class="btn btn-primary btn-lg px-5">{{ $slide->localized_button_text }}</a>
+                        <a href="{{ $slide->button_link ?? '#' }}" class="btn btn-primary btn-lg px-4 px-lg-5 w-100 w-md-auto">{{ $slide->localized_button_text }}</a>
                         @endif
                     </div>
 
@@ -324,7 +519,7 @@
                     </div>
                     @endif
                 </div>
-                <div class="col-lg-6 text-center">
+                <div class="col-lg-6 col-md-12 text-center mt-4 mt-lg-0 order-1 order-lg-2">
                     @if($slide->image)
                     <img src="{{ asset('storage/' . $slide->image) }}" alt="{{ $slide->localized_title }}" class="img-fluid rounded-4 shadow-lg">
                     @endif
@@ -349,7 +544,7 @@
 <section class="py-5 bg-light">
     <div class="container py-5">
         <div class="row align-items-center">
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
                 <p class="section-subtitle mb-3">{{ __('messages.upcoming_speaker_reveal') }}</p>
                 @if($showSpeaker && $upcomingSpeaker)
                     <h2 class="display-5 fw-bold mb-4">{{ $upcomingSpeaker->localized_name }}</h2>
@@ -385,7 +580,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 text-center">
+            <div class="col-lg-6 col-md-12 text-center">
                 <div class="speaker-reveal-image">
                     @if($showSpeaker && $upcomingSpeaker && $upcomingSpeaker->image)
                         <img src="{{ asset('storage/' . $upcomingSpeaker->image) }}" alt="{{ $upcomingSpeaker->localized_name }}" class="img-fluid rounded-4 shadow-lg" style="max-height: 500px; width: auto; object-fit: cover;">
@@ -405,10 +600,10 @@
 <section class="py-5">
     <div class="container py-5">
         <div class="row align-items-center g-5">
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
                 <img src="{{ asset('storage/about/about-1.jpg') }}" alt="About" class="img-fluid rounded-4 shadow-lg" onerror="this.src='https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600'">
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-12">
                 <p class="section-subtitle mb-3">{{ __('messages.about_us') }}</p>
                 <h2 class="section-title display-5 fw-bold mb-4">{{ __('messages.uncover_mission') }}</h2>
                 <p class="text-muted mb-4 lead">{{ __('messages.discover_vision') }}</p>
@@ -539,7 +734,7 @@
             <h2 class="section-title display-5 fw-bold">{{ __('messages.key_advantages_title') }}</h2>
         </div>
         <div class="row g-4 align-items-stretch">
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-12">
                 <div class="key-benefit-card">
                     <div class="mb-4">
                         <i class="bi bi-mic display-3 text-primary"></i>
@@ -548,7 +743,7 @@
                     <p class="text-muted fs-6">{{ __('messages.expert_keynote_description') }}</p>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-12">
                 <div class="key-benefit-card">
                     <div class="mb-4">
                         <i class="bi bi-laptop display-3 text-primary"></i>
@@ -661,7 +856,7 @@
         </div>
         <div class="row g-4">
             @foreach($testimonials->take(3) as $testimonial)
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-6">
                 <div class="testimonial-card h-100">
                     <div class="mb-4">
                         @for($i = 1; $i <= 5; $i++)
@@ -729,7 +924,7 @@
         </div>
         <div class="row g-4">
             @foreach($blogPosts as $post)
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-6">
                 <div class="card card-event h-100 border-0 shadow-sm">
                     @if($post->image)
                     <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top" alt="{{ $post->localized_title }}" style="height: 250px; object-fit: cover;">

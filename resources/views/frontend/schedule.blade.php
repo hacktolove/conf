@@ -53,7 +53,7 @@
                     <div class="schedule-item card border-0 shadow-sm mb-4">
                         <div class="card-body p-4">
                             <div class="row align-items-center">
-                                <div class="col-md-2 text-center border-end">
+                                <div class="col-md-2 col-12 text-center border-end mb-3 mb-md-0">
                                     <span class="badge bg-primary-subtle text-primary fs-6 mb-1">
                                         {{ $schedule->start_time ? \Carbon\Carbon::parse($schedule->start_time)->format('g:i A') : 'TBA' }}
                                     </span>
@@ -62,7 +62,7 @@
                                     <small class="text-muted">to {{ \Carbon\Carbon::parse($schedule->end_time)->format('g:i A') }}</small>
                                     @endif
                                 </div>
-                                <div class="col-md-7">
+                                <div class="col-md-7 col-12 mb-3 mb-md-0">
                                     <h5 class="fw-bold mb-2">{{ $schedule->localized_title }}</h5>
                                     @if($schedule->localized_description)
                                     <p class="text-muted mb-2">{{ Str::limit($schedule->localized_description, 150) }}</p>
@@ -83,7 +83,7 @@
                                     </div>
                                     @endif
                                 </div>
-                                <div class="col-md-3 text-center">
+                                <div class="col-md-3 col-12 text-center">
                                     @if($schedule->speaker)
                                     <a href="{{ route('speakers.show', $schedule->speaker->slug) }}" class="text-decoration-none">
                                         @if($schedule->speaker->image)

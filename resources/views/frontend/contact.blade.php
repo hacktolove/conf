@@ -20,7 +20,7 @@
 <section class="py-5">
     <div class="container py-5">
         <div class="row g-5">
-            <div class="col-lg-5">
+            <div class="col-lg-5 col-md-12 mb-4 mb-lg-0">
                 <h3 class="mb-4">{{ __('messages.get_in_touch') }}</h3>
                 <p class="text-muted mb-4">{{ __('messages.contact_description') }}</p>
 
@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-7">
+            <div class="col-lg-7 col-md-12">
                 <div class="card shadow-sm">
                     <div class="card-body p-4">
                         <h4 class="mb-4">{{ __('messages.send_us_message') }}</h4>

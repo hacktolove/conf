@@ -18,6 +18,7 @@
     @if($isRTL)
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     @endif
+    <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
     <style>
         :root {
             --primary: {{ config('theme.colors.primary', '#6366f1') }};
@@ -96,8 +97,27 @@
             padding-left: 0;
             padding-right: 1.5rem;
         }
-        .navbar { background: transparent; transition: all 0.3s; }
-        .navbar.scrolled { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .navbar { 
+            background: linear-gradient(135deg, var(--gradient-hero-from) 0%, var(--gradient-hero-to) 100%);
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .navbar.scrolled { 
+            background: rgba(15, 23, 42, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 991px) {
+            .navbar {
+                background: rgba(15, 23, 42, 0.98);
+            }
+            .navbar .navbar-collapse {
+                background: rgba(15, 23, 42, 0.98);
+                margin-top: 1rem;
+                padding: 1rem;
+                border-radius: 0.5rem;
+            }
+        }
         .navbar-brand { font-weight: 700; font-size: 1.5rem; }
         .navbar-brand img,
         .navbar-brand-logo {
@@ -176,12 +196,8 @@
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
-                navbar.classList.remove('navbar-dark');
-                navbar.classList.add('navbar-light');
             } else {
                 navbar.classList.remove('scrolled');
-                navbar.classList.add('navbar-dark');
-                navbar.classList.remove('navbar-light');
             }
         });
     </script>
