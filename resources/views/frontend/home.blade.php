@@ -4,6 +4,51 @@
 
 @push('styles')
 <style>
+    /* Prevent horizontal overflow - Images and Containers */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    .container, .container-fluid {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    /* Make container smaller on home page */
+    section .container,
+    .navbar .container {
+        max-width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    @media (min-width: 992px) {
+        section .container,
+        .navbar .container {
+            max-width: 960px;
+        }
+    }
+    @media (min-width: 1200px) {
+        section .container,
+        .navbar .container {
+            max-width: 1140px;
+        }
+    }
+    @media (min-width: 1400px) {
+        section .container,
+        .navbar .container {
+            max-width: 1140px;
+        }
+    }
+    .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    [class*="col-"] {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    
     /* Hero Carousel Styles */
     .hero-section .carousel {
         min-height: 100vh;
@@ -89,6 +134,8 @@
         justify-content: flex-start;
         margin: 2.5rem 0;
         flex-wrap: wrap;
+        width: 100%;
+        max-width: 100%;
     }
     .countdown-item {
         text-align: center;
@@ -101,6 +148,8 @@
         min-width: 90px;
         transition: transform 0.3s;
         flex: 0 0 auto;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     .countdown-item:hover {
         transform: translateY(-5px);
@@ -144,6 +193,12 @@
         0% { transform: translateX(100%); }
         100% { transform: translateX(-100%); }
     }
+    .about-tabs {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
     .about-tabs .nav-link {
         border: none;
         color: #666;
@@ -153,6 +208,7 @@
         border-radius: 0;
         position: relative;
         transition: all 0.3s;
+        flex-shrink: 0;
     }
     .about-tabs .nav-link:hover {
         color: var(--primary);
@@ -186,6 +242,10 @@
     }
     .schedule-day-tabs {
         border-bottom: 2px solid #e9ecef;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
     }
     .schedule-day-tabs .nav-link {
         border: none;
@@ -196,6 +256,7 @@
         background: transparent;
         border-radius: 0.5rem 0.5rem 0 0;
         transition: all 0.3s;
+        flex-shrink: 0;
     }
     .schedule-day-tabs .nav-link:hover {
         color: var(--primary);
@@ -286,16 +347,22 @@
         .hero-section {
             min-height: auto;
             padding: 2rem 0;
+            padding-top: 5rem;
         }
         .hero-section .row {
             min-height: auto !important;
         }
+        .hero-section .col-lg-6 {
+            padding: 1rem 0;
+        }
         .hero-section h1.display-3 {
             font-size: 2rem !important;
             line-height: 1.2;
+            margin-bottom: 1rem !important;
         }
         .hero-section .lead {
             font-size: 1rem;
+            margin-bottom: 1.5rem !important;
         }
         .hero-section .btn-lg {
             padding: 0.75rem 1.5rem;
@@ -303,21 +370,30 @@
         }
         .hero-section .section-subtitle {
             font-size: 0.75rem;
+            margin-bottom: 0.75rem !important;
+        }
+        .hero-section img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 1.5rem;
         }
 
         /* Countdown Timer Mobile */
         .countdown-timer {
-            gap: 0.75rem;
+            gap: 0.5rem;
             justify-content: center;
             margin: 1.5rem 0;
             width: 100%;
+            max-width: 100%;
+            padding: 0 0.5rem;
         }
         .countdown-item {
-            min-width: 70px;
-            padding: 1rem 0.75rem;
-            flex: 0 0 calc(50% - 0.375rem);
-            max-width: calc(50% - 0.375rem);
+            min-width: 0;
+            padding: 1rem 0.5rem;
+            flex: 1 1 calc(50% - 0.25rem);
+            max-width: calc(50% - 0.25rem);
             box-sizing: border-box;
+            width: auto;
         }
         .countdown-item .number {
             font-size: 1.75rem;
@@ -363,11 +439,26 @@
             overflow-x: auto;
             flex-wrap: nowrap;
             -webkit-overflow-scrolling: touch;
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .schedule-day-tabs::-webkit-scrollbar {
+            height: 4px;
+        }
+        .schedule-day-tabs::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .schedule-day-tabs::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 2px;
         }
         .schedule-day-tabs .nav-link {
             padding: 0.75rem 1rem;
             font-size: 0.9rem;
             white-space: nowrap;
+            flex-shrink: 0;
         }
 
         /* About Tabs Mobile */
@@ -375,11 +466,26 @@
             overflow-x: auto;
             flex-wrap: nowrap;
             -webkit-overflow-scrolling: touch;
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .about-tabs::-webkit-scrollbar {
+            height: 4px;
+        }
+        .about-tabs::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .about-tabs::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 2px;
         }
         .about-tabs .nav-link {
             padding: 0.75rem 1rem;
             font-size: 0.9rem;
             white-space: nowrap;
+            flex-shrink: 0;
         }
 
         /* Schedule Items Mobile */
@@ -448,8 +554,23 @@
 
     @media (max-width: 576px) {
         /* Extra Small Mobile */
+        .hero-section {
+            padding-top: 4.5rem;
+            padding-bottom: 1.5rem;
+        }
         .hero-section h1.display-3 {
             font-size: 1.5rem !important;
+            line-height: 1.3;
+        }
+        .hero-section .lead {
+            font-size: 0.9rem;
+        }
+        .hero-section .section-subtitle {
+            font-size: 0.7rem;
+        }
+        .hero-section .btn-lg {
+            padding: 0.65rem 1.25rem;
+            font-size: 0.95rem;
         }
         .display-5 {
             font-size: 1.5rem !important;
@@ -458,8 +579,10 @@
             font-size: 1.5rem !important;
         }
         .countdown-item {
-            min-width: 60px;
+            min-width: 0;
             padding: 0.75rem 0.5rem;
+            flex: 1 1 calc(50% - 0.25rem);
+            max-width: calc(50% - 0.25rem);
         }
         .countdown-item .number {
             font-size: 1.5rem;

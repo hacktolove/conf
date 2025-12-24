@@ -6,6 +6,89 @@
 <style>
     .navbar { background: var(--dark) !important; }
     .navbar.scrolled { background: #fff !important; }
+    
+    /* Social Links Centering */
+    .social-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+    .social-links .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+    }
+    .social-links .btn i {
+        margin: 0;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        /* Page Header Mobile */
+        .page-header h1.display-4 {
+            font-size: 2rem !important;
+        }
+        .page-header .lead {
+            font-size: 1rem;
+        }
+        
+        /* Section Padding Mobile */
+        section.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+        .container.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+        
+        /* Speaker Cards Mobile */
+        .speaker-card .card-body {
+            padding: 1.5rem !important;
+        }
+        .speaker-image img,
+        .speaker-image div {
+            width: 120px !important;
+            height: 120px !important;
+        }
+        .speaker-image i {
+            font-size: 3rem !important;
+        }
+        .col-lg-3 {
+            margin-bottom: 1.5rem;
+        }
+        .social-links .btn {
+            width: 35px;
+            height: 35px;
+            padding: 0;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        /* Extra Small Mobile */
+        .page-header h1.display-4 {
+            font-size: 1.5rem !important;
+        }
+        .speaker-card .card-body {
+            padding: 1.25rem !important;
+        }
+        .speaker-image img,
+        .speaker-image div {
+            width: 100px !important;
+            height: 100px !important;
+        }
+        .speaker-image i {
+            font-size: 2.5rem !important;
+        }
+        h5 {
+            font-size: 1rem;
+        }
+    }
 </style>
 @endpush
 

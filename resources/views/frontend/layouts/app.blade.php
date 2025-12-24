@@ -35,6 +35,16 @@
             --gradient-hero-from: {{ config('theme.gradients.hero.from', '#0f172a') }};
             --gradient-hero-to: {{ config('theme.gradients.hero.to', '#1e293b') }};
         }
+        /* Prevent horizontal scrolling */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
         body {
             font-family: {{ $isRTL ? "'Noto Kufi Arabic', 'Arial', sans-serif" : "'Inter', sans-serif" }};
         }
@@ -115,10 +125,36 @@
                 background: rgba(15, 23, 42, 0.98);
             }
             .navbar .navbar-collapse {
-                background: rgba(15, 23, 42, 0.98);
+                background: rgba(15, 23, 42, 1) !important;
                 margin-top: 1rem;
-                padding: 1rem;
+                padding: 1.5rem;
                 border-radius: 0.5rem;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .navbar .navbar-collapse .nav-link {
+                color: rgba(255, 255, 255, 0.9) !important;
+                padding: 0.75rem 1rem;
+                border-radius: 0.5rem;
+                margin-bottom: 0.5rem;
+                transition: all 0.3s;
+            }
+            .navbar .navbar-collapse .nav-link:hover,
+            .navbar .navbar-collapse .nav-link.active {
+                background: rgba(255, 255, 255, 0.1);
+                color: #fff !important;
+            }
+            .navbar .navbar-collapse .dropdown-menu {
+                background: rgba(15, 23, 42, 0.95);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .navbar .navbar-collapse .btn-outline-light {
+                border-color: rgba(255, 255, 255, 0.3);
+                color: rgba(255, 255, 255, 0.9);
+            }
+            .navbar .navbar-collapse .btn-outline-light:hover {
+                background: rgba(255, 255, 255, 0.1);
+                border-color: rgba(255, 255, 255, 0.5);
             }
         }
         .navbar-brand { font-weight: 700; font-size: 1.5rem; }

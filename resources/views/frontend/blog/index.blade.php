@@ -6,6 +6,65 @@
 <style>
     .navbar { background: var(--dark) !important; }
     .navbar.scrolled { background: #fff !important; }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        /* Page Header Mobile */
+        .page-header h1.display-4 {
+            font-size: 2rem !important;
+        }
+        .page-header .lead {
+            font-size: 1rem;
+        }
+        
+        /* Section Padding Mobile */
+        section.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+        .container.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+        
+        /* Blog Cards Mobile */
+        .blog-card .card-body {
+            padding: 1.5rem !important;
+        }
+        .blog-card img,
+        .blog-card div {
+            height: 200px !important;
+        }
+        .blog-card i {
+            font-size: 3rem !important;
+        }
+        .col-lg-4 {
+            margin-bottom: 1.5rem;
+        }
+        h5.card-title {
+            font-size: 1.1rem;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        /* Extra Small Mobile */
+        .page-header h1.display-4 {
+            font-size: 1.5rem !important;
+        }
+        .blog-card .card-body {
+            padding: 1.25rem !important;
+        }
+        .blog-card img,
+        .blog-card div {
+            height: 180px !important;
+        }
+        .blog-card i {
+            font-size: 2.5rem !important;
+        }
+        h5.card-title {
+            font-size: 1rem;
+        }
+    }
 </style>
 @endpush
 

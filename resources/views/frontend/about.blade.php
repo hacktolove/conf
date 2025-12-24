@@ -6,6 +6,82 @@
 <style>
     .navbar { background: var(--dark) !important; }
     .navbar.scrolled { background: #fff !important; }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        /* Page Header Mobile */
+        .page-header h1.display-4 {
+            font-size: 2rem !important;
+        }
+        .page-header .lead {
+            font-size: 1rem;
+        }
+        
+        /* Section Padding Mobile */
+        section.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+        .container.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+        
+        /* Typography Mobile */
+        .display-5 {
+            font-size: 1.75rem !important;
+        }
+        h2.display-5 {
+            font-size: 1.75rem !important;
+        }
+        
+        /* Statistics Grid Mobile */
+        .stat-icon i {
+            font-size: 1.5rem !important;
+        }
+        .stat-icon {
+            margin-right: 0.75rem !important;
+        }
+        
+        /* Value Cards Mobile */
+        .col-md-4 .card-body {
+            padding: 1.5rem !important;
+        }
+        .icon-box {
+            width: 60px !important;
+            height: 60px !important;
+        }
+        .icon-box i {
+            font-size: 1.5rem !important;
+        }
+        
+        /* Testimonial Cards Mobile */
+        .col-lg-4 .card-body {
+            padding: 1.5rem !important;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        /* Extra Small Mobile */
+        .page-header h1.display-4 {
+            font-size: 1.5rem !important;
+        }
+        .display-5 {
+            font-size: 1.5rem !important;
+        }
+        h2.display-5 {
+            font-size: 1.5rem !important;
+        }
+        .stat-icon i {
+            font-size: 1.25rem !important;
+        }
+        .col-md-4 .card-body {
+            padding: 1.25rem !important;
+        }
+        .col-lg-4 .card-body {
+            padding: 1.25rem !important;
+        }
+    }
 </style>
 @endpush
 

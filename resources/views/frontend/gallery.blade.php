@@ -11,6 +11,70 @@
     .gallery-item:hover img { transform: scale(1.1); }
     .gallery-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); opacity: 0; transition: opacity 0.3s ease; display: flex; align-items: center; justify-content: center; }
     .gallery-item:hover .gallery-overlay { opacity: 1; }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        /* Page Header Mobile */
+        .page-header h1.display-4 {
+            font-size: 2rem !important;
+        }
+        .page-header .lead {
+            font-size: 1rem;
+        }
+        
+        /* Section Padding Mobile */
+        section.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+        .container.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+        
+        /* Filter Buttons Mobile */
+        .btn-group {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn-group .btn {
+            margin: 0.25rem;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+        }
+        
+        /* Gallery Grid Mobile */
+        .gallery-item img {
+            height: 220px !important;
+        }
+        .col-lg-4 {
+            margin-bottom: 1rem;
+        }
+        
+        /* Modal Mobile */
+        .modal-dialog.modal-lg {
+            max-width: 95%;
+            margin: 1rem auto;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        /* Extra Small Mobile */
+        .page-header h1.display-4 {
+            font-size: 1.5rem !important;
+        }
+        .gallery-item img {
+            height: 200px !important;
+        }
+        .btn-group .btn {
+            font-size: 0.85rem;
+            padding: 0.4rem 0.75rem;
+        }
+        .modal-dialog.modal-lg {
+            max-width: 100%;
+            margin: 0.5rem;
+        }
+    }
 </style>
 @endpush
 
