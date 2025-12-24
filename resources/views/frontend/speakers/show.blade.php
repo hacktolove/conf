@@ -6,7 +6,8 @@
 <style>
     .breadcrumb-section {
         background: linear-gradient(135deg, var(--gradient-hero-from) 0%, var(--gradient-hero-to) 100%);
-        padding: 2rem 0;
+        padding-top: 76px; /* Account for fixed navbar */
+        padding-bottom: 2rem;
         color: #fff;
     }
     .breadcrumb-item a {
@@ -130,7 +131,8 @@
     @media (max-width: 768px) {
         /* Breadcrumb Mobile */
         .breadcrumb-section {
-            padding: 1.5rem 0;
+            padding-top: 76px; /* Maintain spacing on mobile */
+            padding-bottom: 1.5rem;
         }
         
         /* Speaker Header Mobile */
