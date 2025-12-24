@@ -9,6 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Evenza - Event Management')</title>
+    <!-- Preconnect to Google Fonts for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     @if($isRTL)
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
@@ -16,8 +19,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     @if($isRTL)
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     @endif
+    <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
     <style>
         :root {
             --primary: {{ config('theme.colors.primary', '#6366f1') }};
@@ -31,8 +35,18 @@
             --gradient-hero-from: {{ config('theme.gradients.hero.from', '#0f172a') }};
             --gradient-hero-to: {{ config('theme.gradients.hero.to', '#1e293b') }};
         }
+        /* Prevent horizontal scrolling */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
         body {
-            font-family: {{ $isRTL ? "'Cairo', sans-serif" : "'Inter', sans-serif" }};
+            font-family: {{ $isRTL ? "'Noto Kufi Arabic', 'Arial', sans-serif" : "'Inter', sans-serif" }};
         }
         /* Make all Bootstrap icons orange (secondary color) */
         i.bi, i[class*="bi-"] {
@@ -96,8 +110,53 @@
             padding-left: 0;
             padding-right: 1.5rem;
         }
-        .navbar { background: transparent; transition: all 0.3s; }
-        .navbar.scrolled { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .navbar {
+            background: linear-gradient(135deg, var(--gradient-hero-from) 0%, var(--gradient-hero-to) 100%);
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .navbar.scrolled {
+            background: rgba(15, 23, 42, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 991px) {
+            .navbar {
+                background: rgba(15, 23, 42, 0.98);
+            }
+            .navbar .navbar-collapse {
+                background: rgba(15, 23, 42, 1) !important;
+                margin-top: 1rem;
+                padding: 1.5rem;
+                border-radius: 0.5rem;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .navbar .navbar-collapse .nav-link {
+                color: rgba(255, 255, 255, 0.9) !important;
+                padding: 0.75rem 1rem;
+                border-radius: 0.5rem;
+                margin-bottom: 0.5rem;
+                transition: all 0.3s;
+            }
+            .navbar .navbar-collapse .nav-link:hover,
+            .navbar .navbar-collapse .nav-link.active {
+                background: rgba(255, 255, 255, 0.1);
+                color: #fff !important;
+            }
+            .navbar .navbar-collapse .dropdown-menu {
+                background: rgba(15, 23, 42, 0.95);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .navbar .navbar-collapse .btn-outline-light {
+                border-color: rgba(255, 255, 255, 0.3);
+                color: rgba(255, 255, 255, 0.9);
+            }
+            .navbar .navbar-collapse .btn-outline-light:hover {
+                background: rgba(255, 255, 255, 0.1);
+                border-color: rgba(255, 255, 255, 0.5);
+            }
+        }
         .navbar-brand { font-weight: 700; font-size: 1.5rem; }
         .navbar-brand img,
         .navbar-brand-logo {
@@ -176,12 +235,8 @@
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
-                navbar.classList.remove('navbar-dark');
-                navbar.classList.add('navbar-light');
             } else {
                 navbar.classList.remove('scrolled');
-                navbar.classList.add('navbar-dark');
-                navbar.classList.remove('navbar-light');
             }
         });
     </script>

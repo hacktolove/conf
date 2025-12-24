@@ -6,6 +6,84 @@
 <style>
     .navbar { background: var(--dark) !important; }
     .navbar.scrolled { background: #fff !important; }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        /* Page Header Mobile */
+        .page-header h1.display-4 {
+            font-size: 2rem !important;
+        }
+        .page-header .lead {
+            font-size: 1rem;
+        }
+        
+        /* Section Padding Mobile */
+        section.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+        .container.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+        
+        /* Main Content Mobile */
+        .col-lg-8 {
+            margin-bottom: 2rem;
+        }
+        .card-body {
+            padding: 1.5rem !important;
+        }
+        h4 {
+            font-size: 1.25rem;
+        }
+        
+        /* Schedule Items Mobile */
+        .schedule-item {
+            flex-direction: column !important;
+        }
+        .schedule-time {
+            margin-right: 0 !important;
+            margin-bottom: 1rem;
+            min-width: auto !important;
+        }
+        
+        /* Sidebar Mobile */
+        .sticky-top {
+            position: relative !important;
+            top: 0 !important;
+        }
+        .icon-box {
+            width: 40px !important;
+            height: 40px !important;
+        }
+        .icon-box i {
+            font-size: 1rem !important;
+        }
+        .btn.w-100 {
+            margin-top: 1rem;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        /* Extra Small Mobile */
+        .page-header h1.display-4 {
+            font-size: 1.5rem !important;
+        }
+        .card-body {
+            padding: 1.25rem !important;
+        }
+        h4 {
+            font-size: 1.1rem;
+        }
+        h5 {
+            font-size: 1rem;
+        }
+        .icon-box {
+            width: 35px !important;
+            height: 35px !important;
+        }
+    }
 </style>
 @endpush
 

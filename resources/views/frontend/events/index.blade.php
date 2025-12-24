@@ -27,6 +27,72 @@
     [dir="rtl"] .event-card .d-flex.gap-2 {
         flex-direction: row-reverse;
     }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        /* Page Header Mobile */
+        .page-header h1.display-4 {
+            font-size: 2rem !important;
+        }
+        .page-header .lead {
+            font-size: 1rem;
+        }
+        
+        /* Section Padding Mobile */
+        section.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+        .container.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+        
+        /* Event Cards Mobile */
+        .event-card .card-body {
+            padding: 1.5rem !important;
+        }
+        .event-card img,
+        .event-card div {
+            height: 200px !important;
+        }
+        .event-card i {
+            font-size: 3rem !important;
+        }
+        .event-date {
+            padding: 0.5rem !important;
+        }
+        .event-date .fs-4 {
+            font-size: 1.5rem !important;
+        }
+        .col-lg-4 {
+            margin-bottom: 1.5rem;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        /* Extra Small Mobile */
+        .page-header h1.display-4 {
+            font-size: 1.5rem !important;
+        }
+        .event-card .card-body {
+            padding: 1.25rem !important;
+        }
+        .event-card img,
+        .event-card div {
+            height: 180px !important;
+        }
+        .event-card i {
+            font-size: 2.5rem !important;
+        }
+        .event-date {
+            padding: 0.4rem !important;
+            margin: 0.75rem !important;
+        }
+        .event-date .fs-4 {
+            font-size: 1.25rem !important;
+        }
+    }
 </style>
 @endpush
 

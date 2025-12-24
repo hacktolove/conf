@@ -9,6 +9,103 @@
     .blog-content { line-height: 1.8; }
     .blog-content p { margin-bottom: 1.5rem; }
     .blog-content h2, .blog-content h3 { margin-top: 2rem; margin-bottom: 1rem; }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        /* Page Header Mobile */
+        .page-header h1.display-5 {
+            font-size: 1.75rem !important;
+        }
+        .page-header .d-flex {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .page-header .me-3 {
+            margin-right: 0 !important;
+        }
+        
+        /* Section Padding Mobile */
+        section.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+        .container.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+        
+        /* Main Content Mobile */
+        .col-lg-8 {
+            margin-bottom: 2rem;
+        }
+        .blog-content {
+            font-size: 0.95rem;
+        }
+        .blog-content h2 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .blog-content h3 {
+            font-size: 1.25rem;
+            margin-top: 1.5rem;
+        }
+        
+        /* Sidebar Mobile */
+        .sticky-top {
+            position: relative !important;
+            top: 0 !important;
+        }
+        .card-body {
+            padding: 1.5rem !important;
+        }
+        .d-flex.mb-3 img,
+        .d-flex.mb-3 div {
+            width: 60px !important;
+            height: 60px !important;
+        }
+        
+        /* Share Buttons Mobile */
+        .d-flex.gap-2 {
+            flex-wrap: wrap;
+        }
+        .btn-sm {
+            margin: 0.25rem;
+        }
+        
+        /* Author Section Mobile */
+        .bg-primary-subtle.rounded-circle {
+            width: 60px !important;
+            height: 60px !important;
+        }
+        .bg-primary-subtle.rounded-circle i {
+            font-size: 1.5rem !important;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        /* Extra Small Mobile */
+        .page-header h1.display-5 {
+            font-size: 1.5rem !important;
+        }
+        .blog-content {
+            font-size: 0.9rem;
+        }
+        .blog-content h2 {
+            font-size: 1.25rem;
+        }
+        .blog-content h3 {
+            font-size: 1.1rem;
+        }
+        .card-body {
+            padding: 1.25rem !important;
+        }
+        h5 {
+            font-size: 1rem;
+        }
+        h6 {
+            font-size: 0.9rem;
+        }
+    }
 </style>
 @endpush
 

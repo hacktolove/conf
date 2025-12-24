@@ -125,6 +125,127 @@
         border-radius: 1rem;
         padding: 3rem;
     }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        /* Breadcrumb Mobile */
+        .breadcrumb-section {
+            padding: 1.5rem 0;
+        }
+        
+        /* Speaker Header Mobile */
+        .speaker-header-section {
+            padding: 2.5rem 0;
+        }
+        .speaker-image-wrapper img {
+            max-width: 100%;
+        }
+        .speaker-image-wrapper div {
+            width: 100% !important;
+            max-width: 300px;
+            height: 300px !important;
+        }
+        .speaker-image-wrapper i {
+            font-size: 5rem !important;
+        }
+        h1.display-4 {
+            font-size: 2rem !important;
+        }
+        .lead {
+            font-size: 1rem;
+        }
+        
+        /* Info Cards Mobile */
+        .speaker-info-card {
+            padding: 1.5rem !important;
+        }
+        .info-item {
+            padding: 0.75rem 0;
+        }
+        .info-item i {
+            width: 35px;
+            height: 35px;
+            margin-right: 0.75rem;
+        }
+        
+        /* Feature Cards Mobile */
+        .feature-card {
+            padding: 1.5rem !important;
+            margin-bottom: 1rem;
+        }
+        .feature-card i {
+            font-size: 2.5rem !important;
+        }
+        
+        /* Skills Section Mobile */
+        .skills-section {
+            padding: 2.5rem 0;
+        }
+        
+        /* Contact Form Mobile */
+        .contact-form-section {
+            padding: 2.5rem 0;
+        }
+        .contact-form-card {
+            padding: 1.5rem !important;
+        }
+        
+        /* Section Padding Mobile */
+        section.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+        
+        /* Social Buttons Mobile */
+        .btn.rounded-circle {
+            width: 45px !important;
+            height: 45px !important;
+        }
+        
+        /* Newsletter Section Mobile */
+        .newsletter-section {
+            padding: 2.5rem 0;
+        }
+        .newsletter-section form {
+            flex-direction: column;
+        }
+        .newsletter-section .form-control {
+            margin-bottom: 0.75rem;
+        }
+        .newsletter-section .btn {
+            width: 100%;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        /* Extra Small Mobile */
+        h1.display-4 {
+            font-size: 1.5rem !important;
+        }
+        .display-5 {
+            font-size: 1.5rem !important;
+        }
+        .speaker-image-wrapper div {
+            max-width: 250px;
+            height: 250px !important;
+        }
+        .speaker-image-wrapper i {
+            font-size: 4rem !important;
+        }
+        .speaker-info-card {
+            padding: 1.25rem !important;
+        }
+        .feature-card {
+            padding: 1.25rem !important;
+        }
+        .contact-form-card {
+            padding: 1.25rem !important;
+        }
+        .btn.rounded-circle {
+            width: 40px !important;
+            height: 40px !important;
+        }
+    }
 </style>
 @endpush
 
@@ -146,7 +267,7 @@
 <section class="speaker-header-section">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-4 text-center">
+            <div class="col-lg-4 col-md-12 text-center mb-4 mb-lg-0">
                 <div class="speaker-image-wrapper">
                     @if($speaker->image)
                     <img src="{{ asset('storage/' . $speaker->image) }}" alt="{{ $speaker->localized_name }}" class="img-fluid">
@@ -157,7 +278,7 @@
                     @endif
                 </div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-8 col-md-12">
                 <h1 class="display-4 fw-bold mb-3">{{ $speaker->localized_name }}</h1>
                 @if($speaker->localized_title)
                 <p class="lead text-primary mb-4">{{ $speaker->localized_title }}</p>
@@ -411,7 +532,7 @@
                 <div class="card border-0 shadow-sm mb-3">
                     <div class="card-body p-4">
                         <div class="row align-items-center">
-                            <div class="col-md-2">
+                            <div class="col-md-2 col-12 mb-3 mb-md-0">
                                 <div class="text-center">
                                     <div class="text-primary fw-bold fs-4">
                                         {{ \Carbon\Carbon::parse($schedule->start_time)->format('H:i') }}
@@ -422,7 +543,7 @@
                                     <small class="text-muted">{{ $schedule->schedule_date ? \Carbon\Carbon::parse($schedule->schedule_date)->format('M d, Y') : '' }}</small>
                                 </div>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-8 col-12 mb-3 mb-md-0">
                                 <h5 class="mb-2">{{ $schedule->localized_title }}</h5>
                                 @if($schedule->localized_description)
                                 <p class="text-muted mb-2">{{ $schedule->localized_description }}</p>
@@ -439,7 +560,7 @@
                                 @endif
                             </div>
                             @if($schedule->event)
-                            <div class="col-md-2 text-end">
+                            <div class="col-md-2 col-12 text-end">
                                 <a href="{{ route('events.show', $schedule->event->slug) }}" class="btn btn-outline-primary btn-sm">View Event</a>
                             </div>
                             @endif
@@ -505,11 +626,11 @@
 <section class="newsletter-section">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
                 <h2 class="display-5 fw-bold mb-3">Join our newsletter for event important announcement</h2>
                 <p class="lead opacity-90">Stay informed with instant updates delivered straight to your inbox.</p>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-12">
                 <form action="{{ route('subscribe') }}" method="POST" class="d-flex gap-2">
                     @csrf
                     <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter your email address" required>

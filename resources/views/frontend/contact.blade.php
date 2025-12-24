@@ -6,6 +6,61 @@
 <style>
     .navbar { background: var(--dark) !important; }
     .navbar.scrolled { background: #fff !important; }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        /* Page Header Mobile */
+        .page-header h1.display-4 {
+            font-size: 2rem !important;
+        }
+        .page-header .lead {
+            font-size: 1rem;
+        }
+        
+        /* Section Padding Mobile */
+        section.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+        .container.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+        
+        /* Contact Form Mobile */
+        .card-body {
+            padding: 1.5rem !important;
+        }
+        .col-md-6 {
+            margin-bottom: 1rem;
+        }
+        .btn-lg {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            width: 100%;
+        }
+        
+        /* Social Buttons Mobile */
+        .d-flex.gap-3 {
+            flex-wrap: wrap;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        /* Extra Small Mobile */
+        .page-header h1.display-4 {
+            font-size: 1.5rem !important;
+        }
+        h3 {
+            font-size: 1.25rem;
+        }
+        h4 {
+            font-size: 1.25rem;
+        }
+        .card-body {
+            padding: 1.25rem !important;
+        }
+    }
 </style>
 @endpush
 
@@ -20,7 +75,7 @@
 <section class="py-5">
     <div class="container py-5">
         <div class="row g-5">
-            <div class="col-lg-5">
+            <div class="col-lg-5 col-md-12 mb-4 mb-lg-0">
                 <h3 class="mb-4">{{ __('messages.get_in_touch') }}</h3>
                 <p class="text-muted mb-4">{{ __('messages.contact_description') }}</p>
 
@@ -47,7 +102,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-7">
+            <div class="col-lg-7 col-md-12">
                 <div class="card shadow-sm">
                     <div class="card-body p-4">
                         <h4 class="mb-4">{{ __('messages.send_us_message') }}</h4>

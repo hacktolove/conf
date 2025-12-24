@@ -8,6 +8,78 @@
     .navbar.scrolled { background: #fff !important; }
     .nav-pills .nav-link { color: var(--dark); border-radius: 0; border-bottom: 2px solid transparent; }
     .nav-pills .nav-link.active { background: transparent; color: var(--primary); border-bottom-color: var(--primary); }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        /* Page Header Mobile */
+        .page-header h1.display-4 {
+            font-size: 2rem !important;
+        }
+        .page-header .lead {
+            font-size: 1rem;
+        }
+        
+        /* Section Padding Mobile */
+        section.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+        .container.py-5 {
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+        
+        /* Schedule Tabs Mobile */
+        .nav-pills {
+            overflow-x: auto;
+            flex-wrap: nowrap;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 0.5rem;
+        }
+        .nav-pills .nav-link {
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            min-width: 120px;
+        }
+        
+        /* Schedule Items Mobile */
+        .schedule-item .card-body {
+            padding: 1.5rem !important;
+        }
+        .schedule-item .col-md-2 {
+            border-end: none !important;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+        .schedule-item .col-md-7,
+        .schedule-item .col-md-3 {
+            margin-bottom: 1rem;
+        }
+        .schedule-item .col-md-3 {
+            text-align: left !important;
+        }
+        .schedule-item .rounded-circle {
+            width: 50px !important;
+            height: 50px !important;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        /* Extra Small Mobile */
+        .page-header h1.display-4 {
+            font-size: 1.5rem !important;
+        }
+        .schedule-item .card-body {
+            padding: 1.25rem !important;
+        }
+        .nav-pills .nav-link {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.85rem;
+            min-width: 100px;
+        }
+    }
 </style>
 @endpush
 
@@ -53,7 +125,7 @@
                     <div class="schedule-item card border-0 shadow-sm mb-4">
                         <div class="card-body p-4">
                             <div class="row align-items-center">
-                                <div class="col-md-2 text-center border-end">
+                                <div class="col-md-2 col-12 text-center border-end mb-3 mb-md-0">
                                     <span class="badge bg-primary-subtle text-primary fs-6 mb-1">
                                         {{ $schedule->start_time ? \Carbon\Carbon::parse($schedule->start_time)->format('g:i A') : 'TBA' }}
                                     </span>
@@ -62,7 +134,7 @@
                                     <small class="text-muted">to {{ \Carbon\Carbon::parse($schedule->end_time)->format('g:i A') }}</small>
                                     @endif
                                 </div>
-                                <div class="col-md-7">
+                                <div class="col-md-7 col-12 mb-3 mb-md-0">
                                     <h5 class="fw-bold mb-2">{{ $schedule->localized_title }}</h5>
                                     @if($schedule->localized_description)
                                     <p class="text-muted mb-2">{{ Str::limit($schedule->localized_description, 150) }}</p>
@@ -83,7 +155,7 @@
                                     </div>
                                     @endif
                                 </div>
-                                <div class="col-md-3 text-center">
+                                <div class="col-md-3 col-12 text-center">
                                     @if($schedule->speaker)
                                     <a href="{{ route('speakers.show', $schedule->speaker->slug) }}" class="text-decoration-none">
                                         @if($schedule->speaker->image)
