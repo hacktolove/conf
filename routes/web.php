@@ -7,7 +7,6 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\SpeakerController;
 use App\Http\Controllers\Admin\ScheduleController;
-use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\SponsorController;
 use App\Http\Controllers\Admin\GalleryController;
@@ -45,7 +44,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('events', EventController::class)->except(['show']);
         Route::resource('speakers', SpeakerController::class)->except(['show']);
         Route::resource('schedules', ScheduleController::class)->except(['show']);
-        Route::resource('testimonials', TestimonialController::class)->except(['show']);
         Route::resource('blog-posts', BlogPostController::class)->except(['show']);
         Route::resource('sponsors', SponsorController::class)->except(['show']);
         Route::resource('galleries', GalleryController::class)->except(['show']);

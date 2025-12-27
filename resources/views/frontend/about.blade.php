@@ -6,7 +6,7 @@
 <style>
     .navbar { background: var(--dark) !important; }
     .navbar.scrolled { background: #fff !important; }
-    
+
     /* Responsive Styles */
     @media (max-width: 768px) {
         /* Page Header Mobile */
@@ -16,7 +16,7 @@
         .page-header .lead {
             font-size: 1rem;
         }
-        
+
         /* Section Padding Mobile */
         section.py-5 {
             padding-top: 2.5rem !important;
@@ -26,7 +26,7 @@
             padding-top: 2.5rem !important;
             padding-bottom: 2.5rem !important;
         }
-        
+
         /* Typography Mobile */
         .display-5 {
             font-size: 1.75rem !important;
@@ -34,7 +34,7 @@
         h2.display-5 {
             font-size: 1.75rem !important;
         }
-        
+
         /* Statistics Grid Mobile */
         .stat-icon i {
             font-size: 1.5rem !important;
@@ -42,7 +42,7 @@
         .stat-icon {
             margin-right: 0.75rem !important;
         }
-        
+
         /* Value Cards Mobile */
         .col-md-4 .card-body {
             padding: 1.5rem !important;
@@ -54,13 +54,12 @@
         .icon-box i {
             font-size: 1.5rem !important;
         }
-        
-        /* Testimonial Cards Mobile */
+
         .col-lg-4 .card-body {
             padding: 1.5rem !important;
         }
     }
-    
+
     @media (max-width: 576px) {
         /* Extra Small Mobile */
         .page-header h1.display-4 {
@@ -169,43 +168,4 @@
     </div>
 </section>
 
-@if(isset($testimonials) && $testimonials->count() > 0)
-<section class="py-5">
-    <div class="container py-5">
-        <div class="text-center mb-5">
-            <span class="badge bg-primary-subtle text-primary mb-3">{{ __('messages.testimonials') }}</span>
-            <h2 class="display-5 fw-bold">{{ __('messages.what_people_say') }}</h2>
-        </div>
-        <div class="row g-4">
-            @foreach($testimonials as $testimonial)
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body p-4">
-                        <div class="d-flex mb-3">
-                            @for($i = 1; $i <= 5; $i++)
-                            <i class="bi bi-star{{ $i <= $testimonial->rating ? '-fill' : '' }} text-warning"></i>
-                            @endfor
-                        </div>
-                        <p class="text-muted mb-4">"{{ $testimonial->localized_content }}"</p>
-                        <div class="d-flex align-items-center">
-                            @if($testimonial->image)
-                            <img src="{{ asset('storage/' . $testimonial->image) }}" alt="{{ $testimonial->localized_name }}" class="rounded-circle me-3" width="50" height="50" style="object-fit: cover;">
-                            @else
-                            <div class="bg-primary-subtle rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
-                                <i class="bi bi-person text-primary"></i>
-                            </div>
-                            @endif
-                            <div>
-                                <h6 class="mb-0">{{ $testimonial->localized_name }}</h6>
-                                <small class="text-muted">{{ $testimonial->localized_title }}</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-@endif
 @endsection

@@ -287,20 +287,6 @@
     a:hover .card-speaker .card-title {
         color: var(--primary);
     }
-    /* Testimonial Cards */
-    .testimonial-card {
-        background: #fff;
-        border-radius: 1rem;
-        padding: 2.5rem;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        height: 100%;
-        transition: all 0.3s;
-        border: 1px solid #f0f0f0;
-    }
-    .testimonial-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-    }
     /* Responsive Styles */
     @media (max-width: 768px) {
         /* Hero Section Mobile */
@@ -389,10 +375,6 @@
             font-size: 2.5rem !important;
         }
 
-        /* Testimonial Cards Mobile */
-        .testimonial-card {
-            padding: 1.5rem;
-        }
 
         /* Schedule Tabs Mobile */
         .schedule-day-tabs {
@@ -533,9 +515,6 @@
             font-size: 0.6rem;
         }
         .key-benefit-card {
-            padding: 1.25rem;
-        }
-        .testimonial-card {
             padding: 1.25rem;
         }
     }
@@ -872,50 +851,6 @@
         </div>
         <div class="text-center mt-5">
             <p class="text-muted lead">{{ __('messages.join_speaker_text') }}</p>
-        </div>
-    </div>
-</section>
-@endif
-
-<!-- Testimonials -->
-@if($testimonials->count() > 0)
-<section class="py-5">
-    <div class="container py-5">
-        <div class="text-center mb-5">
-            <p class="section-subtitle mb-3">{{ __('messages.testimonials') }}</p>
-            <h2 class="section-title display-5 fw-bold">{{ __('messages.customers_say_title') }}</h2>
-            <p class="text-muted lead">{{ __('messages.attendees_connected') }}</p>
-            <p class="text-muted mb-4">{{ __('messages.client_experience_speak') }}</p>
-        </div>
-        <div class="row g-4">
-            @foreach($testimonials->take(3) as $testimonial)
-            <div class="col-lg-4 col-md-6">
-                <div class="testimonial-card h-100">
-                    <div class="mb-4">
-                        @for($i = 1; $i <= 5; $i++)
-                        <i class="bi bi-star{{ $i <= ($testimonial->rating ?? 5) ? '-fill' : '' }} text-warning"></i>
-                        @endfor
-                    </div>
-                    <p class="text-muted mb-4 fs-6">"{{ $testimonial->localized_content }}"</p>
-                    <div class="d-flex align-items-center">
-                        @if($testimonial->image)
-                        <img src="{{ asset('storage/' . $testimonial->image) }}" alt="{{ $testimonial->localized_name }}" class="rounded-circle me-3" style="width:60px;height:60px;object-fit:cover">
-                        @else
-                        <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" style="width:60px;height:60px">
-                            <span class="text-white fw-bold fs-5">{{ substr($testimonial->localized_name, 0, 1) }}</span>
-                        </div>
-                        @endif
-                        <div>
-                            <h6 class="mb-0 fw-bold">{{ $testimonial->localized_name }}</h6>
-                            <small class="text-muted">{{ $testimonial->localized_title }}</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-        <div class="text-center mt-5">
-            <a href="#" class="btn btn-outline-primary btn-lg px-4">{{ __('messages.view_all_reviews') }}</a>
         </div>
     </div>
 </section>
