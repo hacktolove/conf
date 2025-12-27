@@ -851,15 +851,6 @@
     </div>
 </section>
 @endif
-
-<!-- CTA Section -->
-<section class="bg-gradient-primary py-5 text-white">
-    <div class="container py-5 text-center">
-        <h2 class="display-5 fw-bold mb-4">{{ __('messages.ready_to_join') }}</h2>
-        <p class="lead mb-4 opacity-75">{{ __('messages.dont_miss_out') }}</p>
-        <a href="{{ route('contact') }}" class="btn btn-light btn-lg px-5">{{ __('messages.nav_contact') }}</a>
-    </div>
-</section>
 @endsection
 
 @push('scripts')
