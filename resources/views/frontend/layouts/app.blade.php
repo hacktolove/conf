@@ -300,8 +300,6 @@
         .faq-item { border: none; margin-bottom: 1rem; }
         .faq-item .accordion-button { background: #f8f9fa; font-weight: 600; }
         .faq-item .accordion-button:not(.collapsed) { background: var(--primary); color: #fff; }
-        .sponsor-logo { filter: grayscale(100%); opacity: 0.7; transition: all 0.3s; }
-        .sponsor-logo:hover { filter: grayscale(0%); opacity: 1; }
         .page-header { background: linear-gradient(135deg, var(--gradient-hero-from) 0%, var(--gradient-hero-to) 100%); padding: 8rem 0 4rem; color: #fff; }
     </style>
     @stack('styles')

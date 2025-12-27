@@ -469,10 +469,6 @@
             height: 200px !important;
         }
 
-        /* Sponsors Mobile */
-        .sponsor-logo {
-            max-height: 50px !important;
-        }
 
     }
 
@@ -851,32 +847,6 @@
         </div>
         <div class="text-center mt-5">
             <p class="text-muted lead">{{ __('messages.join_speaker_text') }}</p>
-        </div>
-    </div>
-</section>
-@endif
-
-<!-- Sponsors -->
-@if($sponsors->count() > 0)
-<section class="py-5 bg-light">
-    <div class="container py-5">
-        <div class="text-center mb-5">
-            <p class="section-subtitle mb-3">{{ __('messages.supported_by_brands') }}</p>
-        </div>
-        <div class="row g-4 align-items-center justify-content-center">
-            @foreach($sponsors as $sponsor)
-            <div class="col-lg-2 col-md-3 col-6">
-                <a href="{{ $sponsor->website ?? '#' }}" target="_blank" class="d-block text-center p-3">
-                    @if($sponsor->logo)
-                    <img src="{{ asset('storage/' . $sponsor->logo) }}" alt="{{ $sponsor->name }}" class="img-fluid sponsor-logo" style="max-height:70px; width: auto;">
-                    @else
-                    <div class="sponsor-logo-placeholder bg-white p-4 rounded shadow-sm">
-                        <span class="text-muted small fw-bold">{{ $sponsor->name }}</span>
-                    </div>
-                    @endif
-                </a>
-            </div>
-            @endforeach
         </div>
     </div>
 </section>

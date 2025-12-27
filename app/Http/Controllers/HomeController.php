@@ -6,7 +6,6 @@ use App\Models\Event;
 use App\Models\Speaker;
 use App\Models\Schedule;
 use App\Models\BlogPost;
-use App\Models\Sponsor;
 use App\Models\Gallery;
 use App\Models\HeroSlide;
 use App\Models\Statistic;
@@ -30,7 +29,6 @@ class HomeController extends Controller
         $speakers = Speaker::active()->featured()->orderBy('order')->take(8)->get();
         $schedules = Schedule::with(['event', 'speaker'])->active()->orderBy('schedule_date')->orderBy('start_time')->get();
         $blogPosts = BlogPost::published()->recent()->take(3)->get();
-        $sponsors = Sponsor::active()->orderBy('order')->get();
         $galleries = Gallery::active()->orderBy('order')->take(8)->get();
 
         // Get countdown date from site settings (dynamic from database)
@@ -70,7 +68,7 @@ class HomeController extends Controller
 
         return view('frontend.home', compact(
             'heroSlides', 'events', 'speakers', 'schedules',
-            'blogPosts', 'sponsors',
+            'blogPosts',
             'galleries', 'countdownDate', 'hasCountdown', 'mission', 'vision', 'goal',
             'speakerRevealDate', 'upcomingSpeaker', 'showSpeaker'
         ));
