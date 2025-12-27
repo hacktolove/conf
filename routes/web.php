@@ -11,7 +11,6 @@ use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\SponsorController;
 use App\Http\Controllers\Admin\GalleryController;
-use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\HeroSlideController;
 use App\Http\Controllers\Admin\StatisticController;
 use App\Http\Controllers\Admin\SubscriberController;
@@ -50,7 +49,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('blog-posts', BlogPostController::class)->except(['show']);
         Route::resource('sponsors', SponsorController::class)->except(['show']);
         Route::resource('galleries', GalleryController::class)->except(['show']);
-        Route::resource('faqs', FaqController::class)->except(['show']);
         Route::resource('hero-slides', HeroSlideController::class)->except(['show']);
         Route::post('hero-slides/{heroSlide}/select', [HeroSlideController::class, 'select'])->name('hero-slides.select');
         Route::resource('statistics', StatisticController::class)->except(['show']);

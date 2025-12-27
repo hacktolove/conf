@@ -9,7 +9,6 @@ use App\Models\Testimonial;
 use App\Models\BlogPost;
 use App\Models\Sponsor;
 use App\Models\Gallery;
-use App\Models\Faq;
 use App\Models\HeroSlide;
 use App\Models\Statistic;
 use App\Models\Subscriber;
@@ -35,7 +34,6 @@ class HomeController extends Controller
         $blogPosts = BlogPost::published()->recent()->take(3)->get();
         $sponsors = Sponsor::active()->orderBy('order')->get();
         $galleries = Gallery::active()->orderBy('order')->take(8)->get();
-        $faqs = Faq::active()->orderBy('order')->get();
 
         // Get countdown date from site settings (dynamic from database)
         $countdownDateRaw = SiteSetting::get('countdown_date');
@@ -75,7 +73,7 @@ class HomeController extends Controller
         return view('frontend.home', compact(
             'heroSlides', 'events', 'speakers', 'schedules',
             'testimonials', 'blogPosts', 'sponsors',
-            'galleries', 'faqs', 'countdownDate', 'hasCountdown', 'mission', 'vision', 'goal',
+            'galleries', 'countdownDate', 'hasCountdown', 'mission', 'vision', 'goal',
             'speakerRevealDate', 'upcomingSpeaker', 'showSpeaker'
         ));
     }

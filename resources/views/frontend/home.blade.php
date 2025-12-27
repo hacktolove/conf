@@ -48,7 +48,7 @@
         padding-left: 0.75rem;
         padding-right: 0.75rem;
     }
-    
+
     /* Hero Carousel Styles */
     .hero-section .carousel {
         min-height: 100vh;
@@ -287,46 +287,6 @@
     a:hover .card-speaker .card-title {
         color: var(--primary);
     }
-    /* FAQ Styling */
-    .faq-item {
-        border: none;
-        margin-bottom: 1rem;
-        border-radius: 0.75rem;
-        overflow: hidden;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-    .faq-item .accordion-button {
-        background: #f8f9fa;
-        font-weight: 600;
-        border: none;
-        padding: 1.25rem 1.5rem;
-        font-size: 1.05rem;
-    }
-    .faq-item .accordion-button:not(.collapsed) {
-        background: var(--primary);
-        color: #fff;
-        box-shadow: none;
-    }
-    .faq-item .accordion-button:focus {
-        box-shadow: none;
-        border-color: transparent;
-    }
-    .faq-item .accordion-body {
-        background: #fff;
-        padding: 1.5rem;
-    }
-    /* RTL Support for FAQ Accordion */
-    [dir="rtl"] .faq-item .accordion-button {
-        padding-right: 1.5rem;
-        padding-left: 3rem;
-        text-align: right;
-    }
-    [dir="rtl"] .faq-item .accordion-button::after {
-        right: auto;
-        left: 1.25rem;
-        margin-left: 0;
-        margin-right: auto;
-    }
     /* Testimonial Cards */
     .testimonial-card {
         background: #fff;
@@ -532,24 +492,6 @@
             max-height: 50px !important;
         }
 
-        /* FAQ Mobile */
-        .faq-item .accordion-button {
-            padding: 1rem;
-            font-size: 0.95rem;
-        }
-        .faq-item .accordion-body {
-            padding: 1rem;
-            font-size: 0.9rem;
-        }
-
-        /* RTL FAQ Mobile */
-        [dir="rtl"] .faq-item .accordion-button {
-            padding-right: 1rem;
-            padding-left: 2.5rem;
-        }
-        [dir="rtl"] .faq-item .accordion-button::after {
-            left: 0.75rem;
-        }
     }
 
     @media (max-width: 576px) {
@@ -930,38 +872,6 @@
         </div>
         <div class="text-center mt-5">
             <p class="text-muted lead">{{ __('messages.join_speaker_text') }}</p>
-        </div>
-    </div>
-</section>
-@endif
-
-<!-- FAQ Section -->
-@if($faqs->count() > 0)
-<section class="py-5 bg-light">
-    <div class="container py-5">
-        <div class="text-center mb-5">
-            <p class="section-subtitle">{{ __('messages.faqs') }}</p>
-            <h2 class="section-title display-5">{{ __('messages.questions_clearly_answer') }}</h2>
-        </div>
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
-                <div class="accordion" id="faqAccordion">
-                    @foreach($faqs as $index => $faq)
-                    <div class="accordion-item faq-item">
-                        <h2 class="accordion-header" id="heading{{ $index }}">
-                            <button class="accordion-button {{ $index > 0 ? 'collapsed' : '' }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $index }}">
-                                {{ $index + 1 }}. {{ $faq->localized_question }}
-                            </button>
-                        </h2>
-                        <div id="collapse{{ $index }}" class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                {{ $faq->localized_answer }}
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
         </div>
     </div>
 </section>
