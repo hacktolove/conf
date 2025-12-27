@@ -28,7 +28,6 @@ class HomeController extends Controller
         $events = Event::active()->upcoming()->orderBy('event_date')->take(6)->get();
         $speakers = Speaker::active()->featured()->orderBy('order')->take(8)->get();
         $schedules = Schedule::with(['event', 'speaker'])->active()->orderBy('schedule_date')->orderBy('start_time')->get();
-        $blogPosts = BlogPost::published()->recent()->take(3)->get();
         $galleries = Gallery::active()->orderBy('order')->take(8)->get();
 
         // Get countdown date from site settings (dynamic from database)
@@ -68,7 +67,6 @@ class HomeController extends Controller
 
         return view('frontend.home', compact(
             'heroSlides', 'events', 'speakers', 'schedules',
-            'blogPosts',
             'galleries', 'countdownDate', 'hasCountdown', 'mission', 'vision', 'goal',
             'speakerRevealDate', 'upcomingSpeaker', 'showSpeaker'
         ));

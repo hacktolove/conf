@@ -852,45 +852,6 @@
 </section>
 @endif
 
-<!-- Blog Preview -->
-@if($blogPosts->count() > 0)
-<section class="py-5">
-    <div class="container py-5">
-        <div class="text-center mb-5">
-            <p class="section-subtitle mb-3">{{ __('messages.latest_blog') }}</p>
-            <h2 class="section-title display-5 fw-bold">{{ __('messages.explore_latest_insights') }}</h2>
-        </div>
-        <div class="row g-4">
-            @foreach($blogPosts as $post)
-            <div class="col-lg-4 col-md-6">
-                <div class="card card-event h-100 border-0 shadow-sm">
-                    @if($post->image)
-                    <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top" alt="{{ $post->localized_title }}" style="height: 250px; object-fit: cover;">
-                    @else
-                    <div class="bg-gradient-primary d-flex align-items-center justify-content-center" style="height:250px">
-                        <i class="bi bi-newspaper display-1 text-white"></i>
-                    </div>
-                    @endif
-                    <div class="card-body p-4">
-                        <div class="d-flex align-items-center mb-3">
-                            <div class="bg-primary-subtle rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 35px; height: 35px;">
-                                <i class="bi bi-person text-primary"></i>
-                            </div>
-                            <small class="text-muted fw-semibold">Esther Howard</small>
-                            <small class="text-muted ms-auto"><i class="bi bi-calendar3 me-1"></i>{{ $post->created_at->format('M d, Y') }}</small>
-                        </div>
-                        <h5 class="card-title mb-3 fw-bold">{{ $post->localized_title }}</h5>
-                        <p class="card-text text-muted mb-3">{{ Str::limit($post->localized_excerpt ?? '', 120) }}</p>
-                        <a href="{{ route('blog.show', $post->slug) }}" class="btn btn-outline-primary btn-sm">{{ __('messages.read_more_btn') }} <i class="bi bi-arrow-right ms-1"></i></a>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-@endif
-
 <!-- CTA Section -->
 <section class="bg-gradient-primary py-5 text-white">
     <div class="container py-5 text-center">
