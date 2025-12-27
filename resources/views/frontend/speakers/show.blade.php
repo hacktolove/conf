@@ -126,7 +126,7 @@
         border-radius: 1rem;
         padding: 3rem;
     }
-    
+
     /* Responsive Styles */
     @media (max-width: 768px) {
         /* Breadcrumb Mobile */
@@ -134,7 +134,7 @@
             padding-top: 76px; /* Maintain spacing on mobile */
             padding-bottom: 1.5rem;
         }
-        
+
         /* Speaker Header Mobile */
         .speaker-header-section {
             padding: 2.5rem 0;
@@ -156,7 +156,7 @@
         .lead {
             font-size: 1rem;
         }
-        
+
         /* Info Cards Mobile */
         .speaker-info-card {
             padding: 1.5rem !important;
@@ -169,7 +169,7 @@
             height: 35px;
             margin-right: 0.75rem;
         }
-        
+
         /* Feature Cards Mobile */
         .feature-card {
             padding: 1.5rem !important;
@@ -178,12 +178,12 @@
         .feature-card i {
             font-size: 2.5rem !important;
         }
-        
+
         /* Skills Section Mobile */
         .skills-section {
             padding: 2.5rem 0;
         }
-        
+
         /* Contact Form Mobile */
         .contact-form-section {
             padding: 2.5rem 0;
@@ -191,19 +191,19 @@
         .contact-form-card {
             padding: 1.5rem !important;
         }
-        
+
         /* Section Padding Mobile */
         section.py-5 {
             padding-top: 2.5rem !important;
             padding-bottom: 2.5rem !important;
         }
-        
+
         /* Social Buttons Mobile */
         .btn.rounded-circle {
             width: 45px !important;
             height: 45px !important;
         }
-        
+
         /* Newsletter Section Mobile */
         .newsletter-section {
             padding: 2.5rem 0;
@@ -218,7 +218,7 @@
             width: 100%;
         }
     }
-    
+
     @media (max-width: 576px) {
         /* Extra Small Mobile */
         h1.display-4 {
@@ -429,7 +429,7 @@
 </section>
 
 <!-- What We Do Section -->
-<section class="what-we-do-section">
+{{-- <section class="what-we-do-section">
     <div class="container">
         <div class="text-center mb-5">
             <p class="section-subtitle">What we do</p>
@@ -466,10 +466,10 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
 <!-- Work Skills Section -->
-<section class="skills-section">
+{{-- <section class="skills-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
@@ -518,7 +518,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
 <!-- Sessions Section -->
 @if($speaker->schedules->count() > 0)
@@ -577,7 +577,7 @@
 @endif
 
 <!-- Get In Touch Section -->
-<section class="contact-form-section">
+{{-- <section class="contact-form-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
@@ -622,10 +622,10 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
 <!-- Newsletter Section -->
-<section class="newsletter-section">
+{{-- <section class="newsletter-section">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
@@ -644,5 +644,5 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 @endsection
