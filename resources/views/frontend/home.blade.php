@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Evenza - Premier Event Management')
+@section('title', __('messages.page_title_home'))
 
 @push('styles')
 <style>

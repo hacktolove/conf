@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', $speaker->localized_name . ' - Evenza')
+@section('title', __('messages.page_title_speaker_detail', ['name' => $speaker->localized_name]))
 
 @push('styles')
 <style>

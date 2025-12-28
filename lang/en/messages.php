@@ -198,5 +198,18 @@ return [
     'meet_experts' => 'Meet our industry experts and thought leaders',
     'no_speakers_found' => 'No Speakers Found',
     'check_back_speakers' => 'Check back later for speaker announcements.',
+
+    // Page Titles
+    'page_title_home' => 'Evenza - Premier Event Management',
+    'page_title_about' => 'About Us - Evenza',
+    'page_title_speakers' => 'Speakers - Evenza',
+    'page_title_blog' => 'Blog - Evenza',
+    'page_title_events' => 'Events - Evenza',
+    'page_title_gallery' => 'Gallery - Evenza',
+    'page_title_schedule' => 'Schedule - Evenza',
+    'page_title_contact' => 'Contact Us - Evenza',
+    'page_title_speaker_detail' => ':name - Evenza',
+    'page_title_blog_detail' => ':title - Evenza',
+    'page_title_event_detail' => ':title - Evenza',
 ];
 

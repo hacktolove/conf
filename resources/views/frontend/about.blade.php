@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'About Us - Evenza')
+@section('title', __('messages.page_title_about'))
 
 @push('styles')
 <style>

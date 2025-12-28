@@ -198,5 +198,18 @@ return [
     'meet_experts' => 'تعرف على خبراء الصناعة وقادة الفكر',
     'no_speakers_found' => 'لم يتم العثور على متحدثين',
     'check_back_speakers' => 'تحقق مرة أخرى لاحقاً لإعلانات المتحدثين.',
+
+    // Page Titles
+    'page_title_home' => 'جامعة افريقيا العالمية',
+    'page_title_about' => 'من نحن',
+    'page_title_speakers' => 'المتحدثون',
+    'page_title_blog' => 'المدونة',
+    'page_title_events' => 'الأحداث',
+    'page_title_gallery' => 'المعرض',
+    'page_title_schedule' => 'الجدول',
+    'page_title_contact' => 'اتصل بنا',
+    'page_title_speaker_detail' => ':name',
+    'page_title_blog_detail' => ':title',
+    'page_title_event_detail' => ':title',
 ];
 

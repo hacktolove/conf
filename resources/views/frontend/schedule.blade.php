@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Schedule - Evenza')
+@section('title', __('messages.page_title_schedule'))
 
 @push('styles')
 <style>
