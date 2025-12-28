@@ -121,7 +121,7 @@ return [
     'footer_subscribe_description' => 'اشترك للحصول على آخر التحديثات والأخبار.',
     'footer_email_placeholder' => 'بريدك الإلكتروني',
     'footer_subscribe' => 'اشترك',
-    'footer_all_rights_reserved' => 'جميع الحقوق محفوظة.',
+    'footer_all_rights_reserved' => 'جميع الحقوق محفوظة. © :year جامعة افريقيا العالمية. ',
 
     // About Page
     'about_us_title' => 'من نحن',

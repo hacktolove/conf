@@ -121,7 +121,7 @@ return [
     'footer_subscribe_description' => 'Subscribe to get the latest updates and news.',
     'footer_email_placeholder' => 'Your email',
     'footer_subscribe' => 'Subscribe',
-    'footer_all_rights_reserved' => 'All rights reserved.',
+    'footer_all_rights_reserved' => 'All rights reserved. © :year University of Africa. ',
 
     // About Page
     'about_us_title' => 'About Us',
