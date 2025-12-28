@@ -385,6 +385,11 @@
             max-width: 100%;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: flex-start !important;
+        }
+        [dir="rtl"] .schedule-day-tabs {
+            justify-content: flex-end !important;
         }
         .schedule-day-tabs::-webkit-scrollbar {
             height: 4px;
