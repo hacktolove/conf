@@ -126,9 +126,12 @@
                                 </div>
                                 <div class="schedule-content flex-grow-1">
                                     <h6 class="fw-bold mb-1">{{ $schedule->localized_title }}</h6>
-                                    @if($schedule->speaker)
+                                    @if($schedule->speakers->count() > 0)
                                     <p class="text-muted small mb-1">
-                                        <i class="bi bi-person me-1"></i>{{ $schedule->speaker->localized_name }}
+                                        <i class="bi bi-person me-1"></i>
+                                        @foreach($schedule->speakers as $speaker)
+                                            <a href="{{ route('speakers.show', $speaker->slug) }}" class="text-decoration-none">{{ $speaker->localized_name }}</a>@if(!$loop->last), @endif
+                                        @endforeach
                                     </p>
                                     @endif
                                     @if($schedule->localized_venue)

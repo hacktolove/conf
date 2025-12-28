@@ -13,7 +13,7 @@ class ScheduleController extends Controller
 {
     public function index()
     {
-        $schedules = Schedule::with(['event', 'speaker'])->orderBy('schedule_date')->orderBy('start_time')->paginate(15);
+        $schedules = Schedule::with(['event', 'speakers'])->orderBy('schedule_date')->orderBy('start_time')->paginate(15);
         return view('admin.schedules.index', compact('schedules'));
     }
 
@@ -28,7 +28,8 @@ class ScheduleController extends Controller
     {
         $validated = $request->validate([
             'event_id' => 'required|exists:events,id',
-            'speaker_id' => 'nullable|exists:speakers,id',
+            'speaker_ids' => 'nullable|array',
+            'speaker_ids.*' => 'exists:speakers,id',
             'title' => 'required|string|max:255',
             'title_ar' => 'nullable|string|max:255',
             'description' => 'nullable|string',
@@ -53,7 +54,10 @@ class ScheduleController extends Controller
             $validated['pdf_file'] = $request->file('pdf_file')->store('schedules/pdfs', 'public');
         }
 
-        Schedule::create($validated);
+        $schedule = Schedule::create($validated);
+        
+        // Sync speakers
+        $schedule->speakers()->sync($request->input('speaker_ids', []));
 
         return redirect()->route('admin.schedules.index')->with('success', 'Schedule created successfully.');
     }
@@ -62,6 +66,7 @@ class ScheduleController extends Controller
     {
         $events = Event::active()->orderBy('title')->get();
         $speakers = Speaker::active()->orderBy('name')->get();
+        $schedule->load('speakers');
         return view('admin.schedules.edit', compact('schedule', 'events', 'speakers'));
     }
 
@@ -69,7 +74,8 @@ class ScheduleController extends Controller
     {
         $validated = $request->validate([
             'event_id' => 'required|exists:events,id',
-            'speaker_id' => 'nullable|exists:speakers,id',
+            'speaker_ids' => 'nullable|array',
+            'speaker_ids.*' => 'exists:speakers,id',
             'title' => 'required|string|max:255',
             'title_ar' => 'nullable|string|max:255',
             'description' => 'nullable|string',
@@ -107,6 +113,9 @@ class ScheduleController extends Controller
         }
 
         $schedule->update($validated);
+        
+        // Sync speakers
+        $schedule->speakers()->sync($request->input('speaker_ids', []));
 
         return redirect()->route('admin.schedules.index')->with('success', 'Schedule updated successfully.');
     }

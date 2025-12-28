@@ -746,16 +746,20 @@
                                     </div>
                                     @endif
                                 </div>
-                                @if($schedule->speaker)
+                                @if($schedule->speakers->count() > 0)
                                 <div class="col-md-3 col-12 text-md-end">
-                                    <div class="d-flex align-items-center justify-content-md-end gap-2">
-                                        @if($schedule->speaker->image)
-                                        <img src="{{ asset('storage/' . $schedule->speaker->image) }}" alt="{{ $schedule->speaker->localized_name }}" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
-                                        @endif
-                                        <div>
-                                            <small class="text-primary d-block fw-bold"><i class="bi bi-person me-1"></i>{{ $schedule->speaker->localized_name }}</small>
-                                            <small class="text-muted d-block">{{ $schedule->speaker->localized_title }}</small>
+                                    <div class="d-flex flex-column align-items-md-end gap-2">
+                                        @foreach($schedule->speakers as $speaker)
+                                        <div class="d-flex align-items-center justify-content-md-end gap-2">
+                                            @if($speaker->image)
+                                            <img src="{{ asset('storage/' . $speaker->image) }}" alt="{{ $speaker->localized_name }}" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
+                                            @endif
+                                            <div>
+                                                <small class="text-primary d-block fw-bold"><i class="bi bi-person me-1"></i>{{ $speaker->localized_name }}</small>
+                                                <small class="text-muted d-block">{{ $speaker->localized_title }}</small>
+                                            </div>
                                         </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 @endif
