@@ -110,6 +110,76 @@
             padding-left: 0;
             padding-right: 1.5rem;
         }
+        /* Dropdown fixes */
+        .navbar {
+            overflow: visible !important;
+        }
+        .navbar .container {
+            overflow: visible !important;
+        }
+        .navbar .navbar-collapse {
+            overflow: visible !important;
+        }
+        .navbar .dropdown {
+            position: relative;
+        }
+        .navbar .dropdown-menu {
+            position: absolute !important;
+            z-index: 1050 !important;
+            min-width: 150px;
+            top: 100% !important;
+            margin-top: 0.25rem;
+            max-height: none !important;
+            overflow: visible !important;
+            display: none;
+        }
+        .navbar .dropdown-menu.show {
+            display: block !important;
+        }
+        /* Dropdown RTL fixes */
+        [dir="rtl"] .dropdown-menu-end {
+            right: auto !important;
+            left: 0 !important;
+        }
+        [dir="rtl"] .dropdown-menu-start {
+            left: auto !important;
+            right: 0 !important;
+        }
+        [dir="rtl"] .dropdown-toggle::after {
+            margin-left: 0;
+            margin-right: 0.255em;
+        }
+        [dir="rtl"] .dropdown-item {
+            text-align: right;
+        }
+        [dir="ltr"] .dropdown-item {
+            text-align: left;
+        }
+        /* Language dropdown button RTL fixes */
+        [dir="rtl"] #languageDropdown {
+            flex-direction: row-reverse;
+        }
+        [dir="rtl"] #languageDropdown i {
+            order: 2;
+        }
+        [dir="rtl"] #languageDropdown span {
+            order: 1;
+        }
+        /* Ensure dropdown shows above navbar */
+        .navbar .dropdown-menu {
+            background: rgba(15, 23, 42, 0.98) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        .navbar .dropdown-item {
+            color: rgba(255, 255, 255, 0.9) !important;
+            padding: 0.75rem 1rem;
+        }
+        .navbar .dropdown-item:hover,
+        .navbar .dropdown-item.active {
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: #fff !important;
+        }
         .navbar {
             background: linear-gradient(135deg, var(--gradient-hero-from) 0%, var(--gradient-hero-to) 100%);
             transition: all 0.3s;
@@ -123,6 +193,7 @@
         @media (max-width: 991px) {
             .navbar {
                 background: rgba(15, 23, 42, 0.98);
+                overflow: visible !important;
             }
             .navbar .navbar-collapse {
                 background: rgba(15, 23, 42, 1) !important;
@@ -131,6 +202,7 @@
                 border-radius: 0.5rem;
                 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
                 border: 1px solid rgba(255, 255, 255, 0.1);
+                overflow: visible !important;
             }
             .navbar .navbar-collapse .nav-link {
                 color: rgba(255, 255, 255, 0.9) !important;
@@ -144,9 +216,22 @@
                 background: rgba(255, 255, 255, 0.1);
                 color: #fff !important;
             }
+            .navbar .navbar-collapse .dropdown {
+                position: relative;
+            }
             .navbar .navbar-collapse .dropdown-menu {
-                background: rgba(15, 23, 42, 0.95);
+                position: absolute !important;
+                z-index: 1050 !important;
+                background: rgba(15, 23, 42, 0.98) !important;
                 border: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+                margin-top: 0.5rem;
+                max-height: none !important;
+                overflow: visible !important;
+                display: none;
+            }
+            .navbar .navbar-collapse .dropdown-menu.show {
+                display: block !important;
             }
             .navbar .navbar-collapse .btn-outline-light {
                 border-color: rgba(255, 255, 255, 0.3);
@@ -215,8 +300,6 @@
         .faq-item { border: none; margin-bottom: 1rem; }
         .faq-item .accordion-button { background: #f8f9fa; font-weight: 600; }
         .faq-item .accordion-button:not(.collapsed) { background: var(--primary); color: #fff; }
-        .sponsor-logo { filter: grayscale(100%); opacity: 0.7; transition: all 0.3s; }
-        .sponsor-logo:hover { filter: grayscale(0%); opacity: 1; }
         .page-header { background: linear-gradient(135deg, var(--gradient-hero-from) 0%, var(--gradient-hero-to) 100%); padding: 8rem 0 4rem; color: #fff; }
     </style>
     @stack('styles')

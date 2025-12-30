@@ -65,7 +65,7 @@
         <hr class="my-4 border-secondary">
         <div class="row">
             <div class="col-md-6">
-                <p class="text-white-50 mb-0">&copy; {{ date('Y') }} Evenza. {{ __('messages.footer_all_rights_reserved') }}</p>
+                <p class="text-white-50 mb-0">{{ __('messages.footer_all_rights_reserved', ['year' => date('Y')]) }}</p>
             </div>
             <div class="col-md-6 text-md-end">
                 <p class="text-white-50 mb-0">

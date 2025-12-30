@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Speaker;
 use App\Models\Schedule;
-use App\Models\Testimonial;
 use App\Models\BlogPost;
-use App\Models\Sponsor;
 use App\Models\Gallery;
-use App\Models\Faq;
 use App\Models\HeroSlide;
 use App\Models\Statistic;
 use App\Models\Subscriber;
@@ -30,12 +27,8 @@ class HomeController extends Controller
         $heroSlides = $selectedSlide ? collect([$selectedSlide]) : collect();
         $events = Event::active()->upcoming()->orderBy('event_date')->take(6)->get();
         $speakers = Speaker::active()->featured()->orderBy('order')->take(8)->get();
-        $schedules = Schedule::with(['event', 'speaker'])->active()->orderBy('schedule_date')->orderBy('start_time')->get();
-        $testimonials = Testimonial::active()->orderBy('order')->get();
-        $blogPosts = BlogPost::published()->recent()->take(3)->get();
-        $sponsors = Sponsor::active()->orderBy('order')->get();
+        $schedules = Schedule::with(['event', 'speakers'])->active()->orderBy('schedule_date')->orderBy('start_time')->get();
         $galleries = Gallery::active()->orderBy('order')->take(8)->get();
-        $faqs = Faq::active()->orderBy('order')->get();
 
         // Get countdown date from site settings (dynamic from database)
         $countdownDateRaw = SiteSetting::get('countdown_date');
@@ -74,8 +67,7 @@ class HomeController extends Controller
 
         return view('frontend.home', compact(
             'heroSlides', 'events', 'speakers', 'schedules',
-            'testimonials', 'blogPosts', 'sponsors',
-            'galleries', 'faqs', 'countdownDate', 'hasCountdown', 'mission', 'vision', 'goal',
+            'galleries', 'countdownDate', 'hasCountdown', 'mission', 'vision', 'goal',
             'speakerRevealDate', 'upcomingSpeaker', 'showSpeaker'
         ));
     }
@@ -84,9 +76,8 @@ class HomeController extends Controller
     {
         $speakers = Speaker::active()->orderBy('order')->get();
         $statistics = Statistic::active()->orderBy('order')->get();
-        $testimonials = Testimonial::active()->orderBy('order')->get();
 
-        return view('frontend.about', compact('speakers', 'statistics', 'testimonials'));
+        return view('frontend.about', compact('speakers', 'statistics'));
     }
 
     public function events()
@@ -97,7 +88,7 @@ class HomeController extends Controller
 
     public function eventDetail($slug)
     {
-        $event = Event::where('slug', $slug)->with(['schedules.speaker'])->firstOrFail();
+        $event = Event::where('slug', $slug)->with(['schedules.speakers'])->firstOrFail();
         return view('frontend.events.show', compact('event'));
     }
 
@@ -115,7 +106,7 @@ class HomeController extends Controller
 
     public function schedule()
     {
-        $schedules = Schedule::with(['event', 'speaker'])->active()
+        $schedules = Schedule::with(['event', 'speakers'])->active()
             ->orderBy('schedule_date')->orderBy('start_time')->get();
 
         return view('frontend.schedule', compact('schedules'));

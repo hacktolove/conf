@@ -31,7 +31,7 @@ class Speaker extends Model
 
     public function schedules()
     {
-        return $this->hasMany(Schedule::class);
+        return $this->belongsToMany(Schedule::class, 'schedule_speaker');
     }
 
     public function scopeActive($query)

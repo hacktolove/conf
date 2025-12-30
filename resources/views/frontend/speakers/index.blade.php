@@ -1,12 +1,12 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Speakers - Evenza')
+@section('title', __('messages.page_title_speakers'))
 
 @push('styles')
 <style>
     .navbar { background: var(--dark) !important; }
     .navbar.scrolled { background: #fff !important; }
-    
+
     /* Social Links Centering */
     .social-links {
         display: flex;
@@ -26,7 +26,7 @@
     .social-links .btn i {
         margin: 0;
     }
-    
+
     /* Responsive Styles */
     @media (max-width: 768px) {
         /* Page Header Mobile */
@@ -36,7 +36,7 @@
         .page-header .lead {
             font-size: 1rem;
         }
-        
+
         /* Section Padding Mobile */
         section.py-5 {
             padding-top: 2.5rem !important;
@@ -46,7 +46,7 @@
             padding-top: 2.5rem !important;
             padding-bottom: 2.5rem !important;
         }
-        
+
         /* Speaker Cards Mobile */
         .speaker-card .card-body {
             padding: 1.5rem !important;
@@ -68,7 +68,7 @@
             padding: 0;
         }
     }
-    
+
     @media (max-width: 576px) {
         /* Extra Small Mobile */
         .page-header h1.display-4 {

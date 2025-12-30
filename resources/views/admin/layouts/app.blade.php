@@ -143,28 +143,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.testimonials.*') ? 'active' : '' }}" href="{{ route('admin.testimonials.index') }}">
-                        <i class="bi bi-chat-quote"></i> Testimonials
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.blog-posts.*') ? 'active' : '' }}" href="{{ route('admin.blog-posts.index') }}">
                         <i class="bi bi-newspaper"></i> Blog Posts
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.sponsors.*') ? 'active' : '' }}" href="{{ route('admin.sponsors.index') }}">
-                        <i class="bi bi-building"></i> Sponsors
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.galleries.*') ? 'active' : '' }}" href="{{ route('admin.galleries.index') }}">
                         <i class="bi bi-image"></i> Gallery
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.faqs.*') ? 'active' : '' }}" href="{{ route('admin.faqs.index') }}">
-                        <i class="bi bi-question-circle"></i> FAQs
                     </a>
                 </li>
                 <li class="nav-item">

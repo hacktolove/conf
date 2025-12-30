@@ -11,13 +11,19 @@
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="table table-hover mb-0">
-                <thead><tr><th>Title</th><th>Event</th><th>Speaker</th><th>Date</th><th>Time</th><th>Status</th><th width="150">Actions</th></tr></thead>
+                <thead><tr><th>Title</th><th>Event</th><th>Speakers</th><th>Date</th><th>Time</th><th>Status</th><th width="150">Actions</th></tr></thead>
                 <tbody>
                     @forelse($schedules as $schedule)
                     <tr>
                         <td><strong>{{ $schedule->title }}</strong></td>
                         <td>{{ $schedule->event->title ?? 'N/A' }}</td>
-                        <td>{{ $schedule->speaker->name ?? 'N/A' }}</td>
+                        <td>
+                            @if($schedule->speakers->count() > 0)
+                                {{ $schedule->speakers->pluck('name')->join(', ') }}
+                            @else
+                                <span class="text-muted">N/A</span>
+                            @endif
+                        </td>
                         <td>{{ $schedule->schedule_date->format('M d, Y') }}</td>
                         <td>{{ $schedule->start_time }} - {{ $schedule->end_time }}</td>
                         <td><span class="badge {{ $schedule->is_active ? 'badge-active' : 'badge-inactive' }}">{{ $schedule->is_active ? 'Active' : 'Inactive' }}</span></td>

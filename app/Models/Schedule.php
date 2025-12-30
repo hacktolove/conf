@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Schedule extends Model
 {
     protected $fillable = [
-        'event_id', 'speaker_id', 'title', 'title_ar', 'description', 'description_ar',
+        'event_id', 'title', 'title_ar', 'description', 'description_ar',
         'schedule_date', 'start_time', 'end_time', 'venue', 'venue_ar',
         'day_label', 'day_label_ar', 'pdf_file', 'allow_download', 'order', 'is_active'
     ];
@@ -23,9 +23,9 @@ class Schedule extends Model
         return $this->belongsTo(Event::class);
     }
 
-    public function speaker()
+    public function speakers()
     {
-        return $this->belongsTo(Speaker::class);
+        return $this->belongsToMany(Speaker::class, 'schedule_speaker');
     }
 
     public function scopeActive($query)

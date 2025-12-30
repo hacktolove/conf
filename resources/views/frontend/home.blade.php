@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Evenza - Premier Event Management')
+@section('title', __('messages.page_title_home'))
 
 @push('styles')
 <style>
@@ -48,7 +48,7 @@
         padding-left: 0.75rem;
         padding-right: 0.75rem;
     }
-    
+
     /* Hero Carousel Styles */
     .hero-section .carousel {
         min-height: 100vh;
@@ -287,60 +287,6 @@
     a:hover .card-speaker .card-title {
         color: var(--primary);
     }
-    /* FAQ Styling */
-    .faq-item {
-        border: none;
-        margin-bottom: 1rem;
-        border-radius: 0.75rem;
-        overflow: hidden;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-    .faq-item .accordion-button {
-        background: #f8f9fa;
-        font-weight: 600;
-        border: none;
-        padding: 1.25rem 1.5rem;
-        font-size: 1.05rem;
-    }
-    .faq-item .accordion-button:not(.collapsed) {
-        background: var(--primary);
-        color: #fff;
-        box-shadow: none;
-    }
-    .faq-item .accordion-button:focus {
-        box-shadow: none;
-        border-color: transparent;
-    }
-    .faq-item .accordion-body {
-        background: #fff;
-        padding: 1.5rem;
-    }
-    /* RTL Support for FAQ Accordion */
-    [dir="rtl"] .faq-item .accordion-button {
-        padding-right: 1.5rem;
-        padding-left: 3rem;
-        text-align: right;
-    }
-    [dir="rtl"] .faq-item .accordion-button::after {
-        right: auto;
-        left: 1.25rem;
-        margin-left: 0;
-        margin-right: auto;
-    }
-    /* Testimonial Cards */
-    .testimonial-card {
-        background: #fff;
-        border-radius: 1rem;
-        padding: 2.5rem;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        height: 100%;
-        transition: all 0.3s;
-        border: 1px solid #f0f0f0;
-    }
-    .testimonial-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-    }
     /* Responsive Styles */
     @media (max-width: 768px) {
         /* Hero Section Mobile */
@@ -429,10 +375,6 @@
             font-size: 2.5rem !important;
         }
 
-        /* Testimonial Cards Mobile */
-        .testimonial-card {
-            padding: 1.5rem;
-        }
 
         /* Schedule Tabs Mobile */
         .schedule-day-tabs {
@@ -443,6 +385,11 @@
             max-width: 100%;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: flex-start !important;
+        }
+        [dir="rtl"] .schedule-day-tabs {
+            justify-content: flex-end !important;
         }
         .schedule-day-tabs::-webkit-scrollbar {
             height: 4px;
@@ -527,29 +474,7 @@
             height: 200px !important;
         }
 
-        /* Sponsors Mobile */
-        .sponsor-logo {
-            max-height: 50px !important;
-        }
 
-        /* FAQ Mobile */
-        .faq-item .accordion-button {
-            padding: 1rem;
-            font-size: 0.95rem;
-        }
-        .faq-item .accordion-body {
-            padding: 1rem;
-            font-size: 0.9rem;
-        }
-
-        /* RTL FAQ Mobile */
-        [dir="rtl"] .faq-item .accordion-button {
-            padding-right: 1rem;
-            padding-left: 2.5rem;
-        }
-        [dir="rtl"] .faq-item .accordion-button::after {
-            left: 0.75rem;
-        }
     }
 
     @media (max-width: 576px) {
@@ -591,9 +516,6 @@
             font-size: 0.6rem;
         }
         .key-benefit-card {
-            padding: 1.25rem;
-        }
-        .testimonial-card {
             padding: 1.25rem;
         }
     }
@@ -824,16 +746,20 @@
                                     </div>
                                     @endif
                                 </div>
-                                @if($schedule->speaker)
+                                @if($schedule->speakers->count() > 0)
                                 <div class="col-md-3 col-12 text-md-end">
-                                    <div class="d-flex align-items-center justify-content-md-end gap-2">
-                                        @if($schedule->speaker->image)
-                                        <img src="{{ asset('storage/' . $schedule->speaker->image) }}" alt="{{ $schedule->speaker->localized_name }}" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
-                                        @endif
-                                        <div>
-                                            <small class="text-primary d-block fw-bold"><i class="bi bi-person me-1"></i>{{ $schedule->speaker->localized_name }}</small>
-                                            <small class="text-muted d-block">{{ $schedule->speaker->localized_title }}</small>
+                                    <div class="d-flex flex-column align-items-md-end gap-2">
+                                        @foreach($schedule->speakers as $speaker)
+                                        <div class="d-flex align-items-center justify-content-md-end gap-2">
+                                            @if($speaker->image)
+                                            <img src="{{ asset('storage/' . $speaker->image) }}" alt="{{ $speaker->localized_name }}" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
+                                            @endif
+                                            <div>
+                                                <small class="text-primary d-block fw-bold"><i class="bi bi-person me-1"></i>{{ $speaker->localized_name }}</small>
+                                                <small class="text-muted d-block">{{ $speaker->localized_title }}</small>
+                                            </div>
                                         </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 @endif
@@ -934,156 +860,6 @@
     </div>
 </section>
 @endif
-
-<!-- FAQ Section -->
-@if($faqs->count() > 0)
-<section class="py-5 bg-light">
-    <div class="container py-5">
-        <div class="text-center mb-5">
-            <p class="section-subtitle">{{ __('messages.faqs') }}</p>
-            <h2 class="section-title display-5">{{ __('messages.questions_clearly_answer') }}</h2>
-        </div>
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
-                <div class="accordion" id="faqAccordion">
-                    @foreach($faqs as $index => $faq)
-                    <div class="accordion-item faq-item">
-                        <h2 class="accordion-header" id="heading{{ $index }}">
-                            <button class="accordion-button {{ $index > 0 ? 'collapsed' : '' }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $index }}">
-                                {{ $index + 1 }}. {{ $faq->localized_question }}
-                            </button>
-                        </h2>
-                        <div id="collapse{{ $index }}" class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                {{ $faq->localized_answer }}
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-@endif
-
-<!-- Testimonials -->
-@if($testimonials->count() > 0)
-<section class="py-5">
-    <div class="container py-5">
-        <div class="text-center mb-5">
-            <p class="section-subtitle mb-3">{{ __('messages.testimonials') }}</p>
-            <h2 class="section-title display-5 fw-bold">{{ __('messages.customers_say_title') }}</h2>
-            <p class="text-muted lead">{{ __('messages.attendees_connected') }}</p>
-            <p class="text-muted mb-4">{{ __('messages.client_experience_speak') }}</p>
-        </div>
-        <div class="row g-4">
-            @foreach($testimonials->take(3) as $testimonial)
-            <div class="col-lg-4 col-md-6">
-                <div class="testimonial-card h-100">
-                    <div class="mb-4">
-                        @for($i = 1; $i <= 5; $i++)
-                        <i class="bi bi-star{{ $i <= ($testimonial->rating ?? 5) ? '-fill' : '' }} text-warning"></i>
-                        @endfor
-                    </div>
-                    <p class="text-muted mb-4 fs-6">"{{ $testimonial->localized_content }}"</p>
-                    <div class="d-flex align-items-center">
-                        @if($testimonial->image)
-                        <img src="{{ asset('storage/' . $testimonial->image) }}" alt="{{ $testimonial->localized_name }}" class="rounded-circle me-3" style="width:60px;height:60px;object-fit:cover">
-                        @else
-                        <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" style="width:60px;height:60px">
-                            <span class="text-white fw-bold fs-5">{{ substr($testimonial->localized_name, 0, 1) }}</span>
-                        </div>
-                        @endif
-                        <div>
-                            <h6 class="mb-0 fw-bold">{{ $testimonial->localized_name }}</h6>
-                            <small class="text-muted">{{ $testimonial->localized_title }}</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-        <div class="text-center mt-5">
-            <a href="#" class="btn btn-outline-primary btn-lg px-4">{{ __('messages.view_all_reviews') }}</a>
-        </div>
-    </div>
-</section>
-@endif
-
-<!-- Sponsors -->
-@if($sponsors->count() > 0)
-<section class="py-5 bg-light">
-    <div class="container py-5">
-        <div class="text-center mb-5">
-            <p class="section-subtitle mb-3">{{ __('messages.supported_by_brands') }}</p>
-        </div>
-        <div class="row g-4 align-items-center justify-content-center">
-            @foreach($sponsors as $sponsor)
-            <div class="col-lg-2 col-md-3 col-6">
-                <a href="{{ $sponsor->website ?? '#' }}" target="_blank" class="d-block text-center p-3">
-                    @if($sponsor->logo)
-                    <img src="{{ asset('storage/' . $sponsor->logo) }}" alt="{{ $sponsor->name }}" class="img-fluid sponsor-logo" style="max-height:70px; width: auto;">
-                    @else
-                    <div class="sponsor-logo-placeholder bg-white p-4 rounded shadow-sm">
-                        <span class="text-muted small fw-bold">{{ $sponsor->name }}</span>
-                    </div>
-                    @endif
-                </a>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-@endif
-
-<!-- Blog Preview -->
-@if($blogPosts->count() > 0)
-<section class="py-5">
-    <div class="container py-5">
-        <div class="text-center mb-5">
-            <p class="section-subtitle mb-3">{{ __('messages.latest_blog') }}</p>
-            <h2 class="section-title display-5 fw-bold">{{ __('messages.explore_latest_insights') }}</h2>
-        </div>
-        <div class="row g-4">
-            @foreach($blogPosts as $post)
-            <div class="col-lg-4 col-md-6">
-                <div class="card card-event h-100 border-0 shadow-sm">
-                    @if($post->image)
-                    <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top" alt="{{ $post->localized_title }}" style="height: 250px; object-fit: cover;">
-                    @else
-                    <div class="bg-gradient-primary d-flex align-items-center justify-content-center" style="height:250px">
-                        <i class="bi bi-newspaper display-1 text-white"></i>
-                    </div>
-                    @endif
-                    <div class="card-body p-4">
-                        <div class="d-flex align-items-center mb-3">
-                            <div class="bg-primary-subtle rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 35px; height: 35px;">
-                                <i class="bi bi-person text-primary"></i>
-                            </div>
-                            <small class="text-muted fw-semibold">Esther Howard</small>
-                            <small class="text-muted ms-auto"><i class="bi bi-calendar3 me-1"></i>{{ $post->created_at->format('M d, Y') }}</small>
-                        </div>
-                        <h5 class="card-title mb-3 fw-bold">{{ $post->localized_title }}</h5>
-                        <p class="card-text text-muted mb-3">{{ Str::limit($post->localized_excerpt ?? '', 120) }}</p>
-                        <a href="{{ route('blog.show', $post->slug) }}" class="btn btn-outline-primary btn-sm">{{ __('messages.read_more_btn') }} <i class="bi bi-arrow-right ms-1"></i></a>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-@endif
-
-<!-- CTA Section -->
-<section class="bg-gradient-primary py-5 text-white">
-    <div class="container py-5 text-center">
-        <h2 class="display-5 fw-bold mb-4">{{ __('messages.ready_to_join') }}</h2>
-        <p class="lead mb-4 opacity-75">{{ __('messages.dont_miss_out') }}</p>
-        <a href="{{ route('contact') }}" class="btn btn-light btn-lg px-5">{{ __('messages.nav_contact') }}</a>
-    </div>
-</section>
 @endsection
 
 @push('scripts')

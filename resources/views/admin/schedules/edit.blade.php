@@ -22,13 +22,23 @@
                 </div>
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="speaker_id" class="form-label">Speaker</label>
-                        <select class="form-select" id="speaker_id" name="speaker_id">
-                            <option value="">Select Speaker (Optional)</option>
-                            @foreach($speakers as $speaker)
-                                <option value="{{ $speaker->id }}" {{ old('speaker_id', $schedule->speaker_id) == $speaker->id ? 'selected' : '' }}>{{ $speaker->name }}</option>
-                            @endforeach
-                        </select>
+                        <label class="form-label">Speakers (Optional)</label>
+                        <div class="border rounded p-3" style="max-height: 200px; overflow-y: auto;">
+                            @php
+                                $selectedSpeakerIds = old('speaker_ids', $schedule->speakers->pluck('id')->toArray());
+                            @endphp
+                            @forelse($speakers as $speaker)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="speaker_ids[]" value="{{ $speaker->id }}" id="speaker_{{ $speaker->id }}" {{ in_array($speaker->id, $selectedSpeakerIds) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="speaker_{{ $speaker->id }}">
+                                        {{ $speaker->name }}
+                                    </label>
+                                </div>
+                            @empty
+                                <p class="text-muted mb-0">No speakers available</p>
+                            @endforelse
+                        </div>
+                        <small class="text-muted">Select one or more speakers for this schedule</small>
                     </div>
                 </div>
                 <div class="col-md-12">

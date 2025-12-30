@@ -46,10 +46,11 @@
                         $currentLang = app()->getLocale() ?: 'ar';
                         $isArabic = $currentLang === 'ar';
                     @endphp
-                    <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-globe"></i> {{ $isArabic ? __('messages.nav_arabic') : __('messages.nav_english') }}
+                    <button class="btn btn-outline-light btn-sm dropdown-toggle d-flex align-items-center gap-2" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-globe"></i>
+                        <span>{{ $isArabic ? __('messages.nav_arabic') : __('messages.nav_english') }}</span>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                    <ul class="dropdown-menu {{ $isArabic ? 'dropdown-menu-start' : 'dropdown-menu-end' }}" aria-labelledby="languageDropdown">
                         <li><a class="dropdown-item {{ $isArabic ? 'active' : '' }}" href="{{ request()->fullUrlWithQuery(['lang' => 'ar']) }}">{{ __('messages.nav_arabic') }}</a></li>
                         <li><a class="dropdown-item {{ !$isArabic ? 'active' : '' }}" href="{{ request()->fullUrlWithQuery(['lang' => 'en']) }}">{{ __('messages.nav_english') }}</a></li>
                     </ul>

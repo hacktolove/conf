@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Schedule - Evenza')
+@section('title', __('messages.page_title_schedule'))
 
 @push('styles')
 <style>
@@ -8,7 +8,7 @@
     .navbar.scrolled { background: #fff !important; }
     .nav-pills .nav-link { color: var(--dark); border-radius: 0; border-bottom: 2px solid transparent; }
     .nav-pills .nav-link.active { background: transparent; color: var(--primary); border-bottom-color: var(--primary); }
-    
+
     /* Responsive Styles */
     @media (max-width: 768px) {
         /* Page Header Mobile */
@@ -18,7 +18,7 @@
         .page-header .lead {
             font-size: 1rem;
         }
-        
+
         /* Section Padding Mobile */
         section.py-5 {
             padding-top: 2.5rem !important;
@@ -28,7 +28,7 @@
             padding-top: 2.5rem !important;
             padding-bottom: 2.5rem !important;
         }
-        
+
         /* Schedule Tabs Mobile */
         .nav-pills {
             overflow-x: auto;
@@ -42,7 +42,7 @@
             white-space: nowrap;
             min-width: 120px;
         }
-        
+
         /* Schedule Items Mobile */
         .schedule-item .card-body {
             padding: 1.5rem !important;
@@ -65,7 +65,7 @@
             height: 50px !important;
         }
     }
-    
+
     @media (max-width: 576px) {
         /* Extra Small Mobile */
         .page-header h1.display-4 {
@@ -155,19 +155,23 @@
                                     </div>
                                     @endif
                                 </div>
-                                <div class="col-md-3 col-12 text-center">
-                                    @if($schedule->speaker)
-                                    <a href="{{ route('speakers.show', $schedule->speaker->slug) }}" class="text-decoration-none">
-                                        @if($schedule->speaker->image)
-                                        <img src="{{ asset('storage/' . $schedule->speaker->image) }}" alt="{{ $schedule->speaker->localized_name }}" class="rounded-circle mb-2" style="width: 60px; height: 60px; object-fit: cover;">
-                                        @else
-                                        <div class="bg-primary-subtle rounded-circle d-flex align-items-center justify-content-center mx-auto mb-2" style="width: 60px; height: 60px;">
-                                            <i class="bi bi-person text-primary"></i>
+                                <div class="col-md-3 col-12">
+                                    @if($schedule->speakers->count() > 0)
+                                        <div class="d-flex flex-column gap-3 align-items-center">
+                                            @foreach($schedule->speakers as $speaker)
+                                                <a href="{{ route('speakers.show', $speaker->slug) }}" class="text-decoration-none text-center">
+                                                    @if($speaker->image)
+                                                    <img src="{{ asset('storage/' . $speaker->image) }}" alt="{{ $speaker->localized_name }}" class="rounded-circle mb-2" style="width: 60px; height: 60px; object-fit: cover;">
+                                                    @else
+                                                    <div class="bg-primary-subtle rounded-circle d-flex align-items-center justify-content-center mx-auto mb-2" style="width: 60px; height: 60px;">
+                                                        <i class="bi bi-person text-primary"></i>
+                                                    </div>
+                                                    @endif
+                                                    <p class="mb-0 fw-semibold text-dark">{{ $speaker->localized_name }}</p>
+                                                    <small class="text-muted">{{ $speaker->localized_title }}</small>
+                                                </a>
+                                            @endforeach
                                         </div>
-                                        @endif
-                                        <p class="mb-0 fw-semibold text-dark">{{ $schedule->speaker->localized_name }}</p>
-                                        <small class="text-muted">{{ $schedule->speaker->localized_title }}</small>
-                                    </a>
                                     @endif
                                 </div>
                             </div>
