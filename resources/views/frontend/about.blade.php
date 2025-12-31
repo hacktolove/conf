@@ -87,8 +87,8 @@
 @section('content')
 <section class="page-header">
     <div class="container text-center">
-        <h1 class="display-4 fw-bold">{{ __('messages.about_us_title') }}</h1>
-        <p class="lead opacity-75">{{ __('messages.about_us_subtitle') }}</p>
+        <h1 class="display-4 fw-bold">{{ App\Models\SiteSetting::getLocalized('about_page_title', __('messages.about_us_title')) }}</h1>
+        <p class="lead opacity-75">{{ App\Models\SiteSetting::getLocalized('about_page_subtitle', __('messages.about_us_subtitle')) }}</p>
     </div>
 </section>
 
@@ -96,10 +96,14 @@
     <div class="container py-5">
         <div class="row align-items-center g-5">
             <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
-                <img src="{{ asset('images/about.jpg') }}" alt="About Us" class="img-fluid rounded shadow">
+                @php
+                    $aboutImage = App\Models\SiteSetting::get('about_page_image');
+                    $imageUrl = $aboutImage ? asset('storage/' . $aboutImage) : asset('images/about.jpg');
+                @endphp
+                <img src="{{ $imageUrl }}" alt="About Us" class="img-fluid rounded shadow">
             </div>
             <div class="col-lg-6 col-md-12">
-                <span class="badge bg-primary-subtle text-primary mb-3">{{ __('messages.who_we_are') }}</span>
+                <span class="badge bg-primary-subtle text-primary mb-3">{{ App\Models\SiteSetting::getLocalized('about_badge_text', __('messages.who_we_are')) }}</span>
                 <h2 class="display-5 fw-bold mb-4">{{ App\Models\SiteSetting::getLocalized('site_name', 'Evenza') }}</h2>
                 <p class="lead text-muted">{{ App\Models\SiteSetting::getLocalized('site_tagline', 'Your Premier Event Management Platform') }}</p>
                 <p class="text-muted">{{ App\Models\SiteSetting::getLocalized('site_description', 'We are dedicated to creating unforgettable event experiences that bring people together and inspire innovation.') }}</p>
@@ -135,10 +139,10 @@
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="card-body text-center p-4">
                         <div class="icon-box bg-primary-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-                            <i class="bi bi-lightbulb text-primary fs-2"></i>
+                            <i class="bi {{ App\Models\SiteSetting::get('about_value_innovation_icon', 'bi-lightbulb') }} text-primary fs-2"></i>
                         </div>
-                        <h5 class="fw-bold">{{ __('messages.innovation') }}</h5>
-                        <p class="text-muted mb-0">{{ __('messages.innovation_description') }}</p>
+                        <h5 class="fw-bold">{{ App\Models\SiteSetting::getLocalized('about_value_innovation_title', __('messages.innovation')) }}</h5>
+                        <p class="text-muted mb-0">{{ App\Models\SiteSetting::getLocalized('about_value_innovation_description', __('messages.innovation_description')) }}</p>
                     </div>
                 </div>
             </div>
@@ -146,10 +150,10 @@
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="card-body text-center p-4">
                         <div class="icon-box bg-primary-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-                            <i class="bi bi-people text-primary fs-2"></i>
+                            <i class="bi {{ App\Models\SiteSetting::get('about_value_community_icon', 'bi-people') }} text-primary fs-2"></i>
                         </div>
-                        <h5 class="fw-bold">{{ __('messages.community') }}</h5>
-                        <p class="text-muted mb-0">{{ __('messages.community_description') }}</p>
+                        <h5 class="fw-bold">{{ App\Models\SiteSetting::getLocalized('about_value_community_title', __('messages.community')) }}</h5>
+                        <p class="text-muted mb-0">{{ App\Models\SiteSetting::getLocalized('about_value_community_description', __('messages.community_description')) }}</p>
                     </div>
                 </div>
             </div>
@@ -157,10 +161,10 @@
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="card-body text-center p-4">
                         <div class="icon-box bg-primary-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-                            <i class="bi bi-award text-primary fs-2"></i>
+                            <i class="bi {{ App\Models\SiteSetting::get('about_value_excellence_icon', 'bi-award') }} text-primary fs-2"></i>
                         </div>
-                        <h5 class="fw-bold">{{ __('messages.excellence') }}</h5>
-                        <p class="text-muted mb-0">{{ __('messages.excellence_description') }}</p>
+                        <h5 class="fw-bold">{{ App\Models\SiteSetting::getLocalized('about_value_excellence_title', __('messages.excellence')) }}</h5>
+                        <p class="text-muted mb-0">{{ App\Models\SiteSetting::getLocalized('about_value_excellence_description', __('messages.excellence_description')) }}</p>
                     </div>
                 </div>
             </div>
