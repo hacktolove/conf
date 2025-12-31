@@ -27,6 +27,86 @@
         margin: 0;
     }
 
+    /* Custom Pagination Styles */
+    .pagination-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 3rem;
+    }
+    .custom-pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .custom-pagination .pagination-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .custom-pagination .pagination-item {
+        margin: 0;
+    }
+    .custom-pagination .pagination-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 40px;
+        height: 40px;
+        padding: 0.5rem 0.75rem;
+        color: #666666;
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 0.375rem;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+    .custom-pagination .pagination-link:hover:not(.disabled) {
+        color: #333;
+        border-color: #ccc;
+    }
+    .custom-pagination .pagination-item.active .pagination-link {
+        background: var(--primary);
+        color: #fff;
+        border-color: #9DC89D;
+        box-shadow: 0 2px 4px rgba(157, 200, 157, 0.3);
+        font-weight: 600;
+    }
+    .custom-pagination .pagination-item.disabled .pagination-link {
+        color: #999;
+        background: #fff;
+        border-color: #e0e0e0;
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+    .custom-pagination .pagination-item.disabled .pagination-link:hover {
+        color: #999;
+        border-color: #e0e0e0;
+    }
+    .pagination-info {
+        color: #666666;
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    /* RTL Support for Pagination */
+    [dir="rtl"] .custom-pagination {
+        direction: rtl;
+    }
+    [dir="rtl"] .custom-pagination .pagination-list {
+        flex-direction: row;
+    }
+
     /* Responsive Styles */
     @media (max-width: 768px) {
         /* Page Header Mobile */
@@ -67,6 +147,17 @@
             height: 35px;
             padding: 0;
         }
+
+        /* Pagination Mobile */
+        .custom-pagination .pagination-link {
+            min-width: 36px;
+            height: 36px;
+            padding: 0.4rem 0.6rem;
+            font-size: 0.9rem;
+        }
+        .pagination-info {
+            font-size: 0.85rem;
+        }
     }
 
     @media (max-width: 576px) {
@@ -87,6 +178,17 @@
         }
         h5 {
             font-size: 1rem;
+        }
+
+        /* Pagination Extra Small Mobile */
+        .custom-pagination .pagination-link {
+            min-width: 32px;
+            height: 32px;
+            padding: 0.3rem 0.5rem;
+            font-size: 0.85rem;
+        }
+        .pagination-info {
+            font-size: 0.8rem;
         }
     }
 </style>
@@ -140,8 +242,17 @@
             </div>
             @endforeach
         </div>
-        <div class="mt-5">
-            {{ $speakers->links() }}
+        <div class="pagination-wrapper">
+            {{ $speakers->links('vendor.pagination.custom') }}
+            @if($speakers->hasPages())
+            <div class="pagination-info">
+                @if(app()->getLocale() === 'ar')
+                    عرض {{ $speakers->firstItem() ?? 0 }} إلى {{ $speakers->lastItem() ?? 0 }} من {{ $speakers->total() }} نتيجة
+                @else
+                    Showing {{ $speakers->firstItem() ?? 0 }} to {{ $speakers->lastItem() ?? 0 }} of {{ $speakers->total() }} results
+                @endif
+            </div>
+            @endif
         </div>
         @else
         <div class="text-center py-5">
