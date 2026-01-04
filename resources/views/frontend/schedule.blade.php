@@ -104,7 +104,7 @@
         <ul class="nav nav-pills justify-content-center mb-5" id="scheduleTab" role="tablist">
             @foreach($groupedSchedules as $date => $items)
             <li class="nav-item" role="presentation">
-                <button class="nav-link {{ $loop->first ? 'active' : '' }}" id="tab-{{ $loop->index }}" data-bs-toggle="pill" data-bs-target="#day-{{ $loop->index }}" type="button" role="tab">
+                <button class="nav-link {{ $loop->first ? 'active' : '' }}" id="tab-{{ $loop->index }}" data-toggle="pill" data-target="#day-{{ $loop->index }}" type="button" role="tab">
                     @if($date !== 'No Date')
                     <span class="d-block fw-bold">{{ __('messages.day') }} {{ $loop->iteration }}</span>
                     <small class="text-muted">{{ \Carbon\Carbon::parse($date)->format('M d, Y') }}</small>
@@ -139,12 +139,24 @@
                                     @if($schedule->localized_description)
                                     <p class="text-muted mb-2">{{ Str::limit($schedule->localized_description, 150) }}</p>
                                     @endif
-                                    <div class="d-flex flex-wrap gap-2 mb-2">
+                                    <div class="d-flex flex-wrap mb-2">
                                         @if($schedule->localized_venue)
-                                        <span class="badge bg-light text-dark"><i class="bi bi-geo-alt me-1"></i>{{ $schedule->localized_venue }}</span>
+                                            @php
+                                                $venue = $schedule->localized_venue;
+                                                $isUrl = filter_var($venue, FILTER_VALIDATE_URL) !== false || Str::startsWith($venue, ['http://', 'https://']);
+                                                $isArabic = app()->getLocale() === 'ar';
+                                                $linkText = $isArabic ? 'إنضم للجلسة' : 'Join Session';
+                                            @endphp
+                                            @if($isUrl)
+                                                <a href="{{ $venue }}" target="_blank" class="badge bg-success text-white mr-2 mb-2" style="text-decoration: none;">
+                                                    <i class="icon-videocam mr-1"></i>{{ $linkText }}
+                                                </a>
+                                            @else
+                                                <span class="badge bg-light text-dark mr-2 mb-2"><i class="icon-location mr-1"></i>{{ $venue }}</span>
+                                            @endif
                                         @endif
                                         @if($schedule->event)
-                                        <span class="badge bg-light text-dark"><i class="bi bi-calendar-event me-1"></i>{{ $schedule->event->localized_title }}</span>
+                                        <span class="badge bg-light text-dark mb-2"><i class="icon-calendar mr-1"></i>{{ $schedule->event->localized_title }}</span>
                                         @endif
                                     </div>
                                     @if($schedule->pdf_file && $schedule->allow_download)
