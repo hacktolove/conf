@@ -134,22 +134,15 @@
                                         @endforeach
                                     </p>
                                     @endif
-                                    @if($schedule->localized_venue)
+                                    @if($schedule->venue_is_link && $schedule->localized_venue)
                                         @php
                                             $venue = $schedule->localized_venue;
-                                            $isUrl = filter_var($venue, FILTER_VALIDATE_URL) !== false || Str::startsWith($venue, ['http://', 'https://']);
                                             $isArabic = app()->getLocale() === 'ar';
                                             $linkText = $isArabic ? 'إنضم للجلسة' : 'Join Session';
                                         @endphp
-                                        @if($isUrl)
-                                            <a href="{{ $venue }}" target="_blank" class="btn btn-sm btn-success mb-1" style="text-decoration: none;">
-                                                <i class="icon-videocam mr-1"></i>{{ $linkText }}
-                                            </a>
-                                        @else
-                                            <p class="text-muted small mb-1">
-                                                <i class="icon-location mr-1"></i>{{ $venue }}
-                                            </p>
-                                        @endif
+                                        <a href="{{ $venue }}" target="_blank" class="btn btn-sm btn-success mb-1" style="text-decoration: none;">
+                                            <i class="icon-videocam mr-1"></i>{{ $linkText }}
+                                        </a>
                                     @endif
                                     @if($schedule->pdf_file && $schedule->allow_download)
                                     <div class="mt-2">

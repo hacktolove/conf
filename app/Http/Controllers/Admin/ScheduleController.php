@@ -43,12 +43,14 @@ class ScheduleController extends Controller
             'day_label_ar' => 'nullable|string|max:100',
             'pdf_file' => 'nullable|file|mimes:pdf|max:10240',
             'allow_download' => 'boolean',
+            'venue_is_link' => 'boolean',
             'order' => 'integer',
             'is_active' => 'boolean',
         ]);
 
         $validated['is_active'] = $request->boolean('is_active');
         $validated['allow_download'] = $request->boolean('allow_download');
+        $validated['venue_is_link'] = $request->boolean('venue_is_link');
 
         if ($request->hasFile('pdf_file')) {
             $validated['pdf_file'] = $request->file('pdf_file')->store('schedules/pdfs', 'public');
@@ -89,6 +91,7 @@ class ScheduleController extends Controller
             'day_label_ar' => 'nullable|string|max:100',
             'pdf_file' => 'nullable|file|mimes:pdf|max:10240',
             'allow_download' => 'boolean',
+            'venue_is_link' => 'boolean',
             'remove_pdf' => 'boolean',
             'order' => 'integer',
             'is_active' => 'boolean',
@@ -96,6 +99,7 @@ class ScheduleController extends Controller
 
         $validated['is_active'] = $request->boolean('is_active');
         $validated['allow_download'] = $request->boolean('allow_download');
+        $validated['venue_is_link'] = $request->boolean('venue_is_link');
 
         // Handle PDF file upload
         if ($request->hasFile('pdf_file')) {

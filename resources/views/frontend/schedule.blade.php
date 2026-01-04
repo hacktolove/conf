@@ -140,20 +140,15 @@
                                     <p class="text-muted mb-2">{{ Str::limit($schedule->localized_description, 150) }}</p>
                                     @endif
                                     <div class="d-flex flex-wrap mb-2">
-                                        @if($schedule->localized_venue)
+                                        @if($schedule->venue_is_link && $schedule->localized_venue)
                                             @php
                                                 $venue = $schedule->localized_venue;
-                                                $isUrl = filter_var($venue, FILTER_VALIDATE_URL) !== false || Str::startsWith($venue, ['http://', 'https://']);
                                                 $isArabic = app()->getLocale() === 'ar';
                                                 $linkText = $isArabic ? 'إنضم للجلسة' : 'Join Session';
                                             @endphp
-                                            @if($isUrl)
-                                                <a href="{{ $venue }}" target="_blank" class="badge bg-success text-white mr-2 mb-2" style="text-decoration: none;">
-                                                    <i class="icon-videocam mr-1"></i>{{ $linkText }}
-                                                </a>
-                                            @else
-                                                <span class="badge bg-light text-dark mr-2 mb-2"><i class="icon-location mr-1"></i>{{ $venue }}</span>
-                                            @endif
+                                            <a href="{{ $venue }}" target="_blank" class="badge bg-success text-white mr-2 mb-2" style="text-decoration: none;">
+                                                <i class="icon-videocam mr-1"></i>{{ $linkText }}
+                                            </a>
                                         @endif
                                         @if($schedule->event)
                                         <span class="badge bg-light text-dark mb-2"><i class="icon-calendar mr-1"></i>{{ $schedule->event->localized_title }}</span>

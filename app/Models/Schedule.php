@@ -9,13 +9,14 @@ class Schedule extends Model
     protected $fillable = [
         'event_id', 'title', 'title_ar', 'description', 'description_ar',
         'schedule_date', 'start_time', 'end_time', 'venue', 'venue_ar',
-        'day_label', 'day_label_ar', 'pdf_file', 'allow_download', 'order', 'is_active'
+        'day_label', 'day_label_ar', 'pdf_file', 'allow_download', 'order', 'is_active', 'venue_is_link'
     ];
 
     protected $casts = [
         'schedule_date' => 'date',
         'is_active' => 'boolean',
         'allow_download' => 'boolean',
+        'venue_is_link' => 'boolean',
     ];
 
     public function event()

@@ -71,12 +71,20 @@
                     <div class="mb-3">
                         <label for="venue" class="form-label">Venue</label>
                         <input type="text" class="form-control" id="venue" name="venue" value="{{ old('venue') }}">
+                        <small class="text-muted">Enter venue name or Google Meet URL</small>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="mb-3">
                         <label for="day_label" class="form-label">Day Label (e.g., Day 1)</label>
                         <input type="text" class="form-control" id="day_label" name="day_label" value="{{ old('day_label') }}">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-check mt-4">
+                        <input class="form-check-input" type="checkbox" id="venue_is_link" name="venue_is_link" value="1" {{ old('venue_is_link') ? 'checked' : '' }}>
+                        <label class="form-check-label" for="venue_is_link">Display Venue as Google Meet Link</label>
+                        <small class="text-muted d-block">Check this if the venue is a Google Meet URL that should be clickable</small>
                     </div>
                 </div>
                 <div class="col-md-4">

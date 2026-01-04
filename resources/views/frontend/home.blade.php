@@ -733,22 +733,15 @@
                                 <div class="col-md-7 col-12">
                                     <h5 class="mb-2 fw-bold">{{ $schedule->localized_title }}</h5>
                                     <p class="text-muted mb-2">{{ Str::limit($schedule->localized_description, 120) }}</p>
-                                    @if($schedule->localized_venue)
+                                    @if($schedule->venue_is_link && $schedule->localized_venue)
                                         @php
                                             $venue = $schedule->localized_venue;
-                                            $isUrl = filter_var($venue, FILTER_VALIDATE_URL) !== false || Str::startsWith($venue, ['http://', 'https://']);
                                             $isArabic = app()->getLocale() === 'ar';
                                             $linkText = $isArabic ? 'إنضم للجلسة' : 'Join Session';
                                         @endphp
-                                        @if($isUrl)
-                                            <a href="{{ $venue }}" target="_blank" class="btn btn-sm btn-success mb-2" style="text-decoration: none;">
-                                                <i class="icon-videocam mr-1"></i>{{ $linkText }}
-                                            </a>
-                                        @else
-                                            <small class="text-muted d-flex align-items-center mb-2">
-                                                <i class="icon-location mr-1"></i>{{ $venue }}
-                                            </small>
-                                        @endif
+                                        <a href="{{ $venue }}" target="_blank" class="btn btn-sm btn-success mb-2" style="text-decoration: none;">
+                                            <i class="icon-videocam mr-1"></i>{{ $linkText }}
+                                        </a>
                                     @endif
                                     @if($schedule->pdf_file && $schedule->allow_download)
                                     <div class="mt-2">
