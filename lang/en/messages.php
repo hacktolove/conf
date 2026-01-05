@@ -166,6 +166,12 @@ return [
     'check_back_events' => 'Check back later for upcoming events.',
     'about_this_event' => 'About This Event',
     'event_schedule' => 'Event Schedule',
+    'event_information' => 'Event Information',
+    'date' => 'Date',
+    'time' => 'Time',
+    'venue' => 'Venue',
+    'register_now' => 'Register Now',
+    'join_session' => 'Join Session',
 
     // Schedule Page
     'event_schedule_title' => 'Event Schedule',

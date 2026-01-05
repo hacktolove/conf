@@ -166,6 +166,12 @@ return [
     'check_back_events' => 'تحقق مرة أخرى لاحقاً للأحداث القادمة.',
     'about_this_event' => 'حول هذا الحدث',
     'event_schedule' => 'جدول الحدث',
+    'event_information' => 'معلومات الحدث',
+    'date' => 'التاريخ',
+    'time' => 'الوقت',
+    'venue' => 'المكان',
+    'register_now' => 'سجل الآن',
+    'join_session' => 'انضم للجلسة',
 
     // Schedule Page
     'event_schedule_title' => 'جدول الحدث',
