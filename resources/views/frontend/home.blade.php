@@ -59,13 +59,25 @@
     /* Hero Carousel Styles */
     .hero-section .carousel {
         min-height: 100vh;
+        position: relative;
+        overflow: hidden;
     }
     .hero-section .carousel-inner {
         min-height: 100vh;
+        position: relative;
+        overflow: hidden;
     }
     .hero-section .carousel-item {
         min-height: 100vh;
         width: 100%;
+        position: relative;
+    }
+    /* Prevent height changes during carousel transitions */
+    .hero-section .carousel.sliding {
+        height: var(--carousel-locked-height, auto) !important;
+    }
+    .hero-section .carousel.sliding .carousel-inner {
+        height: var(--carousel-inner-locked-height, auto) !important;
     }
     /* Ensure RTL carousel items are properly positioned */
     [dir="rtl"] .hero-section .carousel-item {
@@ -82,7 +94,23 @@
         top: 50%;
         transform: translateY(-50%);
         opacity: 0.8;
-        transition: all 0.3s;
+        transition: opacity 0.3s, background 0.3s !important;
+        position: absolute !important;
+        z-index: 10;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    /* Ensure buttons maintain position during transitions */
+    .hero-section .carousel.sliding .carousel-control-prev,
+    .hero-section .carousel.sliding .carousel-control-next {
+        transition: opacity 0.3s, background 0.3s !important;
+    }
+    /* Prevent transform transitions on controls */
+    .hero-section .carousel-control-prev,
+    .hero-section .carousel-control-next {
+        transition-property: opacity, background-color !important;
     }
     .hero-section .carousel-control-prev {
         left: 20px;
@@ -1115,6 +1143,188 @@
         }
     });
     @endif
+
+    // Fix carousel control button positions during transitions
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousel = document.getElementById('heroCarousel');
+        if (!carousel) return;
+
+        const prevBtn = carousel.querySelector('.carousel-control-prev');
+        const nextBtn = carousel.querySelector('.carousel-control-next');
+        const heroSection = carousel.closest('.hero-section');
+
+        if (!prevBtn || !nextBtn) return;
+
+        // Function to update control positions based on carousel center
+        function updateControlPositions() {
+            const carouselRect = carousel.getBoundingClientRect();
+            const carouselCenter = carouselRect.height / 2;
+
+            // Set position relative to carousel container center
+            prevBtn.style.top = carouselCenter + 'px';
+            nextBtn.style.top = carouselCenter + 'px';
+            prevBtn.style.transform = 'translateY(-50%)';
+            nextBtn.style.transform = 'translateY(-50%)';
+        }
+
+        // Store initial position and height
+        let lockedHeight = null;
+        let lockedInnerHeight = null;
+
+        // Lock position AND height during transitions
+        carousel.addEventListener('slide.bs.carousel', function() {
+            // Lock carousel height BEFORE transition starts to prevent height changes
+            lockedHeight = carousel.offsetHeight;
+            carousel.style.setProperty('--carousel-locked-height', lockedHeight + 'px');
+            carousel.style.height = lockedHeight + 'px';
+            carousel.style.overflow = 'hidden';
+            carousel.classList.add('sliding');
+
+            const carouselInner = carousel.querySelector('.carousel-inner');
+            if (carouselInner) {
+                lockedInnerHeight = carouselInner.offsetHeight;
+                carousel.style.setProperty('--carousel-inner-locked-height', lockedInnerHeight + 'px');
+                carouselInner.style.height = lockedInnerHeight + 'px';
+                carouselInner.style.overflow = 'hidden';
+            }
+
+            // Lock hero section height if it exists
+            if (heroSection) {
+                heroSection.style.height = heroSection.offsetHeight + 'px';
+                heroSection.style.overflow = 'hidden';
+            }
+
+            // Lock active carousel item height
+            const activeItem = carousel.querySelector('.carousel-item.active');
+            if (activeItem) {
+                activeItem.style.height = activeItem.offsetHeight + 'px';
+            }
+
+            // Lock control button positions at current carousel center
+            const carouselCenter = lockedHeight / 2;
+            prevBtn.style.top = carouselCenter + 'px';
+            nextBtn.style.top = carouselCenter + 'px';
+            prevBtn.style.position = 'absolute';
+            nextBtn.style.position = 'absolute';
+        });
+
+        // Update position after transition completes
+        carousel.addEventListener('slid.bs.carousel', function() {
+            // Release height locks
+            carousel.classList.remove('sliding');
+            carousel.style.removeProperty('--carousel-locked-height');
+            carousel.style.removeProperty('--carousel-inner-locked-height');
+            carousel.style.height = '';
+            carousel.style.overflow = '';
+
+            const carouselInner = carousel.querySelector('.carousel-inner');
+            if (carouselInner) {
+                carouselInner.style.height = '';
+                carouselInner.style.overflow = '';
+            }
+
+            if (heroSection) {
+                heroSection.style.height = '';
+                heroSection.style.overflow = '';
+            }
+
+            const activeItem = carousel.querySelector('.carousel-item.active');
+            if (activeItem) {
+                activeItem.style.height = '';
+            }
+
+            // Recalculate position based on new carousel height
+            setTimeout(updateControlPositions, 50);
+        });
+
+        // Initial position setup
+        setTimeout(updateControlPositions, 100);
+
+        // Update on window resize
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(updateControlPositions, 100);
+        });
+
+        // Update on scroll (in case carousel moves)
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(updateControlPositions, 50);
+        }, {passive: true});
+    });
+
+    // #region agent log - Control button position tracking
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousel = document.getElementById('heroCarousel');
+        if (!carousel) return;
+
+        const prevBtn = carousel.querySelector('.carousel-control-prev');
+        const nextBtn = carousel.querySelector('.carousel-control-next');
+        const carouselEl = carousel.querySelector('.carousel');
+        const carouselInner = carousel.querySelector('.carousel-inner');
+
+        function logControlPosition(event, data) {
+            const positions = {
+                prevBtn: prevBtn ? {
+                    top: prevBtn.offsetTop,
+                    getBoundingClientRect: prevBtn.getBoundingClientRect(),
+                    computedTop: window.getComputedStyle(prevBtn).top,
+                    computedTransform: window.getComputedStyle(prevBtn).transform
+                } : null,
+                nextBtn: nextBtn ? {
+                    top: nextBtn.offsetTop,
+                    getBoundingClientRect: nextBtn.getBoundingClientRect(),
+                    computedTop: window.getComputedStyle(nextBtn).top,
+                    computedTransform: window.getComputedStyle(nextBtn).transform
+                } : null,
+                carouselHeight: carouselEl ? carouselEl.offsetHeight : 0,
+                carouselInnerHeight: carouselInner ? carouselInner.offsetHeight : 0
+            };
+
+            fetch('http://127.0.0.1:7242/ingest/31bed679-aaad-49c4-ad15-0cd089292133', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    location: 'home.blade.php:control-position',
+                    message: event,
+                    data: {...data, positions},
+                    timestamp: Date.now(),
+                    sessionId: 'debug-session',
+                    runId: 'verification'
+                })
+            }).catch(() => {});
+        }
+
+        // Log initial positions
+        setTimeout(() => logControlPosition('initial-load', {}), 500);
+
+        // Track during transitions
+        carousel.addEventListener('slide.bs.carousel', function(e) {
+            const prevTop = prevBtn ? window.getComputedStyle(prevBtn).top : '0';
+            const nextTop = nextBtn ? window.getComputedStyle(nextBtn).top : '0';
+            logControlPosition('slide-start', {toIndex: e.to, prevTop, nextTop});
+
+            // Track positions during transition
+            let checkCount = 0;
+            const interval = setInterval(() => {
+                const currentPrevTop = prevBtn ? window.getComputedStyle(prevBtn).top : '0';
+                const currentNextTop = nextBtn ? window.getComputedStyle(nextBtn).top : '0';
+                logControlPosition('transition-check', {checkCount: checkCount++, prevTop: currentPrevTop, nextTop: currentNextTop});
+                if (checkCount > 20) clearInterval(interval);
+            }, 50);
+
+            carousel.addEventListener('slid.bs.carousel', function handler() {
+                clearInterval(interval);
+                const finalPrevTop = prevBtn ? window.getComputedStyle(prevBtn).top : '0';
+                const finalNextTop = nextBtn ? window.getComputedStyle(nextBtn).top : '0';
+                logControlPosition('slide-end', {toIndex: e.to, prevTop: finalPrevTop, nextTop: finalNextTop});
+                carousel.removeEventListener('slid.bs.carousel', handler);
+            }, {once: true});
+        });
+    });
+    // #endregion
 
     // Countdown Timer (Dynamic from Database)
     @if($hasCountdown)
