@@ -134,10 +134,15 @@
                                         @endforeach
                                     </p>
                                     @endif
-                                    @if($schedule->localized_venue)
-                                    <p class="text-muted small mb-1">
-                                        <i class="bi bi-geo-alt me-1"></i>{{ $schedule->localized_venue }}
-                                    </p>
+                                    @if($schedule->venue_is_link && $schedule->localized_venue)
+                                        @php
+                                            $venue = $schedule->localized_venue;
+                                            $isArabic = app()->getLocale() === 'ar';
+                                            $linkText = $isArabic ? 'إنضم للجلسة' : 'Join Session';
+                                        @endphp
+                                        <a href="{{ $venue }}" target="_blank" class="btn btn-sm btn-success mb-1" style="text-decoration: none;">
+                                            <i class="icon-videocam mr-1"></i>{{ $linkText }}
+                                        </a>
                                     @endif
                                     @if($schedule->pdf_file && $schedule->allow_download)
                                     <div class="mt-2">

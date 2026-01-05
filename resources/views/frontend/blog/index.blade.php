@@ -6,7 +6,7 @@
 <style>
     .navbar { background: var(--dark) !important; }
     .navbar.scrolled { background: #fff !important; }
-    
+
     /* Responsive Styles */
     @media (max-width: 768px) {
         /* Page Header Mobile */
@@ -16,7 +16,7 @@
         .page-header .lead {
             font-size: 1rem;
         }
-        
+
         /* Section Padding Mobile */
         section.py-5 {
             padding-top: 2.5rem !important;
@@ -26,7 +26,7 @@
             padding-top: 2.5rem !important;
             padding-bottom: 2.5rem !important;
         }
-        
+
         /* Blog Cards Mobile */
         .blog-card .card-body {
             padding: 1.5rem !important;
@@ -45,7 +45,7 @@
             font-size: 1.1rem;
         }
     }
-    
+
     @media (max-width: 576px) {
         /* Extra Small Mobile */
         .page-header h1.display-4 {
@@ -91,9 +91,9 @@
                             <i class="bi bi-newspaper text-primary" style="font-size: 4rem;"></i>
                         </div>
                         @endif
-                        @if($post->localized_category)
+                        <!-- @if($post->localized_category)
                         <span class="badge bg-primary position-absolute top-0 start-0 m-3">{{ $post->localized_category }}</span>
-                        @endif
+                        @endif -->
                     </div>
                     <div class="card-body p-4">
                         <div class="d-flex align-items-center text-muted small mb-2">

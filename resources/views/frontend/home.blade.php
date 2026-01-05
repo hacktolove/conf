@@ -733,10 +733,15 @@
                                 <div class="col-md-7 col-12">
                                     <h5 class="mb-2 fw-bold">{{ $schedule->localized_title }}</h5>
                                     <p class="text-muted mb-2">{{ Str::limit($schedule->localized_description, 120) }}</p>
-                                    @if($schedule->localized_venue)
-                                    <small class="text-muted d-flex align-items-center gap-1 mb-2">
-                                        <i class="bi bi-geo-alt"></i>{{ $schedule->localized_venue }}
-                                    </small>
+                                    @if($schedule->venue_is_link && $schedule->localized_venue)
+                                        @php
+                                            $venue = $schedule->localized_venue;
+                                            $isArabic = app()->getLocale() === 'ar';
+                                            $linkText = $isArabic ? 'إنضم للجلسة' : 'Join Session';
+                                        @endphp
+                                        <a href="{{ $venue }}" target="_blank" class="btn btn-sm btn-success mb-2" style="text-decoration: none;">
+                                            <i class="icon-videocam mr-1"></i>{{ $linkText }}
+                                        </a>
                                     @endif
                                     @if($schedule->pdf_file && $schedule->allow_download)
                                     <div class="mt-2">

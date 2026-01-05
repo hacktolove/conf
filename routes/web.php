@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\StatisticController;
 use App\Http\Controllers\Admin\SubscriberController;
 use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\AboutPageController;
 
 // Frontend Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -59,5 +60,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
         Route::post('settings', [SettingController::class, 'update'])->name('settings.update');
+
+        Route::get('about-page', [AboutPageController::class, 'index'])->name('about-page.index');
+        Route::post('about-page', [AboutPageController::class, 'update'])->name('about-page.update');
     });
 });
