@@ -19,12 +19,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // Get the selected slide, or fallback to first active slide if none selected
-        $selectedSlide = HeroSlide::active()->selected()->first();
-        if (!$selectedSlide) {
-            $selectedSlide = HeroSlide::active()->orderBy('order')->first();
-        }
-        $heroSlides = $selectedSlide ? collect([$selectedSlide]) : collect();
+        // Get all active hero slides ordered by order field
+        $heroSlides = HeroSlide::active()->orderBy('order')->get();
         $events = Event::active()->upcoming()->orderBy('event_date')->take(6)->get();
         $speakers = Speaker::active()->featured()->orderBy('order')->take(8)->get();
         $schedules = Schedule::with(['event', 'speakers'])->active()->orderBy('schedule_date')->orderBy('start_time')->get();

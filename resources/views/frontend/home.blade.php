@@ -9,6 +9,13 @@
         max-width: 100%;
         height: auto;
     }
+    /* Ensure carousel images are always constrained */
+    .hero-section .carousel-item img,
+    .hero-section .hero-slide-image {
+        max-width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+    }
     .container, .container-fluid {
         max-width: 100%;
         overflow-x: hidden;
@@ -58,6 +65,13 @@
     }
     .hero-section .carousel-item {
         min-height: 100vh;
+        width: 100%;
+    }
+    /* Ensure RTL carousel items are properly positioned */
+    [dir="rtl"] .hero-section .carousel-item {
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0;
     }
     .hero-section .carousel-control-prev,
     .hero-section .carousel-control-next {
@@ -116,16 +130,86 @@
         text-align: left;
     }
     /* Ensure carousel content is always visible */
-    .hero-section .carousel-item {
-        opacity: 1 !important;
-    }
     .hero-section .carousel-item.active {
         display: block !important;
+    }
+    /* RTL Carousel Animation Fix - Keep inner direction LTR for proper animation */
+    [dir="rtl"] .hero-section .carousel-inner {
+        direction: ltr;
+    }
+    /* Ensure active slide is properly positioned and visible */
+    [dir="rtl"] .hero-section .carousel-item.active {
+        transform: translateX(0) !important;
+        position: relative;
+    }
+    [dir="rtl"] .hero-section .carousel-inner {
+        transform: translateX(0) !important;
     }
     .hero-section .carousel-item .row {
         min-height: 100vh;
         display: flex;
         align-items: center;
+    }
+    /* Hero Carousel Image Styles - Constrain all images to consistent size */
+    .hero-section .hero-slide-image-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-height: 600px;
+        padding: 1rem;
+        overflow: hidden;
+        position: relative;
+    }
+    .hero-section .hero-slide-image {
+        max-width: 100% !important;
+        max-height: 600px !important;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+    }
+    /* Ensure images don't exceed container width */
+    .hero-section .carousel-item .col-lg-6 .hero-slide-image-wrapper {
+        max-width: 100%;
+        max-height: 600px;
+    }
+    @media (min-width: 768px) {
+        .hero-section .hero-slide-image-wrapper {
+            max-height: 500px;
+        }
+        .hero-section .hero-slide-image {
+            max-width: 100% !important;
+            max-height: 500px !important;
+        }
+    }
+    @media (min-width: 992px) {
+        .hero-section .hero-slide-image-wrapper {
+            max-height: 650px;
+        }
+        .hero-section .hero-slide-image {
+            max-width: 100% !important;
+            max-height: 650px !important;
+        }
+    }
+    @media (min-width: 1200px) {
+        .hero-section .hero-slide-image-wrapper {
+            max-height: 750px;
+        }
+        .hero-section .hero-slide-image {
+            max-width: 100% !important;
+            max-height: 750px !important;
+        }
+    }
+    @media (min-width: 1400px) {
+        .hero-section .hero-slide-image-wrapper {
+            max-height: 800px;
+        }
+        .hero-section .hero-slide-image {
+            max-width: 100% !important;
+            max-height: 800px !important;
+        }
     }
     /* Enhanced Countdown Timer */
     .countdown-timer {
@@ -323,6 +407,21 @@
             height: auto;
             margin-bottom: 1.5rem;
         }
+        /* Carousel Image Mobile */
+        .hero-section .hero-slide-image-wrapper {
+            padding: 0.5rem;
+            max-width: 100%;
+            max-height: 300px !important;
+            overflow: hidden;
+        }
+        .hero-section .hero-slide-image {
+            max-width: 100% !important;
+            max-height: 300px !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+            margin: 0 auto;
+        }
 
         /* Countdown Timer Mobile */
         .countdown-timer {
@@ -497,6 +596,19 @@
             padding: 0.65rem 1.25rem;
             font-size: 0.95rem;
         }
+        /* Carousel Image Extra Small Mobile */
+        .hero-section .hero-slide-image-wrapper {
+            max-width: 100%;
+            max-height: 250px !important;
+            overflow: hidden;
+        }
+        .hero-section .hero-slide-image {
+            max-width: 100% !important;
+            max-height: 250px !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
         .display-5 {
             font-size: 1.5rem !important;
         }
@@ -527,50 +639,82 @@
 <section class="hero-section">
     <div class="container position-relative">
         @if($heroSlides->count() > 0)
-        @php $slide = $heroSlides->first(); @endphp
-        <div class="hero-slide-single">
-            <div class="row align-items-center min-vh-100">
-                <div class="col-lg-6 col-md-12 text-white order-2 order-lg-1">
-                    @if($slide->localized_subtitle)
-                    <p class="section-subtitle mb-3">{{ $slide->localized_subtitle }}</p>
-                    @endif
-                    <h1 class="display-3 fw-bold mb-4">{{ $slide->localized_title }}</h1>
-                    <p class="lead mb-4 text-white-50">{{ $slide->localized_description }}</p>
-                    <div class="d-flex gap-3 mb-4 mb-lg-5 flex-wrap align-items-center">
-                        @if($slide->localized_button_text)
-                        <a href="{{ $slide->button_link ?? '#' }}" class="btn btn-primary btn-lg px-4 px-lg-5 w-100 w-md-auto">{{ $slide->localized_button_text }}</a>
-                        @endif
-                    </div>
+        @php
+            $isArabic = app()->getLocale() === 'ar';
+        @endphp
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" @if($isArabic) dir="rtl" @endif>
+            <!-- Carousel Indicators -->
+            @if($heroSlides->count() > 1)
+            <div class="carousel-indicators">
+                @foreach($heroSlides as $index => $slide)
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
+                @endforeach
+            </div>
+            @endif
 
-                    <!-- Countdown Timer (Dynamic from Database) -->
-                    @if($hasCountdown)
-                    <div class="countdown-timer">
-                        <div class="countdown-item">
-                            <span class="number" id="days">00</span>
-                            <span class="label">{{ __('messages.days') }}</span>
+            <!-- Carousel Inner -->
+            <div class="carousel-inner">
+                @foreach($heroSlides as $index => $slide)
+                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                    <div class="row align-items-center min-vh-100">
+                        <div class="col-lg-6 col-md-12 text-white order-2 order-lg-1">
+                            @if($slide->localized_subtitle)
+                            <p class="section-subtitle mb-3">{{ $slide->localized_subtitle }}</p>
+                            @endif
+                            <h1 class="display-3 fw-bold mb-4">{{ $slide->localized_title }}</h1>
+                            <p class="lead mb-4 text-white-50">{{ $slide->localized_description }}</p>
+                            <div class="d-flex gap-3 mb-4 mb-lg-5 flex-wrap align-items-center">
+                                @if($slide->localized_button_text)
+                                <a href="{{ $slide->button_link ?? '#' }}" class="btn btn-primary btn-lg px-4 px-lg-5 w-100 w-md-auto">{{ $slide->localized_button_text }}</a>
+                                @endif
+                            </div>
                         </div>
-                        <div class="countdown-item">
-                            <span class="number" id="hours">00</span>
-                            <span class="label">{{ __('messages.hours') }}</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span class="number" id="minutes">00</span>
-                            <span class="label">{{ __('messages.minutes') }}</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span class="number" id="seconds">00</span>
-                            <span class="label">{{ __('messages.seconds') }}</span>
+                        <div class="col-lg-6 col-md-12 text-center mt-4 mt-lg-0 order-1 order-lg-2">
+                            @if($slide->image)
+                            <div class="hero-slide-image-wrapper">
+                                <img src="{{ asset('storage/' . $slide->image) }}" alt="{{ $slide->localized_title }}" class="img-fluid rounded-4 shadow-lg hero-slide-image">
+                            </div>
+                            @endif
                         </div>
                     </div>
-                    @endif
                 </div>
-                <div class="col-lg-6 col-md-12 text-center mt-4 mt-lg-0 order-1 order-lg-2">
-                    @if($slide->image)
-                    <img src="{{ asset('storage/' . $slide->image) }}" alt="{{ $slide->localized_title }}" class="img-fluid rounded-4 shadow-lg">
-                    @endif
-                </div>
+                @endforeach
+            </div>
+
+            <!-- Carousel Controls -->
+            @if($heroSlides->count() > 1)
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            @endif
+        </div>
+
+        <!-- Countdown Timer (Dynamic from Database) - Static below carousel -->
+        @if($hasCountdown)
+        <div class="countdown-timer mt-4">
+            <div class="countdown-item">
+                <span class="number" id="days">00</span>
+                <span class="label">{{ __('messages.days') }}</span>
+            </div>
+            <div class="countdown-item">
+                <span class="number" id="hours">00</span>
+                <span class="label">{{ __('messages.hours') }}</span>
+            </div>
+            <div class="countdown-item">
+                <span class="number" id="minutes">00</span>
+                <span class="label">{{ __('messages.minutes') }}</span>
+            </div>
+            <div class="countdown-item">
+                <span class="number" id="seconds">00</span>
+                <span class="label">{{ __('messages.seconds') }}</span>
             </div>
         </div>
+        @endif
         @else
         <div class="row align-items-center min-vh-100">
             <div class="col-lg-8 mx-auto text-center text-white">
@@ -869,6 +1013,109 @@
 
 @push('scripts')
 <script>
+    // RTL Carousel Direction Support - Reverse slide order for RTL direction
+    @php
+        $isArabic = app()->getLocale() === 'ar';
+    @endphp
+    @if($isArabic)
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousel = document.getElementById('heroCarousel');
+        if (carousel && carousel.getAttribute('dir') === 'rtl') {
+            const carouselInner = carousel.querySelector('.carousel-inner');
+            const items = Array.from(carouselInner.querySelectorAll('.carousel-item'));
+
+            if (items.length > 1) {
+                // Find which item was originally active
+                const originallyActiveItem = items.find(item => item.classList.contains('active'));
+                const originallyActiveIndex = items.indexOf(originallyActiveItem);
+
+                // Remove all Bootstrap carousel classes
+                items.forEach(item => {
+                    item.classList.remove('active', 'carousel-item-start', 'carousel-item-end', 'carousel-item-next', 'carousel-item-prev');
+                });
+
+                // Reverse items in DOM
+                items.reverse().forEach(item => carouselInner.appendChild(item));
+
+                // Find the originally active item in the new order and make it active
+                const newItems = Array.from(carouselInner.querySelectorAll('.carousel-item'));
+                const newActiveIndex = newItems.indexOf(originallyActiveItem);
+
+                if (newActiveIndex !== -1) {
+                    newItems[newActiveIndex].classList.add('active', 'carousel-item-start');
+                } else {
+                    // Fallback: make first item active
+                    newItems[0].classList.add('active', 'carousel-item-start');
+                }
+
+                // Update indicators to match reversed order
+                const indicators = carousel.querySelectorAll('.carousel-indicators button');
+                if (indicators.length > 0) {
+                    const indicatorsArray = Array.from(indicators);
+                    const indicatorsContainer = carousel.querySelector('.carousel-indicators');
+
+                    // Clear container
+                    indicatorsContainer.innerHTML = '';
+
+                    // Reverse indicators and update their attributes
+                    indicatorsArray.reverse().forEach((btn, index) => {
+                        btn.setAttribute('data-bs-slide-to', index);
+                        btn.removeAttribute('aria-current');
+                        btn.classList.remove('active');
+
+                        // Set active indicator based on new active index
+                        if (index === newActiveIndex) {
+                            btn.classList.add('active');
+                            btn.setAttribute('aria-current', 'true');
+                        }
+
+                        indicatorsContainer.appendChild(btn);
+                    });
+                }
+            }
+
+            // Ensure active slide is properly positioned
+            function fixActiveSlidePosition() {
+                const activeItem = carousel.querySelector('.carousel-item.active');
+                const carouselInner = carousel.querySelector('.carousel-inner');
+
+                if (activeItem && carouselInner) {
+                    // Reset transforms to ensure active slide is visible
+                    activeItem.style.transform = 'translateX(0)';
+                    carouselInner.style.transform = 'translateX(0)';
+                }
+            }
+
+            // Fix position and reinitialize carousel
+            setTimeout(function() {
+                fixActiveSlidePosition();
+
+                // Destroy existing carousel instance if any
+                const existingCarousel = bootstrap.Carousel.getInstance(carousel);
+                if (existingCarousel) {
+                    existingCarousel.dispose();
+                }
+
+                // Initialize new carousel instance
+                new bootstrap.Carousel(carousel, {
+                    ride: 'carousel',
+                    interval: 5000,
+                    wrap: true
+                });
+            }, 100);
+
+            // Fix position on slide events
+            carousel.addEventListener('slid.bs.carousel', function(e) {
+                fixActiveSlidePosition();
+            });
+
+            carousel.addEventListener('slide.bs.carousel', function(e) {
+                fixActiveSlidePosition();
+            });
+        }
+    });
+    @endif
+
     // Countdown Timer (Dynamic from Database)
     @if($hasCountdown)
     function updateCountdown() {
