@@ -1,4 +1,5 @@
-<footer class="footer">
+<!-- Footer Section Start -->
+<footer class="main-footer dark-section footer">
     <div class="container">
         <div class="row g-4">
             <div class="col-lg-4">
@@ -77,3 +78,4 @@
         </div>
     </div>
 </footer>
+<!-- Footer Section End -->

@@ -12,15 +12,75 @@
     <!-- Preconnect to Google Fonts for better performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    @if($isRTL)
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-    @endif
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts - RTL Support (Arabic) -->
     @if($isRTL)
     <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     @endif
+    <!-- Dubai Font Face Declarations -->
+    <style>
+        @font-face {
+            font-family: 'Dubai';
+            src: url('{{ asset('font2/dubai/DubaiW23-Light.eot') }}');
+            src: url('{{ asset('font2/dubai/DubaiW23-Light.eot') }}?#iefix') format('embedded-opentype'),
+                 url('{{ asset('font2/dubai/DubaiW23-Light.woff2') }}') format('woff2'),
+                 url('{{ asset('font2/dubai/DubaiW23-Light.woff') }}') format('woff'),
+                 url('{{ asset('font2/dubai/DubaiW23-Light.ttf') }}') format('truetype');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Dubai';
+            src: url('{{ asset('font2/dubai/DubaiW23-Regular.eot') }}');
+            src: url('{{ asset('font2/dubai/DubaiW23-Regular.eot') }}?#iefix') format('embedded-opentype'),
+                 url('{{ asset('font2/dubai/DubaiW23-Regular.woff2') }}') format('woff2'),
+                 url('{{ asset('font2/dubai/DubaiW23-Regular.woff') }}') format('woff'),
+                 url('{{ asset('font2/dubai/DubaiW23-Regular.ttf') }}') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Dubai';
+            src: url('{{ asset('font2/dubai/DubaiW23-Medium.eot') }}');
+            src: url('{{ asset('font2/dubai/DubaiW23-Medium.eot') }}?#iefix') format('embedded-opentype'),
+                 url('{{ asset('font2/dubai/DubaiW23-Medium.woff2') }}') format('woff2'),
+                 url('{{ asset('font2/dubai/DubaiW23-Medium.woff') }}') format('woff'),
+                 url('{{ asset('font2/dubai/DubaiW23-Medium.ttf') }}') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Dubai';
+            src: url('{{ asset('font2/dubai/DubaiW23-Bold.eot') }}');
+            src: url('{{ asset('font2/dubai/DubaiW23-Bold.eot') }}?#iefix') format('embedded-opentype'),
+                 url('{{ asset('font2/dubai/DubaiW23-Bold.woff2') }}') format('woff2'),
+                 url('{{ asset('font2/dubai/DubaiW23-Bold.woff') }}') format('woff'),
+                 url('{{ asset('font2/dubai/DubaiW23-Bold.ttf') }}') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
+    <!-- Bootstrap CSS (Theme Version) -->
+    <link href="{{ asset('theme/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+    <!-- SlickNav CSS (Mobile Menu) -->
+    <link href="{{ asset('theme/css/slicknav.min.css') }}" rel="stylesheet">
+    <!-- Swiper CSS (Carousels/Sliders) -->
+    <link rel="stylesheet" href="{{ asset('theme/css/swiper-bundle.min.css') }}">
+    <!-- Font Awesome Icon CSS -->
+    <link href="{{ asset('theme/css/all.min.css') }}" rel="stylesheet" media="screen">
+    <!-- Bootstrap Icons (for existing functionality) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Animate CSS -->
+    <link href="{{ asset('theme/css/animate.css') }}" rel="stylesheet">
+    <!-- Magnific Popup Core CSS File -->
+    <link rel="stylesheet" href="{{ asset('theme/css/magnific-popup.css') }}">
+    <!-- Mouse Cursor CSS File -->
+    <link rel="stylesheet" href="{{ asset('theme/css/mousecursor.css') }}">
+    <!-- Main Custom CSS -->
+    <link href="{{ asset('theme/css/custom.css') }}" rel="stylesheet" media="screen">
     <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
     <style>
         :root {
@@ -46,7 +106,7 @@
             box-sizing: border-box;
         }
         body {
-            font-family: {{ $isRTL ? "'Noto Kufi Arabic', 'Arial', sans-serif" : "'Inter', sans-serif" }};
+            font-family: {{ $isRTL ? "'Noto Kufi Arabic', 'Arial', sans-serif" : "'Dubai', 'Arial', sans-serif" }};
         }
         /* Make all Bootstrap icons orange (secondary color) */
         i.bi, i[class*="bi-"] {
@@ -336,6 +396,25 @@
             align-items: center;
             position: relative;
             overflow: hidden;
+            color: #fff;
+        }
+        .hero-section h1,
+        .hero-section h2,
+        .hero-section h3,
+        .hero-section h4,
+        .hero-section h5,
+        .hero-section h6,
+        .hero-section p,
+        .hero-section span,
+        .hero-section .section-subtitle,
+        .hero-section .lead {
+            color: #fff !important;
+        }
+        .hero-section .text-white-50 {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+        .hero-section .btn-primary {
+            color: #fff !important;
         }
         .hero-section::before {
             content: '';
@@ -371,22 +450,106 @@
     @stack('styles')
 </head>
 <body>
+    <!-- Preloader Start -->
+    <div class="preloader">
+        <div class="loading-container">
+            <div class="loading"></div>
+            <div id="loading-icon"><img src="{{ asset('theme/images/loader.svg') }}" alt=""></div>
+        </div>
+    </div>
+    <!-- Preloader End -->
+
     @include('frontend.partials.navbar')
 
     @yield('content')
 
     @include('frontend.partials.footer')
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery Library File -->
+    <script src="{{ asset('theme/js/jquery-3.7.1.min.js') }}"></script>
+    <!-- Bootstrap JS File -->
+    <script src="{{ asset('theme/js/bootstrap.min.js') }}"></script>
+    <!-- Validator JS File -->
+    <script src="{{ asset('theme/js/validator.min.js') }}"></script>
+    <!-- SlickNav JS File -->
+    <script src="{{ asset('theme/js/jquery.slicknav.js') }}"></script>
+    <!-- Swiper JS File -->
+    <script src="{{ asset('theme/js/swiper-bundle.min.js') }}"></script>
+    <!-- Counter JS File -->
+    <script src="{{ asset('theme/js/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('theme/js/jquery.counterup.min.js') }}"></script>
+    <!-- Magnific JS File -->
+    <script src="{{ asset('theme/js/jquery.magnific-popup.min.js') }}"></script>
+    <!-- SmoothScroll -->
+    <script src="{{ asset('theme/js/SmoothScroll.js') }}"></script>
+    <!-- Parallax JS -->
+    <script src="{{ asset('theme/js/parallaxie.js') }}"></script>
+    <!-- MagicCursor JS File -->
+    <script src="{{ asset('theme/js/gsap.min.js') }}"></script>
+    <script src="{{ asset('theme/js/magiccursor.js') }}"></script>
+    <!-- Text Effect JS File -->
+    <script src="{{ asset('theme/js/SplitText.min.js') }}"></script>
+    <script src="{{ asset('theme/js/ScrollTrigger.min.js') }}"></script>
+    <!-- YTPlayer JS File -->
+    <script src="{{ asset('theme/js/jquery.mb.YTPlayer.min.js') }}"></script>
+    <!-- WOW JS File -->
+    <script src="{{ asset('theme/js/wow.min.js') }}"></script>
+    <!-- Main Custom JS File -->
+    <script src="{{ asset('theme/js/function.js') }}"></script>
     <script>
-        // Navbar scroll effect
+        // Navbar scroll effect (preserve existing functionality)
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
+            if (navbar && window.scrollY > 50) {
                 navbar.classList.add('scrolled');
-            } else {
+            } else if (navbar) {
                 navbar.classList.remove('scrolled');
             }
+        });
+
+        // Initialize Bootstrap dropdowns after DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if Bootstrap 5 is available
+            if (typeof bootstrap !== 'undefined' && bootstrap.Dropdown) {
+                // Bootstrap 5 initialization
+                var dropdownElementList = [].slice.call(document.querySelectorAll('[data-bs-toggle="dropdown"]'));
+                var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+                    return new bootstrap.Dropdown(dropdownToggleEl);
+                });
+            }
+            
+            // Fallback for Bootstrap 4 or jQuery initialization
+            if (typeof jQuery !== 'undefined' && jQuery.fn.dropdown) {
+                jQuery('.dropdown-toggle').dropdown();
+            }
+
+            // Ensure dropdown works on click (prevent event bubbling issues)
+            document.querySelectorAll('.dropdown-toggle').forEach(function(element) {
+                element.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    // Toggle dropdown manually if Bootstrap isn't working
+                    var dropdownMenu = this.nextElementSibling;
+                    if (dropdownMenu && dropdownMenu.classList.contains('dropdown-menu')) {
+                        var isShown = dropdownMenu.classList.contains('show');
+                        document.querySelectorAll('.dropdown-menu.show').forEach(function(menu) {
+                            menu.classList.remove('show');
+                        });
+                        if (!isShown) {
+                            dropdownMenu.classList.add('show');
+                        }
+                    }
+                });
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                var isClickInside = event.target.closest('.dropdown');
+                if (!isClickInside) {
+                    document.querySelectorAll('.dropdown-menu.show').forEach(function(dropdown) {
+                        dropdown.classList.remove('show');
+                    });
+                }
+            });
         });
     </script>
     @stack('scripts')

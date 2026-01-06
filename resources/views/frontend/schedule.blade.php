@@ -104,7 +104,7 @@
         <ul class="nav nav-pills justify-content-center mb-5" id="scheduleTab" role="tablist">
             @foreach($groupedSchedules as $date => $items)
             <li class="nav-item" role="presentation">
-                <button class="nav-link {{ $loop->first ? 'active' : '' }}" id="tab-{{ $loop->index }}" data-toggle="pill" data-target="#day-{{ $loop->index }}" type="button" role="tab">
+                <button class="nav-link {{ $loop->first ? 'active' : '' }}" id="tab-{{ $loop->index }}" data-bs-toggle="tab" data-bs-target="#day-{{ $loop->index }}" type="button" role="tab">
                     @if($date !== 'No Date')
                     <span class="d-block fw-bold">{{ __('messages.day') }} {{ $loop->iteration }}</span>
                     <small class="text-muted">{{ \Carbon\Carbon::parse($date)->format('M d, Y') }}</small>

@@ -9,6 +9,13 @@
         max-width: 100%;
         height: auto;
     }
+    /* Ensure carousel images are always constrained */
+    .hero-section .carousel-item img,
+    .hero-section .hero-slide-image {
+        max-width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+    }
     .container, .container-fluid {
         max-width: 100%;
         overflow-x: hidden;
@@ -52,12 +59,31 @@
     /* Hero Carousel Styles */
     .hero-section .carousel {
         min-height: 100vh;
+        position: relative;
+        overflow: hidden;
     }
     .hero-section .carousel-inner {
         min-height: 100vh;
+        position: relative;
+        overflow: hidden;
     }
     .hero-section .carousel-item {
         min-height: 100vh;
+        width: 100%;
+        position: relative;
+    }
+    /* Prevent height changes during carousel transitions */
+    .hero-section .carousel.sliding {
+        height: var(--carousel-locked-height, auto) !important;
+    }
+    .hero-section .carousel.sliding .carousel-inner {
+        height: var(--carousel-inner-locked-height, auto) !important;
+    }
+    /* Ensure RTL carousel items are properly positioned */
+    [dir="rtl"] .hero-section .carousel-item {
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0;
     }
     .hero-section .carousel-control-prev,
     .hero-section .carousel-control-next {
@@ -68,7 +94,23 @@
         top: 50%;
         transform: translateY(-50%);
         opacity: 0.8;
-        transition: all 0.3s;
+        transition: opacity 0.3s, background 0.3s !important;
+        position: absolute !important;
+        z-index: 10;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    /* Ensure buttons maintain position during transitions */
+    .hero-section .carousel.sliding .carousel-control-prev,
+    .hero-section .carousel.sliding .carousel-control-next {
+        transition: opacity 0.3s, background 0.3s !important;
+    }
+    /* Prevent transform transitions on controls */
+    .hero-section .carousel-control-prev,
+    .hero-section .carousel-control-next {
+        transition-property: opacity, background-color !important;
     }
     .hero-section .carousel-control-prev {
         left: 20px;
@@ -116,16 +158,86 @@
         text-align: left;
     }
     /* Ensure carousel content is always visible */
-    .hero-section .carousel-item {
-        opacity: 1 !important;
-    }
     .hero-section .carousel-item.active {
         display: block !important;
+    }
+    /* RTL Carousel Animation Fix - Keep inner direction LTR for proper animation */
+    [dir="rtl"] .hero-section .carousel-inner {
+        direction: ltr;
+    }
+    /* Ensure active slide is properly positioned and visible */
+    [dir="rtl"] .hero-section .carousel-item.active {
+        transform: translateX(0) !important;
+        position: relative;
+    }
+    [dir="rtl"] .hero-section .carousel-inner {
+        transform: translateX(0) !important;
     }
     .hero-section .carousel-item .row {
         min-height: 100vh;
         display: flex;
         align-items: center;
+    }
+    /* Hero Carousel Image Styles - Constrain all images to consistent size */
+    .hero-section .hero-slide-image-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-height: 600px;
+        padding: 1rem;
+        overflow: hidden;
+        position: relative;
+    }
+    .hero-section .hero-slide-image {
+        max-width: 100% !important;
+        max-height: 600px !important;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+    }
+    /* Ensure images don't exceed container width */
+    .hero-section .carousel-item .col-lg-6 .hero-slide-image-wrapper {
+        max-width: 100%;
+        max-height: 600px;
+    }
+    @media (min-width: 768px) {
+        .hero-section .hero-slide-image-wrapper {
+            max-height: 500px;
+        }
+        .hero-section .hero-slide-image {
+            max-width: 100% !important;
+            max-height: 500px !important;
+        }
+    }
+    @media (min-width: 992px) {
+        .hero-section .hero-slide-image-wrapper {
+            max-height: 650px;
+        }
+        .hero-section .hero-slide-image {
+            max-width: 100% !important;
+            max-height: 650px !important;
+        }
+    }
+    @media (min-width: 1200px) {
+        .hero-section .hero-slide-image-wrapper {
+            max-height: 750px;
+        }
+        .hero-section .hero-slide-image {
+            max-width: 100% !important;
+            max-height: 750px !important;
+        }
+    }
+    @media (min-width: 1400px) {
+        .hero-section .hero-slide-image-wrapper {
+            max-height: 800px;
+        }
+        .hero-section .hero-slide-image {
+            max-width: 100% !important;
+            max-height: 800px !important;
+        }
     }
     /* Enhanced Countdown Timer */
     .countdown-timer {
@@ -240,12 +352,16 @@
         box-shadow: 0 15px 40px rgba(0,0,0,0.15);
         border-color: var(--primary);
     }
+    .schedule-tabs-wrapper {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
     .schedule-day-tabs {
         border-bottom: 2px solid #e9ecef;
         width: 100%;
         max-width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
+        display: flex;
     }
     .schedule-day-tabs .nav-link {
         border: none;
@@ -257,6 +373,7 @@
         border-radius: 0.5rem 0.5rem 0 0;
         transition: all 0.3s;
         flex-shrink: 0;
+        white-space: nowrap;
     }
     .schedule-day-tabs .nav-link:hover {
         color: var(--primary);
@@ -272,6 +389,9 @@
     }
     .schedule-day-content.active {
         display: block;
+    }
+    .schedule-item {
+        height: auto !important;
     }
     .card-speaker {
         cursor: pointer;
@@ -322,6 +442,21 @@
             max-width: 100%;
             height: auto;
             margin-bottom: 1.5rem;
+        }
+        /* Carousel Image Mobile */
+        .hero-section .hero-slide-image-wrapper {
+            padding: 0.5rem;
+            max-width: 100%;
+            max-height: 300px !important;
+            overflow: hidden;
+        }
+        .hero-section .hero-slide-image {
+            max-width: 100% !important;
+            max-height: 300px !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+            margin: 0 auto;
         }
 
         /* Countdown Timer Mobile */
@@ -377,29 +512,41 @@
 
 
         /* Schedule Tabs Mobile */
-        .schedule-day-tabs {
+        .schedule-tabs-wrapper {
             overflow-x: auto;
-            flex-wrap: nowrap;
+            overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
             width: 100%;
             max-width: 100%;
             margin: 0;
             padding: 0;
+            position: relative;
+        }
+        .schedule-tabs-wrapper::-webkit-scrollbar {
+            height: 4px;
+        }
+        .schedule-tabs-wrapper::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .schedule-tabs-wrapper::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        .schedule-day-tabs {
             display: flex;
+            /* flex-wrap: nowrap; */
+            width: max-content;
+            min-width: 100%;
+            margin: 0;
+            padding: 0;
             justify-content: flex-start !important;
+            border-bottom: 2px solid #e9ecef;
         }
         [dir="rtl"] .schedule-day-tabs {
             justify-content: flex-end !important;
         }
-        .schedule-day-tabs::-webkit-scrollbar {
-            height: 4px;
-        }
-        .schedule-day-tabs::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        .schedule-day-tabs::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 2px;
+        .schedule-day-tabs .nav-item {
+            flex-shrink: 0;
         }
         .schedule-day-tabs .nav-link {
             padding: 0.75rem 1rem;
@@ -497,6 +644,19 @@
             padding: 0.65rem 1.25rem;
             font-size: 0.95rem;
         }
+        /* Carousel Image Extra Small Mobile */
+        .hero-section .hero-slide-image-wrapper {
+            max-width: 100%;
+            max-height: 250px !important;
+            overflow: hidden;
+        }
+        .hero-section .hero-slide-image {
+            max-width: 100% !important;
+            max-height: 250px !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
         .display-5 {
             font-size: 1.5rem !important;
         }
@@ -527,50 +687,82 @@
 <section class="hero-section">
     <div class="container position-relative">
         @if($heroSlides->count() > 0)
-        @php $slide = $heroSlides->first(); @endphp
-        <div class="hero-slide-single">
-            <div class="row align-items-center min-vh-100">
-                <div class="col-lg-6 col-md-12 text-white order-2 order-lg-1">
-                    @if($slide->localized_subtitle)
-                    <p class="section-subtitle mb-3">{{ $slide->localized_subtitle }}</p>
-                    @endif
-                    <h1 class="display-3 fw-bold mb-4">{{ $slide->localized_title }}</h1>
-                    <p class="lead mb-4 text-white-50">{{ $slide->localized_description }}</p>
-                    <div class="d-flex gap-3 mb-4 mb-lg-5 flex-wrap align-items-center">
-                        @if($slide->localized_button_text)
-                        <a href="{{ $slide->button_link ?? '#' }}" class="btn btn-primary btn-lg px-4 px-lg-5 w-100 w-md-auto">{{ $slide->localized_button_text }}</a>
-                        @endif
-                    </div>
+        @php
+            $isArabic = app()->getLocale() === 'ar';
+        @endphp
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" @if($isArabic) dir="rtl" @endif>
+            <!-- Carousel Indicators -->
+            @if($heroSlides->count() > 1)
+            <div class="carousel-indicators">
+                @foreach($heroSlides as $index => $slide)
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
+                @endforeach
+            </div>
+            @endif
 
-                    <!-- Countdown Timer (Dynamic from Database) -->
-                    @if($hasCountdown)
-                    <div class="countdown-timer">
-                        <div class="countdown-item">
-                            <span class="number" id="days">00</span>
-                            <span class="label">{{ __('messages.days') }}</span>
+            <!-- Carousel Inner -->
+            <div class="carousel-inner">
+                @foreach($heroSlides as $index => $slide)
+                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                    <div class="row align-items-center min-vh-100">
+                        <div class="col-lg-6 col-md-12 text-white order-2 order-lg-1">
+                            @if($slide->localized_subtitle)
+                            <p class="section-subtitle mb-3">{{ $slide->localized_subtitle }}</p>
+                            @endif
+                            <h1 class="display-3 fw-bold mb-4">{{ $slide->localized_title }}</h1>
+                            <p class="lead mb-4 text-white-50">{{ $slide->localized_description }}</p>
+                            <div class="d-flex gap-3 mb-4 mb-lg-5 flex-wrap align-items-center">
+                                @if($slide->localized_button_text)
+                                <a href="{{ $slide->button_link ?? '#' }}" class="btn btn-primary btn-lg px-4 px-lg-5 w-100 w-md-auto">{{ $slide->localized_button_text }}</a>
+                                @endif
+                            </div>
                         </div>
-                        <div class="countdown-item">
-                            <span class="number" id="hours">00</span>
-                            <span class="label">{{ __('messages.hours') }}</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span class="number" id="minutes">00</span>
-                            <span class="label">{{ __('messages.minutes') }}</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span class="number" id="seconds">00</span>
-                            <span class="label">{{ __('messages.seconds') }}</span>
+                        <div class="col-lg-6 col-md-12 text-center mt-4 mt-lg-0 order-1 order-lg-2">
+                            @if($slide->image)
+                            <div class="hero-slide-image-wrapper">
+                                <img src="{{ asset('storage/' . $slide->image) }}" alt="{{ $slide->localized_title }}" class="img-fluid rounded-4 shadow-lg hero-slide-image">
+                            </div>
+                            @endif
                         </div>
                     </div>
-                    @endif
                 </div>
-                <div class="col-lg-6 col-md-12 text-center mt-4 mt-lg-0 order-1 order-lg-2">
-                    @if($slide->image)
-                    <img src="{{ asset('storage/' . $slide->image) }}" alt="{{ $slide->localized_title }}" class="img-fluid rounded-4 shadow-lg">
-                    @endif
-                </div>
+                @endforeach
+            </div>
+
+            <!-- Carousel Controls -->
+            @if($heroSlides->count() > 1)
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            @endif
+        </div>
+
+        <!-- Countdown Timer (Dynamic from Database) - Static below carousel -->
+        @if($hasCountdown)
+        <div class="countdown-timer mt-4">
+            <div class="countdown-item">
+                <span class="number" id="days">00</span>
+                <span class="label">{{ __('messages.days') }}</span>
+            </div>
+            <div class="countdown-item">
+                <span class="number" id="hours">00</span>
+                <span class="label">{{ __('messages.hours') }}</span>
+            </div>
+            <div class="countdown-item">
+                <span class="number" id="minutes">00</span>
+                <span class="label">{{ __('messages.minutes') }}</span>
+            </div>
+            <div class="countdown-item">
+                <span class="number" id="seconds">00</span>
+                <span class="label">{{ __('messages.seconds') }}</span>
             </div>
         </div>
+        @endif
         @else
         <div class="row align-items-center min-vh-100">
             <div class="col-lg-8 mx-auto text-center text-white">
@@ -699,13 +891,15 @@
             }
         @endphp
 
-        <ul class="nav nav-tabs schedule-day-tabs justify-content-center mb-4" role="tablist">
-            @foreach($days as $index => $day)
-            <li class="nav-item" role="presentation">
-                <button class="nav-link {{ $index === 0 ? 'active' : '' }}" data-bs-toggle="tab" data-bs-target="#day{{ $index + 1 }}" type="button">{{ $day }}</button>
-            </li>
-            @endforeach
-        </ul>
+        <div class="schedule-tabs-wrapper mb-4">
+            <ul class="nav nav-tabs schedule-day-tabs justify-content-center" role="tablist">
+                @foreach($days as $index => $day)
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link {{ $index === 0 ? 'active' : '' }}" data-bs-toggle="tab" data-bs-target="#day{{ $index + 1 }}" type="button">{{ $day }}</button>
+                </li>
+                @endforeach
+            </ul>
+        </div>
 
         <div class="tab-content">
             @foreach($days as $index => $day)
@@ -869,6 +1063,291 @@
 
 @push('scripts')
 <script>
+    // RTL Carousel Direction Support - Reverse slide order for RTL direction
+    @php
+        $isArabic = app()->getLocale() === 'ar';
+    @endphp
+    @if($isArabic)
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousel = document.getElementById('heroCarousel');
+        if (carousel && carousel.getAttribute('dir') === 'rtl') {
+            const carouselInner = carousel.querySelector('.carousel-inner');
+            const items = Array.from(carouselInner.querySelectorAll('.carousel-item'));
+
+            if (items.length > 1) {
+                // Find which item was originally active
+                const originallyActiveItem = items.find(item => item.classList.contains('active'));
+                const originallyActiveIndex = items.indexOf(originallyActiveItem);
+
+                // Remove all Bootstrap carousel classes
+                items.forEach(item => {
+                    item.classList.remove('active', 'carousel-item-start', 'carousel-item-end', 'carousel-item-next', 'carousel-item-prev');
+                });
+
+                // Reverse items in DOM
+                items.reverse().forEach(item => carouselInner.appendChild(item));
+
+                // Find the originally active item in the new order and make it active
+                const newItems = Array.from(carouselInner.querySelectorAll('.carousel-item'));
+                const newActiveIndex = newItems.indexOf(originallyActiveItem);
+
+                if (newActiveIndex !== -1) {
+                    newItems[newActiveIndex].classList.add('active', 'carousel-item-start');
+                } else {
+                    // Fallback: make first item active
+                    newItems[0].classList.add('active', 'carousel-item-start');
+                }
+
+                // Update indicators to match reversed order
+                const indicators = carousel.querySelectorAll('.carousel-indicators button');
+                if (indicators.length > 0) {
+                    const indicatorsArray = Array.from(indicators);
+                    const indicatorsContainer = carousel.querySelector('.carousel-indicators');
+
+                    // Clear container
+                    indicatorsContainer.innerHTML = '';
+
+                    // Reverse indicators and update their attributes
+                    indicatorsArray.reverse().forEach((btn, index) => {
+                        btn.setAttribute('data-bs-slide-to', index);
+                        btn.removeAttribute('aria-current');
+                        btn.classList.remove('active');
+
+                        // Set active indicator based on new active index
+                        if (index === newActiveIndex) {
+                            btn.classList.add('active');
+                            btn.setAttribute('aria-current', 'true');
+                        }
+
+                        indicatorsContainer.appendChild(btn);
+                    });
+                }
+            }
+
+            // Ensure active slide is properly positioned
+            function fixActiveSlidePosition() {
+                const activeItem = carousel.querySelector('.carousel-item.active');
+                const carouselInner = carousel.querySelector('.carousel-inner');
+
+                if (activeItem && carouselInner) {
+                    // Reset transforms to ensure active slide is visible
+                    activeItem.style.transform = 'translateX(0)';
+                    carouselInner.style.transform = 'translateX(0)';
+                }
+            }
+
+            // Fix position and reinitialize carousel
+            setTimeout(function() {
+                fixActiveSlidePosition();
+
+                // Destroy existing carousel instance if any
+                const existingCarousel = bootstrap.Carousel.getInstance(carousel);
+                if (existingCarousel) {
+                    existingCarousel.dispose();
+                }
+
+                // Initialize new carousel instance
+                new bootstrap.Carousel(carousel, {
+                    ride: 'carousel',
+                    interval: 5000,
+                    wrap: true
+                });
+            }, 100);
+
+            // Fix position on slide events
+            carousel.addEventListener('slid.bs.carousel', function(e) {
+                fixActiveSlidePosition();
+            });
+
+            carousel.addEventListener('slide.bs.carousel', function(e) {
+                fixActiveSlidePosition();
+            });
+        }
+    });
+    @endif
+
+    // Fix carousel control button positions during transitions
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousel = document.getElementById('heroCarousel');
+        if (!carousel) return;
+
+        const prevBtn = carousel.querySelector('.carousel-control-prev');
+        const nextBtn = carousel.querySelector('.carousel-control-next');
+        const heroSection = carousel.closest('.hero-section');
+
+        if (!prevBtn || !nextBtn) return;
+
+        // Function to update control positions based on carousel center
+        function updateControlPositions() {
+            const carouselRect = carousel.getBoundingClientRect();
+            const carouselCenter = carouselRect.height / 2;
+
+            // Set position relative to carousel container center
+            prevBtn.style.top = carouselCenter + 'px';
+            nextBtn.style.top = carouselCenter + 'px';
+            prevBtn.style.transform = 'translateY(-50%)';
+            nextBtn.style.transform = 'translateY(-50%)';
+        }
+
+        // Store initial position and height
+        let lockedHeight = null;
+        let lockedInnerHeight = null;
+
+        // Lock position AND height during transitions
+        carousel.addEventListener('slide.bs.carousel', function() {
+            // Lock carousel height BEFORE transition starts to prevent height changes
+            lockedHeight = carousel.offsetHeight;
+            carousel.style.setProperty('--carousel-locked-height', lockedHeight + 'px');
+            carousel.style.height = lockedHeight + 'px';
+            carousel.style.overflow = 'hidden';
+            carousel.classList.add('sliding');
+
+            const carouselInner = carousel.querySelector('.carousel-inner');
+            if (carouselInner) {
+                lockedInnerHeight = carouselInner.offsetHeight;
+                carousel.style.setProperty('--carousel-inner-locked-height', lockedInnerHeight + 'px');
+                carouselInner.style.height = lockedInnerHeight + 'px';
+                carouselInner.style.overflow = 'hidden';
+            }
+
+            // Lock hero section height if it exists
+            if (heroSection) {
+                heroSection.style.height = heroSection.offsetHeight + 'px';
+                heroSection.style.overflow = 'hidden';
+            }
+
+            // Lock active carousel item height
+            const activeItem = carousel.querySelector('.carousel-item.active');
+            if (activeItem) {
+                activeItem.style.height = activeItem.offsetHeight + 'px';
+            }
+
+            // Lock control button positions at current carousel center
+            const carouselCenter = lockedHeight / 2;
+            prevBtn.style.top = carouselCenter + 'px';
+            nextBtn.style.top = carouselCenter + 'px';
+            prevBtn.style.position = 'absolute';
+            nextBtn.style.position = 'absolute';
+        });
+
+        // Update position after transition completes
+        carousel.addEventListener('slid.bs.carousel', function() {
+            // Release height locks
+            carousel.classList.remove('sliding');
+            carousel.style.removeProperty('--carousel-locked-height');
+            carousel.style.removeProperty('--carousel-inner-locked-height');
+            carousel.style.height = '';
+            carousel.style.overflow = '';
+
+            const carouselInner = carousel.querySelector('.carousel-inner');
+            if (carouselInner) {
+                carouselInner.style.height = '';
+                carouselInner.style.overflow = '';
+            }
+
+            if (heroSection) {
+                heroSection.style.height = '';
+                heroSection.style.overflow = '';
+            }
+
+            const activeItem = carousel.querySelector('.carousel-item.active');
+            if (activeItem) {
+                activeItem.style.height = '';
+            }
+
+            // Recalculate position based on new carousel height
+            setTimeout(updateControlPositions, 50);
+        });
+
+        // Initial position setup
+        setTimeout(updateControlPositions, 100);
+
+        // Update on window resize
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(updateControlPositions, 100);
+        });
+
+        // Update on scroll (in case carousel moves)
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(updateControlPositions, 50);
+        }, {passive: true});
+    });
+
+    // #region agent log - Control button position tracking
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousel = document.getElementById('heroCarousel');
+        if (!carousel) return;
+
+        const prevBtn = carousel.querySelector('.carousel-control-prev');
+        const nextBtn = carousel.querySelector('.carousel-control-next');
+        const carouselEl = carousel.querySelector('.carousel');
+        const carouselInner = carousel.querySelector('.carousel-inner');
+
+        function logControlPosition(event, data) {
+            const positions = {
+                prevBtn: prevBtn ? {
+                    top: prevBtn.offsetTop,
+                    getBoundingClientRect: prevBtn.getBoundingClientRect(),
+                    computedTop: window.getComputedStyle(prevBtn).top,
+                    computedTransform: window.getComputedStyle(prevBtn).transform
+                } : null,
+                nextBtn: nextBtn ? {
+                    top: nextBtn.offsetTop,
+                    getBoundingClientRect: nextBtn.getBoundingClientRect(),
+                    computedTop: window.getComputedStyle(nextBtn).top,
+                    computedTransform: window.getComputedStyle(nextBtn).transform
+                } : null,
+                carouselHeight: carouselEl ? carouselEl.offsetHeight : 0,
+                carouselInnerHeight: carouselInner ? carouselInner.offsetHeight : 0
+            };
+
+            fetch('http://127.0.0.1:7242/ingest/31bed679-aaad-49c4-ad15-0cd089292133', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    location: 'home.blade.php:control-position',
+                    message: event,
+                    data: {...data, positions},
+                    timestamp: Date.now(),
+                    sessionId: 'debug-session',
+                    runId: 'verification'
+                })
+            }).catch(() => {});
+        }
+
+        // Log initial positions
+        setTimeout(() => logControlPosition('initial-load', {}), 500);
+
+        // Track during transitions
+        carousel.addEventListener('slide.bs.carousel', function(e) {
+            const prevTop = prevBtn ? window.getComputedStyle(prevBtn).top : '0';
+            const nextTop = nextBtn ? window.getComputedStyle(nextBtn).top : '0';
+            logControlPosition('slide-start', {toIndex: e.to, prevTop, nextTop});
+
+            // Track positions during transition
+            let checkCount = 0;
+            const interval = setInterval(() => {
+                const currentPrevTop = prevBtn ? window.getComputedStyle(prevBtn).top : '0';
+                const currentNextTop = nextBtn ? window.getComputedStyle(nextBtn).top : '0';
+                logControlPosition('transition-check', {checkCount: checkCount++, prevTop: currentPrevTop, nextTop: currentNextTop});
+                if (checkCount > 20) clearInterval(interval);
+            }, 50);
+
+            carousel.addEventListener('slid.bs.carousel', function handler() {
+                clearInterval(interval);
+                const finalPrevTop = prevBtn ? window.getComputedStyle(prevBtn).top : '0';
+                const finalNextTop = nextBtn ? window.getComputedStyle(nextBtn).top : '0';
+                logControlPosition('slide-end', {toIndex: e.to, prevTop: finalPrevTop, nextTop: finalNextTop});
+                carousel.removeEventListener('slid.bs.carousel', handler);
+            }, {once: true});
+        });
+    });
+    // #endregion
+
     // Countdown Timer (Dynamic from Database)
     @if($hasCountdown)
     function updateCountdown() {
