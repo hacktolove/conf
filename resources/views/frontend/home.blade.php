@@ -385,6 +385,9 @@
     .schedule-day-content.active {
         display: block;
     }
+    .schedule-item {
+        height: auto !important;
+    }
     .card-speaker {
         cursor: pointer;
         transition: all 0.3s;
