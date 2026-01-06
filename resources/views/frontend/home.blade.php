@@ -352,12 +352,16 @@
         box-shadow: 0 15px 40px rgba(0,0,0,0.15);
         border-color: var(--primary);
     }
+    .schedule-tabs-wrapper {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
     .schedule-day-tabs {
         border-bottom: 2px solid #e9ecef;
         width: 100%;
         max-width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
+        display: flex;
     }
     .schedule-day-tabs .nav-link {
         border: none;
@@ -369,6 +373,7 @@
         border-radius: 0.5rem 0.5rem 0 0;
         transition: all 0.3s;
         flex-shrink: 0;
+        white-space: nowrap;
     }
     .schedule-day-tabs .nav-link:hover {
         color: var(--primary);
@@ -507,29 +512,41 @@
 
 
         /* Schedule Tabs Mobile */
-        .schedule-day-tabs {
+        .schedule-tabs-wrapper {
             overflow-x: auto;
-            flex-wrap: nowrap;
+            overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
             width: 100%;
             max-width: 100%;
             margin: 0;
             padding: 0;
+            position: relative;
+        }
+        .schedule-tabs-wrapper::-webkit-scrollbar {
+            height: 4px;
+        }
+        .schedule-tabs-wrapper::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .schedule-tabs-wrapper::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        .schedule-day-tabs {
             display: flex;
+            /* flex-wrap: nowrap; */
+            width: max-content;
+            min-width: 100%;
+            margin: 0;
+            padding: 0;
             justify-content: flex-start !important;
+            border-bottom: 2px solid #e9ecef;
         }
         [dir="rtl"] .schedule-day-tabs {
             justify-content: flex-end !important;
         }
-        .schedule-day-tabs::-webkit-scrollbar {
-            height: 4px;
-        }
-        .schedule-day-tabs::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        .schedule-day-tabs::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 2px;
+        .schedule-day-tabs .nav-item {
+            flex-shrink: 0;
         }
         .schedule-day-tabs .nav-link {
             padding: 0.75rem 1rem;
@@ -874,13 +891,15 @@
             }
         @endphp
 
-        <ul class="nav nav-tabs schedule-day-tabs justify-content-center mb-4" role="tablist">
-            @foreach($days as $index => $day)
-            <li class="nav-item" role="presentation">
-                <button class="nav-link {{ $index === 0 ? 'active' : '' }}" data-bs-toggle="tab" data-bs-target="#day{{ $index + 1 }}" type="button">{{ $day }}</button>
-            </li>
-            @endforeach
-        </ul>
+        <div class="schedule-tabs-wrapper mb-4">
+            <ul class="nav nav-tabs schedule-day-tabs justify-content-center" role="tablist">
+                @foreach($days as $index => $day)
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link {{ $index === 0 ? 'active' : '' }}" data-bs-toggle="tab" data-bs-target="#day{{ $index + 1 }}" type="button">{{ $day }}</button>
+                </li>
+                @endforeach
+            </ul>
+        </div>
 
         <div class="tab-content">
             @foreach($days as $index => $day)
