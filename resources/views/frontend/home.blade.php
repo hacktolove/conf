@@ -794,19 +794,19 @@
         <div class="scrolling-content">
             @foreach($news as $newsItem)
             <span>
-                <img src="{{ asset('theme/images/icon-asterisk.svg') }}" alt="">
+                {{-- <img src="{{ asset('theme/images/icon-asterisk.svg') }}" alt=""> --}}
                 <a href="{{ route('news.show', $newsItem->slug) }}" class="text-decoration-none text-white">{{ $newsItem->localized_title }}</a>
             </span>
             @endforeach
             @foreach($news as $newsItem)
             <span>
-                <img src="{{ asset('theme/images/icon-asterisk.svg') }}" alt="">
+                {{-- <img src="{{ asset('theme/images/icon-asterisk.svg') }}" alt=""> --}}
                 <a href="{{ route('news.show', $newsItem->slug) }}" class="text-decoration-none text-white">{{ $newsItem->localized_title }}</a>
             </span>
             @endforeach
         </div>
 
-        <div class="scrolling-content">
+        {{-- <div class="scrolling-content">
             @foreach($news as $newsItem)
             <span>
                 <img src="{{ asset('theme/images/icon-asterisk.svg') }}" alt="">
@@ -819,7 +819,7 @@
                 <a href="{{ route('news.show', $newsItem->slug) }}" class="text-decoration-none text-white">{{ $newsItem->localized_title }}</a>
             </span>
             @endforeach
-        </div>
+        </div> --}}
     </div>
     <!-- Scrolling Ticker End -->
 </div>
