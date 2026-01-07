@@ -7,6 +7,19 @@
     .navbar { background: var(--dark) !important; }
     .navbar.scrolled { background: #fff !important; }
 
+    /* Page Header Box Text Styling */
+    .page-header-box h1,
+    .page-header-box p {
+        color: #ffffff !important;
+        opacity: 1 !important;
+    }
+    .page-header-box .breadcrumb,
+    .page-header-box .breadcrumb-item,
+    .page-header-box .breadcrumb-item a {
+        color: #ffffff !important;
+        opacity: 1 !important;
+    }
+
     /* Schedule Item Styling */
     .schedule-item {
         border-bottom: 1px solid var(--divider-color);

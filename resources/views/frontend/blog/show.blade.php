@@ -115,8 +115,8 @@
         @if($post->localized_category)
         <span class="badge bg-primary mb-3">{{ $post->localized_category }}</span>
         @endif
-        <h1 class="display-5 fw-bold">{{ $post->localized_title }}</h1>
-        <div class="d-flex align-items-center justify-content-center text-white-50 mt-3">
+        <h1 class="display-5 fw-bold text-white">{{ $post->localized_title }}</h1>
+        <div class="d-flex align-items-center justify-content-center text-white mt-3">
             @if($post->user)
             <span class="me-3"><i class="bi bi-person me-1"></i>{{ $post->user->name }}</span>
             @endif

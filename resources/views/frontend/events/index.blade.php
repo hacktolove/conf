@@ -99,8 +99,8 @@
 @section('content')
 <section class="page-header">
     <div class="container text-center">
-        <h1 class="display-4 fw-bold">{{ __('messages.our_events') }}</h1>
-        <p class="lead opacity-75">{{ __('messages.discover_upcoming') }}</p>
+        <h1 class="display-4 fw-bold text-white">{{ __('messages.our_events') }}</h1>
+        <p class="lead text-white">{{ __('messages.discover_upcoming') }}</p>
     </div>
 </section>
 

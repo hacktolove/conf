@@ -205,6 +205,11 @@ return [
     'no_speakers_found' => 'لم يتم العثور على متحدثين',
     'check_back_speakers' => 'تحقق مرة أخرى لاحقاً لإعلانات المتحدثين.',
 
+    // News
+    'views' => 'مشاهدات',
+    'share_this_news' => 'شارك هذا الخبر:',
+    'recent_news' => 'الأخبار الأخيرة',
+
     // Page Titles
     'page_title_home' => 'جامعة افريقيا العالمية',
     'page_title_about' => 'من نحن',

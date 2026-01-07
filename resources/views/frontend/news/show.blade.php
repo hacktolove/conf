@@ -9,7 +9,27 @@
     .news-content { line-height: 1.8; }
     .news-content p { margin-bottom: 1.5rem; }
     .news-content h2, .news-content h3 { margin-top: 2rem; margin-bottom: 1rem; }
-    
+
+    /* Page Header Text Styling */
+    .page-header {
+        color: #ffffff !important;
+    }
+    .page-header h1 {
+        color: #ffffff !important;
+        opacity: 1 !important;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    .page-header .container {
+        color: #ffffff !important;
+    }
+    .page-header .d-flex,
+    .page-header .d-flex span {
+        color: rgba(255, 255, 255, 0.95) !important;
+    }
+    .page-header i {
+        color: var(--primary) !important;
+    }
+
     /* Responsive Styles */
     @media (max-width: 768px) {
         /* Page Header Mobile */
@@ -23,7 +43,7 @@
         .page-header .me-3 {
             margin-right: 0 !important;
         }
-        
+
         /* Section Padding Mobile */
         section.py-5 {
             padding-top: 2.5rem !important;
@@ -33,7 +53,7 @@
             padding-top: 2.5rem !important;
             padding-bottom: 2.5rem !important;
         }
-        
+
         /* Main Content Mobile */
         .col-lg-8 {
             margin-bottom: 2rem;
@@ -49,7 +69,7 @@
             font-size: 1.25rem;
             margin-top: 1.5rem;
         }
-        
+
         /* Sidebar Mobile */
         .sticky-top {
             position: relative !important;
@@ -63,7 +83,7 @@
             width: 60px !important;
             height: 60px !important;
         }
-        
+
         /* Share Buttons Mobile */
         .d-flex.gap-2 {
             flex-wrap: wrap;
@@ -72,7 +92,7 @@
             margin: 0.25rem;
         }
     }
-    
+
     @media (max-width: 576px) {
         /* Extra Small Mobile */
         .page-header h1.display-5 {
@@ -103,10 +123,10 @@
 @section('content')
 <section class="page-header">
     <div class="container text-center">
-        <h1 class="display-5 fw-bold">{{ $news->localized_title }}</h1>
-        <div class="d-flex align-items-center justify-content-center text-white-50 mt-3">
+        <h1 class="display-5 fw-bold text-white">{{ $news->localized_title }}</h1>
+        <div class="d-flex align-items-center justify-content-center text-white mt-3">
             <span><i class="bi bi-calendar me-1"></i>{{ $news->date->format('F d, Y') }}</span>
-            <span class="ms-3"><i class="bi bi-eye me-1"></i>{{ $news->views }} {{ __('messages.views') ?? 'Views' }}</span>
+            <span class="ms-3"><i class="bi bi-eye me-1"></i>{{ $news->views }} {{ __('messages.views') }}</span>
         </div>
     </div>
 </section>
@@ -124,7 +144,7 @@
                 </article>
 
                 <div class="mt-5 pt-4 border-top">
-                    <h6 class="fw-bold mb-3">Share this news:</h6>
+                    <h6 class="fw-bold mb-3">{{ __('messages.share_this_news') }}</h6>
                     <div class="d-flex gap-2">
                         <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->url()) }}" target="_blank" class="btn btn-outline-primary btn-sm">
                             <i class="bi bi-facebook"></i>
@@ -147,7 +167,7 @@
                     @if(isset($recentNews) && $recentNews->count() > 0)
                     <div class="card border-0 shadow-sm mb-4">
                         <div class="card-body p-4">
-                            <h5 class="fw-bold mb-4">Recent News</h5>
+                            <h5 class="fw-bold mb-4">{{ __('messages.recent_news') }}</h5>
                             @foreach($recentNews as $recentItem)
                             <div class="d-flex mb-3 pb-3 border-bottom">
                                 @if($recentItem->image)
@@ -169,7 +189,7 @@
                     </div>
                     @endif
 
-                    <div class="card border-0 shadow-sm bg-primary text-white">
+                    {{-- <div class="card border-0 shadow-sm bg-primary text-white">
                         <div class="card-body p-4 text-center">
                             <i class="bi bi-envelope-paper fs-1 mb-3"></i>
                             <h5 class="fw-bold mb-3">Subscribe to Our Newsletter</h5>
@@ -180,7 +200,7 @@
                                 <button type="submit" class="btn btn-light w-100">Subscribe</button>
                             </form>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

@@ -67,8 +67,8 @@
 @section('content')
 <section class="page-header">
     <div class="container text-center">
-        <h1 class="display-4 fw-bold">{{ __('messages.contact_us') }}</h1>
-        <p class="lead opacity-75">{{ __('messages.get_in_touch') }}</p>
+        <h1 class="display-4 fw-bold text-white">{{ __('messages.contact_us') }}</h1>
+        <p class="lead text-white">{{ __('messages.get_in_touch') }}</p>
     </div>
 </section>
 
