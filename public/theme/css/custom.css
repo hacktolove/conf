@@ -7,7 +7,7 @@
 /* INDEX
 ----------------------------------------------------------------------------------------
 01. Global Variables
-02. General css 
+02. General css
 03. Header css
 04. Hero css
 05. Scrolling Ticker css
@@ -373,7 +373,7 @@ a:focus{
 }
 
 .section-row .section-title{
-	margin-bottom: 0; 
+	margin-bottom: 0;
 }
 
 .section-row .section-title.section-title-center{
@@ -397,7 +397,7 @@ a:focus{
 }
 
 .section-title-content p:last-child{
-	margin-bottom: 0;	
+	margin-bottom: 0;
 }
 
 .section-title{
@@ -1011,7 +1011,7 @@ header.main-header .header-sticky.active{
 /************************************/
 
 .our-scrolling-ticker{
-	background-color: var(--accent-color);
+	background-color: #52c463;
 	padding: 24px 0;
 }
 
@@ -2652,7 +2652,7 @@ header.main-header .header-sticky.active{
 	border-bottom: none;
 }
 
-.faq-accordion .accordion-item .accordion-button::after, 
+.faq-accordion .accordion-item .accordion-button::after,
 .faq-accordion .accordion-item .accordion-button.collapsed::after{
     content: '\2b';
     font-family: 'Font Awesome 7 Free';
@@ -3010,7 +3010,7 @@ header.main-header .header-sticky.active{
 	width: 49%;
 }
 
-.post-item-list .post-item .post-featured-image a, 
+.post-item-list .post-item .post-featured-image a,
 .post-item-list .post-item .post-featured-image a figure{
 	height: 100%;
 }
@@ -3437,7 +3437,7 @@ header.main-header .header-sticky.active{
 	position: relative;
 	width: 100%;
 	max-width: 24px;
-	z-index: 1;	
+	z-index: 1;
 	transition: all 0.4s ease-in-out;
 }
 
@@ -4424,7 +4424,7 @@ header.main-header .header-sticky.active{
     transition: all 0.3s ease-in-out;
 }
 
-.page-pagination ul li.active a, 
+.page-pagination ul li.active a,
 .page-pagination ul li a:hover{
     background: var(--accent-color);
 	color: var(--white-color);
@@ -4460,7 +4460,7 @@ header.main-header .header-sticky.active{
 }
 
 .post-image figure{
-	display: block;	
+	display: block;
 	border-radius: 20px;
 	overflow: hidden;
 }
@@ -5249,7 +5249,7 @@ header.main-header .header-sticky.active{
 	height: 100%;
 	align-content: center;
 	padding: 4.167vw;
-}	
+}
 
 .contact-form form .form-control{
     font-size: 16px;
@@ -5448,7 +5448,7 @@ header.main-header .header-sticky.active{
 	.section-content-btn .section-btn{
 		margin-top: 20px;
 	}
-	
+
 	.section-title-content{
         margin-top: 10px;
     }
@@ -5651,7 +5651,7 @@ header.main-header .header-sticky.active{
 	.sidebar-cta-content{
 		margin-bottom: 20px;
 	}
-	
+
 	.sidebar-cta-image{
 		margin: 0 -100px -85px 30px;
 	}
@@ -5769,7 +5769,7 @@ header.main-header .header-sticky.active{
 	.section-row{
 		margin-bottom: 40px;
 	}
-	
+
 	.section-title{
 		margin-bottom: 30px;
 	}
@@ -5860,7 +5860,7 @@ header.main-header .header-sticky.active{
 		padding-top: 20px;
 		margin-top: 20px;
 	}
-	
+
 	.section-footer-text,
 	.section-footer-text ul{
 		margin-top: 10px;
@@ -6298,44 +6298,44 @@ header.main-header .header-sticky.active{
 	.page-single-post{
         padding: 50px 0;
     }
-    
+
     .post-image{
         margin-bottom: 20px;
     }
-    
+
     .post-entry h2{
         font-size: 38px;
     }
-    
+
     .post-entry p{
         margin-bottom: 15px;
     }
-    
+
     .post-entry ol li,
     .post-entry ul li{
 		font-size: 16px;
         margin-bottom: 10px;
     }
-    
+
     .post-entry blockquote{
         background-position: 20px 20px;
         background-size: 40px;
         padding: 20px 20px 20px 70px;
         margin-bottom: 20px;
     }
-    
+
     .post-entry blockquote p{
         font-size: 18px;
     }
-    
+
     .post-tags{
         margin-bottom: 20px;
     }
-    
+
     .post-tags .tag-links a{
         padding: 12px 15px;
     }
-    
+
     .post-social-sharing ul{
         text-align: left;
     }
@@ -6409,7 +6409,7 @@ header.main-header .header-sticky.active{
 	.error-page{
 		padding: 50px 0px;
 	}
-	
+
 	.error-page-image{
 		margin-bottom: 20px;
 	}
@@ -6482,16 +6482,16 @@ header.main-header .header-sticky.active{
 	.years-experience-circle{
 		margin: 15px 15px 10px 0;
 	}
-	
+
 	.years-experience-circle figure img{
 		max-width: 105px;
 	}
-	
+
 	.years-experience-circle .years-experience-counter-box{
 		width: 54px;
 		height: 54px;
 	}
-	
+
 	.years-experience-circle .years-experience-counter-box h2{
 		font-size: 18px;
 	}
@@ -6860,7 +6860,7 @@ header.main-header .header-sticky.active{
 	.footer-copyright{
 		padding: 15px 0;
 	}
-	
+
 	.page-header-box h1{
         font-size: 28px;
     }
@@ -7013,7 +7013,7 @@ header.main-header .header-sticky.active{
 	.post-entry h2{
 		font-size: 26px;
 	}
-	
+
 	.tag-links{
 		font-size: 18px;
 	}
@@ -7108,7 +7108,7 @@ header.main-header .header-sticky.active{
 }
 
 header.main-header.header-metal .header-sticky.active{
-	border-radius: 0 0 10px 10px; 
+	border-radius: 0 0 10px 10px;
 }
 
 .main-header.header-metal .navbar{
@@ -7623,7 +7623,7 @@ header.main-header.header-metal .header-sticky.active{
 }
 
 .feature-item-btn-metal a::before{
-    filter: brightness(0) invert(1); 
+    filter: brightness(0) invert(1);
 }
 
 .feature-item-icon-metal{
@@ -7778,7 +7778,7 @@ header.main-header.header-metal .header-sticky.active{
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    padding: 20px;    
+    padding: 20px;
 }
 
 .benefits-body-image-box-metal{
@@ -8192,7 +8192,7 @@ header.main-header.header-metal .header-sticky.active{
     margin: 10px 0 0;
 }
 
-.what-we-content-list-metal, 
+.what-we-content-list-metal,
 .what-we-content-footer-metal{
     border-top: 1px solid var(--divider-color);
     padding-top: 40px;
@@ -8621,7 +8621,7 @@ header.main-header.header-metal .header-sticky.active{
 }
 
 .faq-cta-content-metal p{
-    color: var(--white-color); 
+    color: var(--white-color);
     margin: 15px 0 0;
 }
 
@@ -8663,7 +8663,7 @@ header.main-header.header-metal .header-sticky.active{
 	padding: 22px 55px 22px 30px;
 }
 
-.faq-accordion-metal .accordion-item .accordion-button::after, 
+.faq-accordion-metal .accordion-item .accordion-button::after,
 .faq-accordion-metal .accordion-item .accordion-button.collapsed::after{
     content: '\2b';
     font-family: 'FontAwesome';
@@ -9038,7 +9038,7 @@ header.main-header.header-metal .header-sticky.active{
     width: 1px;
     height: 100%;
 }
- 
+
 .footer-contact-item-metal:last-child::before{
 	display: none;
 }
@@ -9275,7 +9275,7 @@ header.main-header.header-metal .header-sticky.active{
 		height: auto;
         margin-bottom: 30px;
     }
-	
+
 	.hero-image-metal{
 		max-width: 600px;
 		height: auto;
@@ -9420,7 +9420,7 @@ header.main-header.header-metal .header-sticky.active{
     }
 
 	header.main-header.header-metal .header-sticky.active{
-		border-radius: 0; 
+		border-radius: 0;
 	}
 
     .main-header.header-metal .navbar{
@@ -9435,7 +9435,7 @@ header.main-header.header-metal .header-sticky.active{
         width: 95px;
         height: 40px;
     }
-    
+
     .hero-content-metal .section-title h1 .icon-box{
         width: 40px;
         height: 40px;
@@ -9590,7 +9590,7 @@ header.main-header.header-metal .header-sticky.active{
 
     .event-item-content-box-metal{
         width: 100%;
-    }  
+    }
 
     .event-customer-info-metal{
         width: 100%;
@@ -9990,7 +9990,7 @@ header.main-header.header-metal .header-sticky.active{
     .benefits-rating-box-metal{
         margin-top: 20px;
     }
-    
+
     .benefits-rating-counter-metal{
         margin-bottom: 15px;
     }
@@ -10790,7 +10790,7 @@ header.main-header.header-metal .header-sticky.active{
 
 .feature-item-gold:hover .feature-item-image-gold img{
 	transform: scale(1.06);
-}	
+}
 
 .feature-item-body-gold{
 	padding: 0 20px 20px;
@@ -11463,7 +11463,7 @@ header.main-header.header-metal .header-sticky.active{
 	bottom: 0;
 	background-color: var(--dark-divider-color);
 	height: 100%;
-	width: 1px;	
+	width: 1px;
 }
 
 .story-footer-item-gold:nth-child(5n + 5):after,
@@ -11613,7 +11613,7 @@ header.main-header.header-metal .header-sticky.active{
     padding: 0;
 }
 
-.speakers-social-list-gold ul li a{	
+.speakers-social-list-gold ul li a{
 	width: 36px;
 	height: 36px;
 	color: var(--white-color);
@@ -12015,7 +12015,7 @@ header.main-header.header-metal .header-sticky.active{
 	transition: all 0.4s ease-in-out;
 }
 
-.faq-accordion-gold .accordion-item-gold .accordion-button::after, 
+.faq-accordion-gold .accordion-item-gold .accordion-button::after,
 .faq-accordion-gold .accordion-item-gold .accordion-button.collapsed::after{
 	content: '\2b';
 	font-family: 'FontAwesome';
@@ -12091,7 +12091,7 @@ header.main-header.header-metal .header-sticky.active{
     padding: 0;
 }
 
-.footer-social-icons-gold ul li a{	
+.footer-social-icons-gold ul li a{
 	width: 36px;
 	height: 36px;
 	display: flex;
@@ -12369,7 +12369,7 @@ header.main-header.header-metal .header-sticky.active{
 	.feature-item-image-gold{
 		margin-bottom: 20px;
 	}
-	
+
 	.feature-item-body-gold{
 		padding: 0 10px 10px;
 	}
@@ -12486,7 +12486,7 @@ header.main-header.header-metal .header-sticky.active{
 		padding: 0;
 		margin-top: 30px;
 	}
-	
+
 	.hero-info-list-gold{
 		width: 50%;
 		mask-image: none;
@@ -12754,7 +12754,7 @@ header.main-header.header-metal .header-sticky.active{
 	.our-speakers-gold{
 		padding: 50px 0;
 	}
-	
+
 	.speakers-item-gold{
 		padding-bottom: 20px;
 	}
@@ -12950,7 +12950,7 @@ header.main-header.header-metal .header-sticky.active{
 	.about-us-image-box-2-gold .about-us-image-gold{
         margin-left: -130px;
 	}
-	
+
 	.about-schedule-gold img{
         max-width: 80px;
     }
@@ -13041,7 +13041,7 @@ header.main-header.header-metal .header-sticky.active{
 		flex-wrap: wrap;
         text-align: left;
 	}
-	
+
 	.benefits-body-item-gold:before{
 		display: none;
 	}
@@ -13087,7 +13087,7 @@ header.main-header.header-metal .header-sticky.active{
 	.event-item-image-gold img{
 		aspect-ratio: 1 / 0.6;
 	}
-	
+
 	.event-item-body-gold{
 		gap: 30px;
 		padding: 0 10px 10px;
@@ -13137,11 +13137,11 @@ header.main-header.header-metal .header-sticky.active{
 	.pricing-benefit-list-gold ul{
 		gap: 15px;
 	}
-	
+
 	.pricing-benefit-list-gold ul li{
 		font-size: 14px;
 	}
-	
+
 	.pricing-benefit-list-gold ul li img{
 		max-width: 16px;
 		margin-right: 5px;

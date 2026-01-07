@@ -86,8 +86,8 @@
 @section('content')
 <section class="page-header">
     <div class="container text-center">
-        <h1 class="display-4 fw-bold">{{ __('messages.event_schedule_title') }}</h1>
-        <p class="lead opacity-75">{{ __('messages.plan_conference') }}</p>
+        <h1 class="display-4 fw-bold text-white">{{ __('messages.event_schedule_title') }}</h1>
+        <p class="lead text-white">{{ __('messages.plan_conference') }}</p>
     </div>
 </section>
 

@@ -305,6 +305,16 @@
         0% { transform: translateX(100%); }
         100% { transform: translateX(-100%); }
     }
+    /* Scrolling Ticker Links */
+    .our-scrolling-ticker a {
+        color: inherit !important;
+        text-decoration: none;
+        transition: opacity 0.3s;
+    }
+    .our-scrolling-ticker a:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+    }
     .about-tabs {
         width: 100%;
         max-width: 100%;
@@ -775,6 +785,46 @@
         @endif
     </div>
 </section>
+
+<!-- Scrolling Ticker Section Start -->
+@if(isset($news) && $news->count() > 0)
+<div class="our-scrolling-ticker">
+    <!-- Scrolling Ticker Start -->
+    <div class="scrolling-ticker-box">
+        <div class="scrolling-content">
+            @foreach($news as $newsItem)
+            <span>
+                {{-- <img src="{{ asset('theme/images/icon-asterisk.svg') }}" alt=""> --}}
+                <a href="{{ route('news.show', $newsItem->slug) }}" class="text-decoration-none text-white">{{ $newsItem->localized_title }}</a>
+            </span>
+            @endforeach
+            @foreach($news as $newsItem)
+            <span>
+                {{-- <img src="{{ asset('theme/images/icon-asterisk.svg') }}" alt=""> --}}
+                <a href="{{ route('news.show', $newsItem->slug) }}" class="text-decoration-none text-white">{{ $newsItem->localized_title }}</a>
+            </span>
+            @endforeach
+        </div>
+
+        {{-- <div class="scrolling-content">
+            @foreach($news as $newsItem)
+            <span>
+                <img src="{{ asset('theme/images/icon-asterisk.svg') }}" alt="">
+                <a href="{{ route('news.show', $newsItem->slug) }}" class="text-decoration-none text-white">{{ $newsItem->localized_title }}</a>
+            </span>
+            @endforeach
+            @foreach($news as $newsItem)
+            <span>
+                <img src="{{ asset('theme/images/icon-asterisk.svg') }}" alt="">
+                <a href="{{ route('news.show', $newsItem->slug) }}" class="text-decoration-none text-white">{{ $newsItem->localized_title }}</a>
+            </span>
+            @endforeach
+        </div> --}}
+    </div>
+    <!-- Scrolling Ticker End -->
+</div>
+@endif
+<!-- Scrolling Ticker Section End -->
 
 <!-- Upcoming Speaker Reveal Section -->
 @if($speakerRevealDate)

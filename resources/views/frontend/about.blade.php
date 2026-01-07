@@ -87,8 +87,8 @@
 @section('content')
 <section class="page-header">
     <div class="container text-center">
-        <h1 class="display-4 fw-bold">{{ App\Models\SiteSetting::getLocalized('about_page_title', __('messages.about_us_title')) }}</h1>
-        <p class="lead opacity-75">{{ App\Models\SiteSetting::getLocalized('about_page_subtitle', __('messages.about_us_subtitle')) }}</p>
+        <h1 class="display-4 fw-bold text-white">{{ App\Models\SiteSetting::getLocalized('about_page_title', __('messages.about_us_title')) }}</h1>
+        <p class="lead text-white">{{ App\Models\SiteSetting::getLocalized('about_page_subtitle', __('messages.about_us_subtitle')) }}</p>
     </div>
 </section>
 

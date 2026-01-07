@@ -8,6 +8,7 @@ use App\Models\Speaker;
 use App\Models\Schedule;
 use App\Models\Testimonial;
 use App\Models\BlogPost;
+use App\Models\News;
 use App\Models\Sponsor;
 use App\Models\Gallery;
 use App\Models\Faq;
@@ -952,6 +953,97 @@ class DatabaseSeeder extends Seeder
             BlogPost::updateOrCreate(
                 ['slug' => $post['slug']],
                 $post
+            );
+        }
+
+        // News
+        $news = [
+            [
+                'title' => 'Conference Registration Now Open - Early Bird Discount Available',
+                'title_ar' => 'التسجيل في المؤتمر مفتوح الآن - خصم الطائر المبكر متاح',
+                'slug' => 'conference-registration-now-open',
+                'body' => "<p>We're excited to announce that registration for the upcoming conference is now open! Don't miss out on our early bird discount available for the first 100 registrations.</p>\n\n<p>Join us for an incredible experience featuring world-class speakers, innovative workshops, and networking opportunities that will transform your professional journey.</p>\n\n<h3>What's Included:</h3>\n<ul>\n<li>Access to all conference sessions</li>\n<li>Networking events and social gatherings</li>\n<li>Workshop materials and resources</li>\n<li>Certificate of participation</li>\n</ul>",
+                'body_ar' => "<p>يسعدنا أن نعلن أن التسجيل في المؤتمر القادم مفتوح الآن! لا تفوت خصم الطائر المبكر المتاح لأول 100 تسجيل.</p>\n\n<p>انضم إلينا لتجربة رائعة تضم متحدثين من الطراز العالمي وورش عمل مبتكرة وفرص التواصل التي ستحول رحلتك المهنية.</p>\n\n<h3>ما المدرج:</h3>\n<ul>\n<li>الوصول إلى جميع جلسات المؤتمر</li>\n<li>فعاليات التواصل والتجمعات الاجتماعية</li>\n<li>مواد وموارد ورش العمل</li>\n<li>شهادة المشاركة</li>\n</ul>",
+                'date' => Carbon::now()->subDays(2),
+                'is_published' => true,
+                'published_at' => Carbon::now()->subDays(2),
+            ],
+            [
+                'title' => 'Keynote Speaker Announcement: Industry Leaders to Share Insights',
+                'title_ar' => 'إعلان المتحدث الرئيسي: قادة الصناعة يشاركون رؤاهم',
+                'slug' => 'keynote-speaker-announcement',
+                'body' => "<p>We're thrilled to announce our lineup of keynote speakers for this year's conference. These industry leaders will share their insights, experiences, and vision for the future.</p>\n\n<p>Our keynote speakers include:</p>\n<ul>\n<li>Global Marketing Directors from Fortune 500 companies</li>\n<li>AI Research Scientists leading innovation</li>\n<li>Entrepreneurship advisors with successful exits</li>\n<li>Sustainability experts shaping green business practices</li>\n</ul>\n\n<p>Don't miss this opportunity to learn from the best in the industry.</p>",
+                'body_ar' => "<p>يسعدنا أن نعلن عن قائمة المتحدثين الرئيسيين لمؤتمر هذا العام. سيتشارك هؤلاء القادة في الصناعة رؤاهم وخبراتهم ورؤيتهم للمستقبل.</p>\n\n<p>يتضمن المتحدثون الرئيسيون لدينا:</p>\n<ul>\n<li>مديري التسويق العالميين من شركات فورتشن 500</li>\n<li>علماء أبحاث الذكاء الاصطناعي الذين يقودون الابتكار</li>\n<li>مستشاري ريادة الأعمال مع خروج ناجح</li>\n<li>خبراء الاستدامة الذين يشكلون ممارسات الأعمال الخضراء</li>\n</ul>\n\n<p>لا تفوت هذه الفرصة للتعلم من الأفضل في الصناعة.</p>",
+                'date' => Carbon::now()->subDays(5),
+                'is_published' => true,
+                'published_at' => Carbon::now()->subDays(5),
+            ],
+            [
+                'title' => 'Workshop Schedule Released - Register for Your Preferred Sessions',
+                'title_ar' => 'إصدار جدول ورش العمل - سجل في جلساتك المفضلة',
+                'slug' => 'workshop-schedule-released',
+                'body' => "<p>The complete workshop schedule has been released! We have an exciting lineup of hands-on workshops covering various topics including:</p>\n\n<h3>Featured Workshops:</h3>\n<ul>\n<li>Digital Marketing Masterclass</li>\n<li>Leadership Development Intensive</li>\n<li>Data Analytics & AI Applications</li>\n<li>Entrepreneurship & Startup Strategies</li>\n<li>UX/UI Design Fundamentals</li>\n</ul>\n\n<p>Spaces are limited, so be sure to register early to secure your spot in your preferred workshops.</p>",
+                'body_ar' => "<p>تم إصدار جدول ورش العمل الكامل! لدينا قائمة مثيرة من ورش العمل العملية التي تغطي مواضيع مختلفة بما في ذلك:</p>\n\n<h3>ورش العمل المميزة:</h3>\n<ul>\n<li>فصل رئيسي في التسويق الرقمي</li>\n<li>دورة مكثفة لتطوير القيادة</li>\n<li>تحليل البيانات وتطبيقات الذكاء الاصطناعي</li>\n<li>ريادة الأعمال واستراتيجيات الشركات الناشئة</li>\n<li>أساسيات تصميم تجربة المستخدم</li>\n</ul>\n\n<p>الأماكن محدودة، لذا تأكد من التسجيل مبكرًا لتأمين مكانك في ورش العمل المفضلة لديك.</p>",
+                'date' => Carbon::now()->subDays(7),
+                'is_published' => true,
+                'published_at' => Carbon::now()->subDays(7),
+            ],
+            [
+                'title' => 'Networking Events Announced - Connect with Industry Professionals',
+                'title_ar' => 'إعلان فعاليات التواصل - تواصل مع المهنيين في الصناعة',
+                'slug' => 'networking-events-announced',
+                'body' => "<p>We're excited to announce a series of networking events designed to help you connect with industry professionals, potential collaborators, and like-minded individuals.</p>\n\n<p>Our networking program includes:</p>\n<ul>\n<li>Welcome Reception on Day 1</li>\n<li>Industry-specific networking sessions</li>\n<li>Speed networking events</li>\n<li>Closing cocktail party</li>\n</ul>\n\n<p>These events provide the perfect opportunity to expand your professional network and build lasting relationships.</p>",
+                'body_ar' => "<p>يسعدنا أن نعلن عن سلسلة من فعاليات التواصل المصممة لمساعدتك على التواصل مع المهنيين في الصناعة والمتعاونين المحتملين والأفراد ذوي التفكير المماثل.</p>\n\n<p>يتضمن برنامج التواصل لدينا:</p>\n<ul>\n<li>استقبال الترحيب في اليوم الأول</li>\n<li>جلسات التواصل الخاصة بالصناعة</li>\n<li>فعاليات التواصل السريع</li>\n<li>حفلة كوكتيل الختام</li>\n</ul>\n\n<p>توفر هذه الفعاليات الفرصة المثالية لتوسيع شبكتك المهنية وبناء علاقات دائمة.</p>",
+                'date' => Carbon::now()->subDays(10),
+                'is_published' => true,
+                'published_at' => Carbon::now()->subDays(10),
+            ],
+            [
+                'title' => 'Venue and Accommodation Information Now Available',
+                'title_ar' => 'معلومات المكان والإقامة متاحة الآن',
+                'slug' => 'venue-accommodation-information',
+                'body' => "<p>We've released detailed information about the conference venue and recommended accommodation options for attendees.</p>\n\n<h3>Conference Venue:</h3>\n<p>The event will be held at our state-of-the-art conference center located in the heart of the city, easily accessible by public transportation.</p>\n\n<h3>Recommended Hotels:</h3>\n<p>We've partnered with several hotels near the venue offering special rates for conference attendees. Book early to secure the best rates!</p>\n\n<p>For more details, visit our accommodation page or contact our support team.</p>",
+                'body_ar' => "<p>لقد أصدرنا معلومات مفصلة عن مكان المؤتمر وخيارات الإقامة الموصى بها للمشاركين.</p>\n\n<h3>مكان المؤتمر:</h3>\n<p>سيتم عقد الحدث في مركز المؤتمرات الحديث لدينا الموجود في قلب المدينة، ويمكن الوصول إليه بسهولة عبر وسائل النقل العام.</p>\n\n<h3>الفنادق الموصى بها:</h3>\n<p>لقد شركنا مع عدة فنادق بالقرب من المكان تقدم أسعارًا خاصة للمشاركين في المؤتمر. احجز مبكرًا لتأمين أفضل الأسعار!</p>\n\n<p>لمزيد من التفاصيل، قم بزيارة صفحة الإقامة الخاصة بنا أو اتصل بفريق الدعم.</p>",
+                'date' => Carbon::now()->subDays(12),
+                'is_published' => true,
+                'published_at' => Carbon::now()->subDays(12),
+            ],
+            [
+                'title' => 'Call for Volunteers - Join Our Amazing Team',
+                'title_ar' => 'دعوة للمتطوعين - انضم إلى فريقنا الرائع',
+                'slug' => 'call-for-volunteers',
+                'body' => "<p>We're looking for enthusiastic volunteers to help make this conference a success! As a volunteer, you'll have the opportunity to:</p>\n\n<ul>\n<li>Network with industry leaders and speakers</li>\n<li>Gain valuable event management experience</li>\n<li>Attend sessions when not on duty</li>\n<li>Receive a certificate of appreciation</li>\n<li>Enjoy meals and refreshments during the event</li>\n</ul>\n\n<p>If you're interested in volunteering, please fill out our volunteer application form. We'd love to have you on our team!</p>",
+                'body_ar' => "<p>نبحث عن متطوعين متحمسين للمساعدة في جعل هذا المؤتمر نجاحًا! كمتطوع، ستتاح لك الفرصة ل:</p>\n\n<ul>\n<li>التواصل مع قادة الصناعة والمتحدثين</li>\n<li>اكتساب خبرة قيمة في إدارة الأحداث</li>\n<li>حضور الجلسات عندما لا تكون في الخدمة</li>\n<li>الحصول على شهادة تقدير</li>\n<li>الاستمتاع بالوجبات والمرطبات أثناء الحدث</li>\n</ul>\n\n<p>إذا كنت مهتمًا بالتطوع، يرجى ملء نموذج طلب المتطوعين. نحب أن يكون لديك في فريقنا!</p>",
+                'date' => Carbon::now()->subDays(15),
+                'is_published' => true,
+                'published_at' => Carbon::now()->subDays(15),
+            ],
+            [
+                'title' => 'Special Discount for Students and Early Career Professionals',
+                'title_ar' => 'خصم خاص للطلاب والمهنيين في بداية مسيرتهم',
+                'slug' => 'student-discount-announced',
+                'body' => "<p>We're offering special discounted rates for students and early career professionals to make the conference more accessible.</p>\n\n<h3>Eligibility:</h3>\n<ul>\n<li>Full-time students with valid student ID</li>\n<li>Professionals with less than 3 years of experience</li>\n</ul>\n\n<h3>Benefits:</h3>\n<p>Student and early career tickets include all the same benefits as regular tickets at a significantly reduced price. This is a great opportunity to invest in your professional development!</p>\n\n<p>To claim your discount, use the code STUDENT2025 during registration.</p>",
+                'body_ar' => "<p>نقدم أسعارًا مخفضة خاصة للطلاب والمهنيين في بداية مسيرتهم لجعل المؤتمر أكثر سهولة.</p>\n\n<h3>الأهلية:</h3>\n<ul>\n<li>الطلاب بدوام كامل مع هوية طالب صالحة</li>\n<li>المهنيون بأقل من 3 سنوات من الخبرة</li>\n</ul>\n\n<h3>الفوائد:</h3>\n<p>تذاكر الطلاب والمهنيين في بداية مسيرتهم تشمل جميع نفس الفوائد مثل التذاكر العادية بسعر مخفض بشكل كبير. هذه فرصة رائعة للاستثمار في تطويرك المهني!</p>\n\n<p>للمطالبة بخصمك، استخدم الرمز STUDENT2025 أثناء التسجيل.</p>",
+                'date' => Carbon::now()->subDays(18),
+                'is_published' => true,
+                'published_at' => Carbon::now()->subDays(18),
+            ],
+            [
+                'title' => 'Conference Mobile App Now Available for Download',
+                'title_ar' => 'تطبيق المؤتمر المحمول متاح الآن للتحميل',
+                'slug' => 'conference-mobile-app-available',
+                'body' => "<p>Download our official conference mobile app to enhance your conference experience!</p>\n\n<h3>App Features:</h3>\n<ul>\n<li>Personalized schedule builder</li>\n<li>Real-time session updates and notifications</li>\n<li>Interactive venue maps</li>\n<li>Networking features to connect with other attendees</li>\n<li>Speaker profiles and session materials</li>\n<li>QR code check-in</li>\n</ul>\n\n<p>The app is available for both iOS and Android devices. Download it today and start planning your conference experience!</p>",
+                'body_ar' => "<p>قم بتنزيل تطبيق المؤتمر المحمول الرسمي لدينا لتعزيز تجربة المؤتمر الخاصة بك!</p>\n\n<h3>ميزات التطبيق:</h3>\n<ul>\n<li>منشئ جدول مخصص</li>\n<li>تحديثات الجلسات والإشعارات في الوقت الفعلي</li>\n<li>خرائط المكان التفاعلية</li>\n<li>ميزات التواصل للتواصل مع المشاركين الآخرين</li>\n<li>ملفات تعريف المتحدثين ومواد الجلسات</li>\n<li>تسجيل الدخول برمز QR</li>\n</ul>\n\n<p>التطبيق متاح لأجهزة iOS و Android. قم بتنزيله اليوم وابدأ في التخطيط لتجربة المؤتمر الخاصة بك!</p>",
+                'date' => Carbon::now()->subDays(20),
+                'is_published' => true,
+                'published_at' => Carbon::now()->subDays(20),
+            ],
+        ];
+
+        foreach ($news as $newsItem) {
+            News::updateOrCreate(
+                ['slug' => $newsItem['slug']],
+                $newsItem
             );
         }
 

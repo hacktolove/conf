@@ -205,6 +205,11 @@ return [
     'no_speakers_found' => 'No Speakers Found',
     'check_back_speakers' => 'Check back later for speaker announcements.',
 
+    // News
+    'views' => 'Views',
+    'share_this_news' => 'Share this news:',
+    'recent_news' => 'Recent News',
+
     // Page Titles
     'page_title_home' => 'Evenza - Premier Event Management',
     'page_title_about' => 'About Us - Evenza',

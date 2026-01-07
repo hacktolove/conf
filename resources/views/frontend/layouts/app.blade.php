@@ -446,6 +446,33 @@
         .faq-item .accordion-button { background: #f8f9fa; font-weight: 600; }
         .faq-item .accordion-button:not(.collapsed) { background: var(--primary); color: #fff; }
         .page-header { background: linear-gradient(135deg, var(--gradient-hero-from) 0%, var(--gradient-hero-to) 100%); padding: 8rem 0 4rem; color: #fff; }
+        /* Force white text with no opacity in all page-header sections */
+        .page-header,
+        .page-header * {
+            color: #ffffff !important;
+        }
+        .page-header h1,
+        .page-header h2,
+        .page-header h3,
+        .page-header h4,
+        .page-header h5,
+        .page-header h6,
+        .page-header p,
+        .page-header span,
+        .page-header .lead,
+        .page-header-box h1,
+        .page-header-box p {
+            color: #ffffff !important;
+            opacity: 1 !important;
+        }
+        .page-header .opacity-75,
+        .page-header .opacity-50,
+        .page-header .text-white-50,
+        .page-header-box .opacity-75,
+        .page-header-box .opacity-50 {
+            opacity: 1 !important;
+            color: #ffffff !important;
+        }
     </style>
     @stack('styles')
 </head>

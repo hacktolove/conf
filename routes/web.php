@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\SubscriberController;
 use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\AboutPageController;
+use App\Http\Controllers\Admin\NewsController;
 
 // Frontend Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -26,6 +27,7 @@ Route::get('/speakers/{slug}', [HomeController::class, 'speakerDetail'])->name('
 Route::get('/schedule', [HomeController::class, 'schedule'])->name('schedule');
 Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
 Route::get('/blog/{slug}', [HomeController::class, 'blogDetail'])->name('blog.show');
+Route::get('/news/{slug}', [HomeController::class, 'newsDetail'])->name('news.show');
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contact', [HomeController::class, 'contactSubmit'])->name('contact.submit');
@@ -45,6 +47,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('speakers', SpeakerController::class)->except(['show']);
         Route::resource('schedules', ScheduleController::class)->except(['show']);
         Route::resource('blog-posts', BlogPostController::class)->except(['show']);
+        Route::resource('news', NewsController::class)->except(['show']);
         Route::resource('galleries', GalleryController::class)->except(['show']);
         Route::resource('hero-slides', HeroSlideController::class)->except(['show']);
         Route::post('hero-slides/{heroSlide}/select', [HeroSlideController::class, 'select'])->name('hero-slides.select');
