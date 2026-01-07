@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Speaker;
 use App\Models\Schedule;
 use App\Models\BlogPost;
+use App\Models\News;
 use App\Models\Gallery;
 use App\Models\HeroSlide;
 use App\Models\Statistic;
@@ -25,6 +26,7 @@ class HomeController extends Controller
         $speakers = Speaker::active()->featured()->orderBy('order')->take(8)->get();
         $schedules = Schedule::with(['event', 'speakers'])->active()->orderBy('schedule_date')->orderBy('start_time')->get();
         $galleries = Gallery::active()->orderBy('order')->take(8)->get();
+        $news = News::published()->recent()->take(10)->get();
 
         // Get countdown date from site settings (dynamic from database)
         $countdownDateRaw = SiteSetting::get('countdown_date');
@@ -63,7 +65,7 @@ class HomeController extends Controller
 
         return view('frontend.home', compact(
             'heroSlides', 'events', 'speakers', 'schedules',
-            'galleries', 'countdownDate', 'hasCountdown', 'mission', 'vision', 'goal',
+            'galleries', 'news', 'countdownDate', 'hasCountdown', 'mission', 'vision', 'goal',
             'speakerRevealDate', 'upcomingSpeaker', 'showSpeaker'
         ));
     }
@@ -121,6 +123,15 @@ class HomeController extends Controller
         $recentPosts = BlogPost::published()->where('id', '!=', $post->id)->recent()->take(3)->get();
 
         return view('frontend.blog.show', compact('post', 'recentPosts'));
+    }
+
+    public function newsDetail($slug)
+    {
+        $news = News::where('slug', $slug)->published()->firstOrFail();
+        $news->increment('views');
+        $recentNews = News::published()->where('id', '!=', $news->id)->recent()->take(3)->get();
+
+        return view('frontend.news.show', compact('news', 'recentNews'));
     }
 
     public function gallery()
